@@ -1,5 +1,5 @@
-.home-wrapper{
-    .home-banner{
+.contact-wrapper{
+    .contact-banner{
         background-image: url("../img/home-banner.gif");
         min-height: 500px;
         height: 100vh;
@@ -7,7 +7,7 @@
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        .home-slogan{
+        .contact-slogan{
             span{
                 animation: blink 1s infinite;
             }

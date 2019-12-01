@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBCol, MDBContainer, MDBRow, MDBFooter } from "mdbreact";
+import { MDBCol, MDBContainer, MDBRow, MDBFooter, MDBBox } from "mdbreact";
 
 class Footer extends React.Component {
     constructor(props){
@@ -37,7 +37,7 @@ class Footer extends React.Component {
                 <MDBContainer>
                     <MDBRow>
                         <MDBCol md="12" className="py-5">
-                            <div className="mb-5 flex-center">
+                            <MDBBox tag="div" className="mb-5 flex-center">
                                 {
                                     this.state.social.map(items => (
                                         <a className="fb-ic" key={items.id} href={items.link} title={items.title}>
@@ -45,7 +45,7 @@ class Footer extends React.Component {
                                         </a>
                                     ))
                                 }
-                            </div>
+                            </MDBBox>
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>
