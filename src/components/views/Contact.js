@@ -96,7 +96,10 @@ class Contact extends React.Component {
                                         ))
                                     }
                                     <MDBBox tag="div" className="text-center">
-                                        <MDBBtn color="light-blue">Submit</MDBBtn>
+                                        <MDBBtn color="primary">
+                                            <MDBIcon icon="paper-plane" className="mr-2" />
+                                            Submit
+                                        </MDBBtn>
                                     </MDBBox>
                                 </MDBCardBody>
                             </MDBCard>
@@ -111,7 +114,7 @@ class Contact extends React.Component {
                                 {
                                     this.state.info.map(items => (
                                         <MDBCol md="4" key={items.id}>
-                                            <MDBBtn tag="a" floating color="blue" className="accent-1 contact-info-btn overflow-hidden position-relative p-0 rounded-circle align-middle">
+                                            <MDBBtn tag="a" floating color="light-blue" className="accent-1 contact-info-btn overflow-hidden position-relative p-0 rounded-circle align-middle">
                                                 <MDBIcon icon={items.icon} />
                                             </MDBBtn>
                                             <MDBBox tag="p">{items.text}</MDBBox>
