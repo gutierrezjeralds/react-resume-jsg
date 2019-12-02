@@ -1,7 +1,7 @@
 import React from "react";
+import Banner from './Banner'
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer } from "mdbreact";
 import { MDBAnimation, MDBView, MDBMask, MDBBox } from "mdbreact";
-import { Link } from 'react-router-dom';
 
 class Contact extends React.Component {
     constructor(props) {
@@ -62,18 +62,7 @@ class Contact extends React.Component {
     render() {
         return (
             <MDBBox tag="div" className="contact-wrapper">
-                <MDBView className="contact-banner">
-                    <MDBMask className="flex-center" overlay="black-strong">
-                        <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow">
-                            <MDBBox tag="h1" className="mb-4 font-weight-light">Connect with me today.</MDBBox>
-                                <MDBBox tag="a" href="#contactContent" className="white-text">
-                                    <MDBAnimation type="bounce" infinite>
-                                        <MDBIcon icon="chevron-down" className="fa-3x ml-2" />
-                                    </MDBAnimation>
-                                </MDBBox>
-                        </MDBAnimation>
-                    </MDBMask>
-                </MDBView>
+                <Banner wrapper="contact" />
                 <MDBContainer className="pt-5 mt-5 contact-wrapper" id="contactContent">
                     <MDBRow>
                         <MDBCol lg="5" className="lg-0 mb-4">
@@ -88,7 +77,7 @@ class Contact extends React.Component {
                                         this.state.form.map(items => (
                                             <MDBBox tag="div" className="md-form" key={items.id}>
                                                 {items.type === "textarea" ? (
-                                                    <MDBInput icon={items.icon} label={items.label} iconClass="grey-text" type={items.type} id={items.fid} length={items.maxlength} maxlength={items.maxlength} />
+                                                    <MDBInput icon={items.icon} label={items.label} iconClass="grey-text" type={items.type} id={items.fid} length={items.maxlength} maxLength={items.maxlength} />
                                                 ) : (
                                                     <MDBInput icon={items.icon} label={items.label} iconClass={items.iconClass + " grey-text"} type={items.type} id={items.fid} />
                                                 )}

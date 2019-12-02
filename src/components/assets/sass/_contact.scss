@@ -1,18 +1,4 @@
 .contact-wrapper{
-    .contact-banner{
-        background-image: url("../img/home-banner.gif");
-        min-height: 500px;
-        height: 100vh;
-        background-attachment: fixed;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        .contact-slogan{
-            span{
-                animation: blink 1s infinite;
-            }
-        }
-    }
     .contact-form-header{
         color: #fff;
         text-align: center;

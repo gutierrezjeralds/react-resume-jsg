@@ -33,7 +33,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <MDBFooter color="unique-color-dark" className="font-small pt-4 mt-4">
+            <MDBFooter color="unique-color-dark" className="font-small pt-4">
                 <MDBContainer>
                     <MDBRow>
                         <MDBCol md="12" className="py-5">

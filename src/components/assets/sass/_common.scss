@@ -1,0 +1,27 @@
+.banner-wrapper{
+    .banner-content{
+        min-height: 500px;
+        height: 100vh;
+        background-attachment: fixed;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        &.home-banner{
+            background-image: url("../img/home-banner.gif");
+            .home-slogan{
+                span{
+                    animation: blink 1s infinite;
+                }
+            }
+        }
+        &.contact-banner{
+            background-image: url("../img/home-banner.gif");
+        }
+        &.notFound-404-banner{
+            background-image: url("../img/home-banner.gif");
+            .title{
+                font-size: 6rem !important;
+            }
+        }
+    }
+}
