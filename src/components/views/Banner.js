@@ -23,7 +23,7 @@ class Banner extends React.Component {
                             ) : (
                                 this.props.wrapper === "contact" ? (
                                     <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow">
-                                        <MDBBox tag="h1" className="mb-4 font-weight-light title">Connect with me today.</MDBBox>
+                                        <MDBBox tag="h1" className="mb-4 font-weight-light title">Connect with me.</MDBBox>
                                         <MDBBox tag="a" className="white-text" onClick={() => {
                                             let elemId = document.getElementById("contactContent")
                                             window.scrollTo({
