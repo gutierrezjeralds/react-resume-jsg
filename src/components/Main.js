@@ -2,6 +2,8 @@ import React from 'react'
 import Header from './Header'
 import Footer from './Footer'
 import Home from './views/Home'
+import Portfolio from './views/Portfolio'
+import Resume from './views/Resume'
 import Contact from './views/Contact'
 import NotFound from './views/NotFound'
 import { MDBBox } from 'mdbreact'
@@ -17,6 +19,12 @@ class Main extends React.Component {
                         <Switch >
                             <Route exact path="/">
                                 <Home />
+                            </Route>
+                            <Route exact path="/portfolio">
+                                <Portfolio />
+                            </Route>
+                            <Route exact path="/resume">
+                                <Resume />
                             </Route>
                             <Route exact path="/contact">
                                 <Contact />

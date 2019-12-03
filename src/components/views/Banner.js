@@ -23,7 +23,7 @@ class Banner extends React.Component {
                             ) : (
                                 this.props.wrapper === "contact" ? (
                                     <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
-                                        <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Connect with me.</MDBBox>
+                                        <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Connect with me</MDBBox>
                                         <MDBBox tag="a" className="white-text" onClick={() => {
                                             let elemId = document.getElementById("contactContent")
                                             window.scrollTo({
@@ -37,17 +37,46 @@ class Banner extends React.Component {
                                         </MDBBox>
                                     </MDBAnimation>
                                 ) : (
-                                    // 404 Error
-                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
-                                        <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Page not Found</MDBBox>
-                                        <MDBBox tag="span" className="sub-title font-weight-light font-size-2rem d-block">Sorry but it looks like this page no longer available.</MDBBox>
-                                        <MDBBtn outline color="white">
-                                            <Link to="/" className="white-text">
-                                                Back To Home
-                                                <MDBIcon icon="home" className="ml-2" />
-                                            </Link>
-                                        </MDBBtn>
-                                    </MDBAnimation>
+                                    this.props.wrapper === "portfolio" ? (
+                                        <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                            <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">My Portfolio</MDBBox>
+                                            <MDBBox tag="a" className="white-text" onClick={() => {
+                                                let elemId = document.getElementById("portfolioContent")
+                                                window.scrollTo({
+                                                    top: elemId.offsetTop,
+                                                    behavior: "smooth"
+                                                })
+                                            }}>
+                                                <MDBAnimation type="bounce" infinite>
+                                                    <MDBIcon icon="chevron-down" className="fa-3x ml-2" />
+                                                </MDBAnimation>
+                                            </MDBBox>
+                                        </MDBAnimation>
+                                    ) : (
+                                        this.props.wrapper === "resume" ? (
+                                            <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                                <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">My Resume</MDBBox>
+                                                <MDBBtn outline color="white">
+                                                    <Link to="/contact" className="white-text">
+                                                        Download Resume
+                                                        <MDBIcon icon="download" className="ml-2" />
+                                                    </Link>
+                                                </MDBBtn>
+                                            </MDBAnimation>
+                                        ) : (
+                                            // 404 Error
+                                            <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                                <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Page not Found</MDBBox>
+                                                <MDBBox tag="span" className="sub-title font-weight-light font-size-2rem d-block">Sorry but it looks like this page no longer available.</MDBBox>
+                                                <MDBBtn outline color="white">
+                                                    <Link to="/" className="white-text">
+                                                        Back To Home
+                                                        <MDBIcon icon="home" className="ml-2" />
+                                                    </Link>
+                                                </MDBBtn>
+                                            </MDBAnimation>
+                                        )
+                                    )
                                 )
                             )}
                     </MDBMask>
