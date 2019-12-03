@@ -8,5 +8,11 @@ header{
             // background: $unique-color !important;
         }
     }
+    .navbar-brand{
+        .logo-text{
+            height: 40px; 
+            width: 40px; 
+            line-height: 40px; 
+        }
+    }
 }
-  

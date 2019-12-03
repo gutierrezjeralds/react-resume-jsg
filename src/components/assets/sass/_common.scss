@@ -1,10 +1,22 @@
 // Common class
 // Font size
+.font-size-1rem{
+    font-size: $size-1rem !important;
+}
+.font-size-1pt5rem{
+    font-size: $size-1pt5rem !important;
+}
 .font-size-2rem{
     font-size: $size-2rem !important;
 }
 .font-size-3rem{
     font-size: $size-3rem !important;
+}
+.font-size-4rem{
+    font-size: $size-4rem !important;
+}
+.font-size-5rem{
+    font-size: $size-5rem !important;
 }
 .font-size-6rem{
     font-size: $size-6rem !important;
@@ -13,13 +25,17 @@
 .font-family-fantasy{
     font-family: $family-fantasy !important;
 }
+// Color
+.unique-color-bg{
+    background-color: $unique-color !important;
+}
 
 html, body {
     height: 100%;
     margin: 0;
     scroll-behavior: smooth;
-    font-family: "Roboto", sans-serif !important;
-    background-color: #f0f0f0;
+    font-family: $family-roboto, $family-sans-serif !important;
+    background-color: $very-light-gray;
 }
 
 .banner-wrapper{
