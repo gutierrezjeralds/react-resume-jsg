@@ -9,10 +9,10 @@ class Banner extends React.Component {
                 <MDBView className={this.props.wrapper + "-banner banner-content"}>
                     <MDBMask className="flex-center" overlay="black-strong">
                             {this.props.wrapper === "home" ? (
-                                <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow">
-                                    <MDBBox tag="h1" className="mb-4 font-weight-bold">Jerald Gutierrez</MDBBox>
-                                    <MDBBox tag="h3">Web Developer</MDBBox>
-                                    <MDBBox tag="p" className="home-slogan">Trust me, I'm a Developer and I'll do it with style!<span>|</span></MDBBox>
+                                <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                    <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Jerald Gutierrez</MDBBox>
+                                    <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">Web Developer</MDBBox>
+                                    <MDBBox tag="span" className="slogan font-weight-light d-block">Trust me, I'm a Developer and I'll do it with style!<span>|</span></MDBBox>
                                     <MDBBtn outline color="white">
                                         <Link to="/contact" className="white-text">
                                             Hire me today
@@ -22,8 +22,8 @@ class Banner extends React.Component {
                                 </MDBAnimation>
                             ) : (
                                 this.props.wrapper === "contact" ? (
-                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow">
-                                        <MDBBox tag="h1" className="mb-4 font-weight-light title">Connect with me.</MDBBox>
+                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                        <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Connect with me.</MDBBox>
                                         <MDBBox tag="a" className="white-text" onClick={() => {
                                             let elemId = document.getElementById("contactContent")
                                             window.scrollTo({
@@ -38,9 +38,9 @@ class Banner extends React.Component {
                                     </MDBAnimation>
                                 ) : (
                                     // 404 Error
-                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow">
-                                        <MDBBox tag="h1" className="mb-4 font-weight-light title">404 ERROR</MDBBox>
-                                        <MDBBox tag="h4">Sorry but it looks like this page no longer available.</MDBBox>
+                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                        <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Page not Found</MDBBox>
+                                        <MDBBox tag="span" className="sub-title font-weight-light font-size-2rem d-block">Sorry but it looks like this page no longer available.</MDBBox>
                                         <MDBBtn outline color="white">
                                             <Link to="/" className="white-text">
                                                 Back To Home
