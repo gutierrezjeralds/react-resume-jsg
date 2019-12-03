@@ -19,7 +19,7 @@ class Header extends React.Component {
     render() {
         return (
             <MDBBox tag="header">
-                <MDBNavbar scrolling fixed="top" color="navbar-dark" dark expand="lg">
+                <MDBNavbar scrolling fixed="top" color="unique-color-dark" dark expand="lg">
                     <MDBNavbarBrand>
                         <MDBBox tag="strong" className="white-text">Navbar</MDBBox>
                     </MDBNavbarBrand>
