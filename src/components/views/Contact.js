@@ -41,7 +41,7 @@ class Contact extends React.Component {
             info: [
                 {
                     id: 1,
-                    text: "Dalipit West, Alitagtag, Batangas, 4205",
+                    text: "Alitagtag, Batangas, 4205",
                     icon: "map-marker-alt"
                 },
                 {
@@ -63,7 +63,8 @@ class Contact extends React.Component {
         return (
             <MDBBox tag="div" className="contact-wrapper">
                 <Banner wrapper="contact" />
-                <MDBContainer className="pt-5 mt-5 contact-wrapper" id="contactContent">
+                <MDBBox tag="div" className="position-absolute py-4" id="contactContent"></MDBBox>
+                <MDBContainer className="py-5 my-5 contact-wrapper">
                     <MDBRow>
                         <MDBCol lg="5" className="lg-0 mb-4">
                             <MDBCard>
