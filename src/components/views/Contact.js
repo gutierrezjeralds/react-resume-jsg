@@ -59,6 +59,7 @@ class Contact extends React.Component {
     }
 
     render() {
+        document.title = "Contact | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="contact-wrapper">
                 <Banner wrapper="contact" />

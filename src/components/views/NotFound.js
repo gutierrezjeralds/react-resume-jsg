@@ -4,6 +4,7 @@ import Banner from './Banner'
 
 class NotFound extends React.Component {
     render() {
+        document.title = "Not Found | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="home-wrapper">
                 <Banner wrapper="notFound-404" />
