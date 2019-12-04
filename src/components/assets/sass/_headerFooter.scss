@@ -3,7 +3,7 @@ header{
     //     background-color: $unique-color !important;
     // }
     .navbar:not(.top-nav-collapse) {
-        @include mixin-min-medium {
+        @include mediaQueries (mixin-min-medium) {
             background: transparent !important;
         }
     }

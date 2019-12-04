@@ -1,6 +1,6 @@
 import React from 'react'
-import { MDBAnimation, MDBView, MDBMask, MDBBtn, MDBBox, MDBIcon } from "mdbreact";
-import { Link } from 'react-router-dom';
+import { MDBAnimation, MDBView, MDBMask, MDBBtn, MDBBox, MDBIcon } from "mdbreact"
+import { Link } from 'react-router-dom'
 
 class Banner extends React.Component {
     handleClickedAnchor(id) {

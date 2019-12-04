@@ -8,73 +8,76 @@
 }
 .font-size-2rem{
     font-size: $size-2rem !important;
+    @include mediaQueries (mixin-max-medium) {
+        font-size: $size-1pt5rem !important;
+    }
 }
 .font-size-3rem{
     font-size: $size-3rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-2rem !important;
     }
 }
 .font-size-4rem{
     font-size: $size-4rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-3rem !important;
     }
-    @include mixin-max-small {
+    @include mediaQueries (mixin-max-small) {
         font-size: $size-3rem !important;
     }
 }
 .font-size-5rem{
     font-size: $size-5rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-4rem !important;
     }
-    @include mixin-max-small {
+    @include mediaQueries (mixin-max-small) {
         font-size: $size-3rem !important;
     }
 }
 .font-size-6rem{
     font-size: $size-6rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-4rem !important;
     }
-    @include mixin-max-small {
+    @include mediaQueries (mixin-max-small) {
         font-size: $size-3rem !important;
     }
 }
 .font-size-7rem{
     font-size: $size-7rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-5rem !important;
     }
-    @include mixin-max-small {
+    @include mediaQueries (mixin-max-small) {
         font-size: $size-4rem !important;
     }
 }
 .font-size-8rem{
     font-size: $size-8rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-6rem !important;
     }
-    @include mixin-max-small {
+    @include mediaQueries (mixin-max-small) {
         font-size: $size-5rem !important;
     }
 }
 .font-size-9rem{
     font-size: $size-9rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-7rem !important;
     }
-    @include mixin-max-small {
+    @include mediaQueries (mixin-max-small) {
         font-size: $size-6rem !important;
     }
 }
 .font-size-10rem{
     font-size: $size-10rem !important;
-    @include mixin-max-medium {
+    @include mediaQueries (mixin-max-medium) {
         font-size: $size-8rem !important;
     }
-    @include mixin-max-small {
+    @include mediaQueries (mixin-max-small) {
         font-size: $size-7rem !important;
     }
 }
@@ -93,6 +96,10 @@ html, body {
     scroll-behavior: smooth;
     font-family: $family-roboto, $family-sans-serif !important;
     background-color: $very-light-gray;
+}
+
+body{
+    overflow-x: hidden;
 }
 
 .banner-wrapper{

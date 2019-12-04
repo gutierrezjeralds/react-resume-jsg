@@ -1,6 +1,6 @@
 import React from "react";
 import Banner from './Banner'
-import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact";
+import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact"
 
 class Contact extends React.Component {
     constructor(props) {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBBox, MDBContainer } from "mdbreact";
+import { MDBBox, MDBContainer } from "mdbreact"
 import Banner from './Banner'
 
 class Portfolio extends React.Component {

@@ -1,5 +1,5 @@
 import React from 'react'
-import { MDBBox } from "mdbreact";
+import { MDBBox } from "mdbreact"
 import Banner from './Banner'
 
 class Resume extends React.Component {
