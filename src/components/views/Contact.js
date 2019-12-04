@@ -69,7 +69,7 @@ class Contact extends React.Component {
                         <MDBCol lg="5" className="lg-0 mb-4">
                             <MDBCard>
                                 <MDBCardBody>
-                                    <MDBBox tag="div" className="form-header contact-form-header blue accent-1">
+                                    <MDBBox tag="div" className="form-header contact-form-header blue accent-2">
                                         <MDBBox tag="h3" className="mt-2">
                                             <MDBIcon icon="envelope" /> Message me!
                                         </MDBBox>

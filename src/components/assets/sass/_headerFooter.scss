@@ -3,9 +3,8 @@ header{
     //     background-color: $unique-color !important;
     // }
     .navbar:not(.top-nav-collapse) {
-        background: transparent !important;
-        @media (max-width: 991px) {
-            // background: $unique-color !important;
+        @include mixin-min-medium {
+            background: transparent !important;
         }
     }
     .navbar-brand{

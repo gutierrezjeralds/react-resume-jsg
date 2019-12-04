@@ -26,7 +26,7 @@ class Header extends React.Component {
                         </MDBNavbarBrand>
                         <MDBNavbarToggler onClick={this.toggleCollapse} />
                         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                            <MDBNavbarNav left className="w-100 d-flex align-items-md-center justify-content-md-center">
+                            <MDBNavbarNav left className="w-100 d-flex align-items-lg-center justify-content-lg-center">
                                 <MDBNavItem active>
                                     <MDBNavLink to="/">Home</MDBNavLink>
                                 </MDBNavItem>
