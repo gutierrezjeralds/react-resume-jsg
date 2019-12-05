@@ -3,6 +3,7 @@ import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBContainer
 } from "mdbreact";
 import { MDBBox } from 'mdbreact'
+import { Link } from 'react-router-dom'
 
 class Header extends React.Component {
     constructor(props) {
@@ -22,7 +23,9 @@ class Header extends React.Component {
                 <MDBNavbar scrolling fixed="top" color="unique-color-dark" dark expand="lg">
                     <MDBContainer>
                         <MDBNavbarBrand>
-                            <MDBBox tag="p" className="logo-text white-text d-dlock m-0 text-center font-size-1pt5rem z-depth-0 rounded-circle unique-color-bg">JG</MDBBox>
+                            <Link to="/">
+                                <MDBBox tag="p" className="logo-text white-text d-dlock m-0 text-center font-size-1pt5rem z-depth-0 rounded-circle unique-color-bg">JG</MDBBox>
+                            </Link>
                         </MDBNavbarBrand>
                         <MDBNavbarToggler onClick={this.toggleCollapse} />
                         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>

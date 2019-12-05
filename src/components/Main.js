@@ -6,30 +6,70 @@ import Portfolio from './views/Portfolio'
 import Resume from './views/Resume'
 import Contact from './views/Contact'
 import NotFound from './views/NotFound'
+import Splash from './views/Splash'
 import { MDBBox } from 'mdbreact'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 class Main extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            pages: [
+                {
+                    id: 1,
+                    render: <Home />,
+                    wrapper: "home",
+                    path: "/"
+                },
+                {
+                    id: 2,
+                    render: <Portfolio />,
+                    wrapper: "portfolio",
+                    path: "/portfolio"
+                },
+                {
+                    id: 3,
+                    render: <Resume />,
+                    wrapper: "resume",
+                    path: "/resume"
+                },
+                {
+                    id: 4,
+                    render: <Contact />,
+                    wrapper: "contact",
+                    path: "/contact"
+                },
+                {
+                    id: 5,
+                    render: <NotFound />,
+                    wrapper: "notFound-404",
+                    path: "*"
+                }
+            ]
+        }
+    }
+
     render() {
         return (
-            <MDBBox tag="div" className="Resume-App">
+            <MDBBox tag="div" className="resume-app">
                 <Router>
                     <Header />
                         {/* Body */}
                         <Switch >
-                            <Route exact path="/">
-                                <Home />
-                            </Route>
-                            <Route exact path="/portfolio">
-                                <Portfolio />
-                            </Route>
-                            <Route exact path="/resume">
-                                <Resume />
-                            </Route>
-                            <Route exact path="/contact">
-                                <Contact />
-                            </Route>
-                            <Route path="*" component={NotFound} />
+                            {
+                                this.state.pages.map(items => (
+                                    <Route exact path={items.path} key={items.id}
+                                        render = {
+                                            () => (
+                                                <MDBBox tag="main">
+                                                    <Splash wrapper={items.wrapper} />
+                                                    {items.render}
+                                                </MDBBox>
+                                            )
+                                        }
+                                    />
+                                ))
+                            }
                         </Switch>
                         {/* Body */}
                     <Footer />

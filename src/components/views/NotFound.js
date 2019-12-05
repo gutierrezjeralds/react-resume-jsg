@@ -1,13 +1,11 @@
 import React from 'react'
 import { MDBBox } from "mdbreact"
-import Banner from './Banner'
 
 class NotFound extends React.Component {
     render() {
         document.title = "Not Found | Jerald Gutierrez"
         return (
-            <MDBBox tag="div" className="home-wrapper">
-                <Banner wrapper="notFound-404" />
+            <MDBBox tag="div" className="notFound-wrapper">
                 <div className="d-none">404 Error</div>
             </MDBBox>
         )

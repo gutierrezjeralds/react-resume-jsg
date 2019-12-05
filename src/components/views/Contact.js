@@ -1,5 +1,4 @@
 import React from "react";
-import Banner from './Banner'
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact"
 
 class Contact extends React.Component {
@@ -62,7 +61,6 @@ class Contact extends React.Component {
         document.title = "Contact | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="contact-wrapper">
-                <Banner wrapper="contact" />
                 <MDBBox tag="div" className="position-absolute py-4" id="contactContent"></MDBBox>
                 <MDBContainer className="py-5 my-5 contact-wrapper">
                     <MDBRow>

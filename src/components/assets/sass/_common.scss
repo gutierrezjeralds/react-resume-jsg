@@ -98,7 +98,7 @@ html, body {
     background-color: $very-light-gray;
 }
 
-body{
+body, #root{
     overflow-x: hidden;
 }
 
@@ -111,7 +111,7 @@ body{
         background-repeat: no-repeat;
         background-size: cover;
         &.home-banner{
-            background-image: url("../img/banners/home-banner.gif");
+            background-image: url("../img/banners/home-banner.webm");
             .slogan{
                 span{
                     animation: blink 1s infinite;
@@ -119,16 +119,16 @@ body{
             }
         }
         &.portfolio-banner{
-            background-image: url("../img/banners/portfolio-banner.gif");
+            background-image: url("../img/banners/portfolio-banner.webm");
         }
         &.resume-banner{
-            background-image: url("../img/banners/resume-banner.gif");
+            background-image: url("../img/banners/resume-banner.webm");
         }
         &.contact-banner{
-            background-image: url("../img/banners/contact-banner.gif");
+            background-image: url("../img/banners/contact-banner.webm");
         }
         &.notFound-404-banner{
-            background-image: url("../img/banners/404-banner.gif");
+            background-image: url("../img/banners/404-banner.webm");
         }
     }
 }
