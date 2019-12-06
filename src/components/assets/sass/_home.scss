@@ -7,29 +7,35 @@
             width: 0;
             height: 0;
             z-index: 2;
-            border-top: 15rem solid transparent;
+            border-top: 7rem solid transparent;
             @include mediaQueries (mixin-max-medium) {
                 border-top: 5rem solid transparent;
             }
         }
         &:before{
             left: -35%;
-            border-left: 87rem solid $white;
+            border-left: 45rem solid $white;
             @include mediaQueries (mixin-max-medium) {
-                border-left: 50rem solid $white;
+                border-left: 65rem solid $white;
             }
             @include mediaQueries (mixin-min-large) {
-                border-left: 120rem solid $white;
+                border-left: 60rem solid $white;
+            }
+            @include mediaQueries (mixin-xxl) {
+                border-left: 90rem solid $white;
             }
           }
           &:after{
             right: -35%;
-            border-right: 65rem solid $white;
+            border-right: 80rem solid $white;
             @include mediaQueries (mixin-max-medium) {
-                border-right: 50rem solid $white;
+                border-right: 65rem solid $white;
             }
             @include mediaQueries (mixin-min-large) {
-                border-right: 95rem solid $white;
+                border-right: 100rem solid $white;
+            }
+            @include mediaQueries (mixin-xxl) {
+                border-right: 125rem solid $white;
             }
         }
         .home-carousel{

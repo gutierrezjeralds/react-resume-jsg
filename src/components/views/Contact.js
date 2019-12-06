@@ -61,7 +61,7 @@ class Contact extends React.Component {
         document.title = "Contact | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="contact-wrapper">
-                <MDBBox tag="div" className="position-absolute py-4" id="contactContent"></MDBBox>
+                <MDBBox tag="div" className="position-absolute py-4 mt-6rem-neg" id="contactContent"></MDBBox>
                 <MDBContainer className="py-5 my-5 contact-wrapper">
                     <MDBRow>
                         <MDBCol lg="5" className="lg-0 mb-4">

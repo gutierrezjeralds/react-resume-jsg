@@ -89,6 +89,10 @@
 .unique-color-bg{
     background-color: $unique-color !important;
 }
+// Margin
+.mt-6rem-neg{
+    margin-top: $size-6rem-neg !important;
+}
 
 html, body {
     height: 100%;
