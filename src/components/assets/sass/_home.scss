@@ -14,28 +14,28 @@
         }
         &:before{
             left: -35%;
-            border-left: 45rem solid $white;
+            border-left: 45rem solid $very-light-gray;
             @include mediaQueries (mixin-max-medium) {
-                border-left: 65rem solid $white;
+                border-left: 65rem solid $very-light-gray;
             }
             @include mediaQueries (mixin-min-large) {
-                border-left: 60rem solid $white;
+                border-left: 60rem solid $very-light-gray;
             }
             @include mediaQueries (mixin-xxl) {
-                border-left: 90rem solid $white;
+                border-left: 90rem solid $very-light-gray;
             }
           }
           &:after{
             right: -35%;
-            border-right: 80rem solid $white;
+            border-right: 80rem solid $very-light-gray;
             @include mediaQueries (mixin-max-medium) {
-                border-right: 65rem solid $white;
+                border-right: 65rem solid $very-light-gray;
             }
             @include mediaQueries (mixin-min-large) {
-                border-right: 100rem solid $white;
+                border-right: 100rem solid $very-light-gray;
             }
             @include mediaQueries (mixin-xxl) {
-                border-right: 125rem solid $white;
+                border-right: 125rem solid $very-light-gray;
             }
         }
         .home-carousel{

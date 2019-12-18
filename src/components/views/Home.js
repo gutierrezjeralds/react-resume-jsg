@@ -51,7 +51,7 @@ class Home extends React.Component {
         document.title = "Home | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="home-wrapper">
-                <MDBContainer fluid className="py-5 position-relative home-about-content">
+                <MDBContainer fluid className="py-5 position-relative home-about-content white">
                     <MDBContainer>
                         <MDBRow className="flex-center">
                             <MDBCol md="12" className="mb-3">
@@ -59,7 +59,10 @@ class Home extends React.Component {
                             </MDBCol>
                             <MDBCol lg="4" className="d-none d-lg-block home-carousel">
                                 <Fade right>
-                                    {this.carouselRender(this.state.carousel)}
+                                    {/* {this.carouselRender(this.state.carousel)} */}
+                                    <MDBBox tag="div">
+                                        <img className="img-fluid" src={require("../assets/img/chibi-about.png")} alt="Chibi About" />
+                                    </MDBBox>
                                 </Fade>
                             </MDBCol>
                             <MDBCol lg="6" md="12" className="mb-5">
@@ -71,7 +74,7 @@ class Home extends React.Component {
                         </MDBRow>
                     </MDBContainer>
                 </MDBContainer>
-                <MDBContainer fluid style={{background: "white"}}>
+                <MDBContainer fluid className="very-light-gray-bg">
                     <div style={{height: "100vh"}}></div>
                 </MDBContainer>
             </MDBBox>
