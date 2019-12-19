@@ -68,7 +68,8 @@ class Home extends React.Component {
                             <MDBCol lg="6" md="12" className="mb-5">
                                 <Fade left>
                                     <MDBBox tag="span" className="content-sub-title d-block font-size-2rem font-weight-light text-center text-lg-left">A few fun facts about myself</MDBBox>
-                                    <MDBBox tag="p" clas="content-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</MDBBox>
+                                    <MDBBox tag="p" clas="content-description">I am ambitious and hardworking individual, with broad skills and experience in Web Development (Front-End) and I am able to handle multiple tasks on a daily basis and at working well under pressure.</MDBBox>
+                                    <MDBBox tag="p">Furthermore, I am adventurous person, I love to hike in different mountains and experience extreme activities. I am a online gamer (Special Force) and aslo I like to watch and play basketball.</MDBBox>
                                 </Fade>
                             </MDBCol>
                         </MDBRow>
