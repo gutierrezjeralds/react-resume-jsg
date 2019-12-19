@@ -18,14 +18,14 @@ class Contact extends React.Component {
                     label: "Enter your email",
                     icon: "envelope",
                     type: "email",
-                    fid: "form-name"
+                    fid: "form-email"
                 },
                 {
                     id: 3,
                     label: "Enter your subject",
                     icon: "tag",
                     type: "text",
-                    fid: "form-name",
+                    fid: "form-subject",
                     iconClass: "fa-flip-horizontal"
                 },
                 {
@@ -33,7 +33,7 @@ class Contact extends React.Component {
                     label: "Write your message",
                     icon: "pencil-alt",
                     type: "textarea",
-                    fid: "form-name",
+                    fid: "form-message",
                     maxlength: 250
                 }
             ],
