@@ -2,7 +2,56 @@ import React from 'react'
 import { MDBAnimation, MDBView, MDBMask, MDBBtn, MDBBox, MDBIcon } from "mdbreact"
 import { Link } from 'react-router-dom'
 
-class Banner extends React.Component {
+class Splash extends React.Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            page: this.props.wrapper,
+            error: false,
+            isLoaded: false,
+            items: []
+        }
+    }
+
+    UNSAFE_componentWillMount() {
+        this.getSplashData()
+    }
+
+    getSplashData() {
+        fetch("https://gutierrez-jerald-cv-be.herokuapp.com/getSplash/" + this.state.page)
+        .then(res => res.json())
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    items: result
+                });
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    error: true
+                });
+            }
+        )
+    }
+
+    displayChevronDown(anchor) {
+        const id = this.state.page + "Content" //"Content" based in other class function
+        if ( !anchor ) {
+            return (
+                <MDBBox tag="a" className="white-text" onClick={this.handleClickedAnchor.bind(this, id)}>
+                    <MDBAnimation type="bounce" infinite>
+                        <MDBIcon icon="chevron-down" className="fa-3x ml-2" />
+                    </MDBAnimation>
+                </MDBBox>
+            )
+        }
+    }
+
     handleClickedAnchor(id) {
         let elemId = document.getElementById(id)
         window.scrollTo({
@@ -11,82 +60,67 @@ class Banner extends React.Component {
         })
     }
 
-    dataRender(wrapper) {
-        if ( wrapper === "home" ) {
-            return (
-                <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
-                    <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Jerald Gutierrez</MDBBox>
-                    <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">Web Developer</MDBBox>
-                    <MDBBox tag="span" className="slogan font-weight-light d-block">Trust me, I'm a Developer and I'll do it with style!<span>|</span></MDBBox>
-                    <MDBBtn outline color="white">
-                        <Link to="/contact" className="white-text">
-                            Hire me today
-                            <MDBIcon icon="id-card" className="ml-2" />
-                        </Link>
-                    </MDBBtn>
-                </MDBAnimation>
-            )
-        } else if ( wrapper === "portfolio" ) {
-            return (
-                <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
-                    <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">My Portfolio</MDBBox>
-                    <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem mb-1 d-block">What I've done</MDBBox>
-                    <MDBBox tag="a" className="white-text" onClick={this.handleClickedAnchor.bind(this, "portfolioContent")}>
-                        <MDBAnimation type="bounce" infinite>
-                            <MDBIcon icon="chevron-down" className="fa-3x ml-2" />
-                        </MDBAnimation>
-                    </MDBBox>
-                </MDBAnimation>
-            )
-        } else if ( wrapper === "resume" ) {
-            return (
-                <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
-                    <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">My Resume</MDBBox>
-                    <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">What I can do</MDBBox>
-                    <MDBBtn outline color="white">
-                        <Link to="/contact" className="white-text">
-                            Download Resume
-                            <MDBIcon icon="download" className="ml-2" />
-                        </Link>
-                    </MDBBtn>
-                </MDBAnimation>
-            )
-        }  else if ( wrapper === "contact" ) {
-            return (
-                <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
-                    <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Connect with me</MDBBox>
-                    <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">Or reach out to me directly</MDBBox>
-                <MDBBox tag="span" className="slogan font-weight-light font-size-1rem mb-3 d-block">Call +63 908 893 6797 Mon-Sun: 9am - 5pm PHT.</MDBBox>
-                    <MDBBox tag="a" className="white-text" onClick={this.handleClickedAnchor.bind(this, "contactContent")}>
-                        <MDBAnimation type="bounce" infinite>
-                            <MDBIcon icon="chevron-down" className="fa-3x ml-2" />
-                        </MDBAnimation>
-                    </MDBBox>
-                </MDBAnimation>
-            )
-        }  else {
-            return (
-                // 404 Error
-                <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
-                    <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">Page not Found</MDBBox>
-                    <MDBBox tag="span" className="sub-title font-weight-light font-size-2rem d-block">Sorry but it looks like this page no longer available.</MDBBox>
-                    <MDBBtn outline color="white">
-                        <Link to="/" className="white-text">
-                            Back To Home
-                            <MDBIcon icon="home" className="ml-2" />
-                        </Link>
-                    </MDBBtn>
-                </MDBAnimation>
-            )
-        }
-    }
-
     render() {
+        const { error, isLoaded, items } = this.state
+        let anchor = false
         return (
-            <MDBBox tag="div" className="banner-wrapper">
-                <MDBView className={this.props.wrapper + "-banner banner-content"}>
+            <MDBBox tag="div" className="splash-wrapper">
+                <MDBView className={this.props.wrapper + "-splash splash-content"}>
                     <MDBMask className="flex-center" overlay="black-strong">
-                        {this.dataRender(this.props.wrapper)}
+                        {
+                            error ? (
+                                // Has error
+                                <MDBBox tag="div" className="error-section flex-center">
+                                    <MDBBox tag="span" className="font-size-2rem white-text">Unexpected error, please reload the page.</MDBBox>
+                                </MDBBox>
+                            ) : (
+                                !isLoaded ? (
+                                    // Loading
+                                    <MDBBox tag="div" className="loader-section">
+                                        <MDBBox tag="div" className="position-fixed z-index-9999 l-0 t-0 r-0 b-0 m-auto overflow-visible flex-center">
+                                            <MDBBox tag="span" className="loader-spin-dual-ring"></MDBBox>
+                                            <MDBBox tag="span" className="ml-2 white-text font-size-1rem">Loading, please wait...</MDBBox>
+                                        </MDBBox>
+                                        <MDBBox tag="div" className="loader-backdrop position-fixed z-index-1040 l-0 t-0 r-0 b-0 black"></MDBBox>
+                                    </MDBBox>
+                                ) : (
+                                    // Success render
+                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                        {
+                                            items.map((item, index) => (
+                                                <MDBBox tag="div" key={item.id}>
+                                                    {
+                                                        item.category === "title" ? (
+                                                            <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">{item.string}</MDBBox>
+                                                        ) : (
+                                                            item.category === "description" ? (
+                                                                <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">{item.string}</MDBBox>
+                                                            ) : (
+                                                                item.category === "slogan" ? (
+                                                                    <MDBBox tag="span" className="slogan font-weight-light d-block">{item.string} <span>|</span></MDBBox>
+                                                                ) : (
+                                                                    item.category === "anchor" ? (
+                                                                        <MDBBtn outline color="white">
+                                                                            <Link to={item.uri} className="white-text">
+                                                                                {item.string}
+                                                                                <MDBIcon icon={item.fa_icon} className="ml-2" />
+                                                                            </Link>
+                                                                            {anchor = true}
+                                                                        </MDBBtn>
+                                                                    ) : ("")
+                                                                )
+                                                            )
+                                                        )
+                                                    }
+                                                </MDBBox>
+                                            ))
+                                        }
+                                        {/* Display arrow down */}
+                                        {this.displayChevronDown(anchor)}
+                                    </MDBAnimation>
+                                )
+                            )
+                        }
                     </MDBMask>
                 </MDBView>
             </MDBBox>
@@ -94,4 +128,4 @@ class Banner extends React.Component {
     }
 }
 
-export default Banner
+export default Splash

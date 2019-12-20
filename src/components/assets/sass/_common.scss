@@ -96,6 +96,89 @@
 .mt-6rem-neg{
     margin-top: $size-6rem-neg !important;
 }
+.t-0{
+    top: 0 !important;
+}
+.b-0{
+    bottom: 0 !important;
+}
+.r-0{
+    right: 0 !important;
+}
+.l-0{
+    left: 0 !important;
+}
+// Overflow
+.overflow-hidden{
+    overflow: hidden !important;
+}
+.overflow-visible{
+    overflow: visible !important;
+}
+.overflow-auto{
+    overflow: auto !important;
+}
+.overflow-x-hidden{
+	overflow-x: hidden;
+}
+.overflow-y-hidden{
+	overflow-y: hidden;
+}
+.overflow-x-auto{
+	overflow-x: auto;
+}
+.overflow-y-auto{
+	overflow-y: auto;
+}
+// Visibility
+.visibility-hidden{
+    visibility: hidden !important;
+}
+.visibility-visible{
+    visibility: visible !important;
+}
+
+.v-align-top {
+  vertical-align: top !important;
+}
+.v-align-middle {
+  vertical-align: middle !important;
+}
+.v-align-bottom {
+  vertical-align: bottom !important;
+}
+.v-align-base {
+  vertical-align: baseline !important;
+}
+// Z-Index
+.z-index-1{
+    z-index: 1 !important;
+ }
+ .z-index-4{
+    z-index: 4 !important;
+ }
+ .z-index-5{
+    z-index: 5 !important;
+ }
+ .z-index-10{
+    z-index: 10 !important;
+ }
+ .z-index-1040{
+     z-index: 1040 !important;
+ }
+ .z-index-2000{
+     z-index: 2000 !important;
+ }
+ .z-index-9999{
+     z-index: 9999 !important;
+ }
+ 
+ .z-index-neg5{
+    z-index: -5 !important;
+ }
+ .z-index-neg10{
+    z-index: -10 !important;
+ }
 
 html, body {
     height: 100%;
@@ -109,33 +192,85 @@ body, #root{
     overflow-x: hidden;
 }
 
-.banner-wrapper{
-    .banner-content{
+.splash-wrapper{
+    .splash-content{
         min-height: 500px;
         height: 100vh;
         background-attachment: fixed;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        &.home-banner{
+        &.home-splash{
             background-image: url("../img/banners/home-banner.webm");
-            .slogan{
-                span{
-                    animation: blink 1s infinite;
-                }
-            }
         }
-        &.portfolio-banner{
+        &.portfolio-splash{
             background-image: url("../img/banners/portfolio-banner.webm");
         }
-        &.resume-banner{
+        &.resume-splash{
             background-image: url("../img/banners/resume-banner.webm");
         }
-        &.contact-banner{
+        &.contact-splash{
             background-image: url("../img/banners/contact-banner.webm");
         }
-        &.notFound-404-banner{
+        &.notFound-404-splash{
             background-image: url("../img/banners/404-banner.webm");
         }
+        .slogan{
+            span{
+                animation: blink 1s infinite;
+            }
+        }
+    }
+}
+
+// Loader
+.loader-section {
+    .loader-spin-dual-ring {
+        display: inline-block;
+        height: 10px;
+        &:after{
+            content: " ";
+            display: block;
+            width: 26px;
+            height: 26px;
+            margin-top: -9px;
+            border-radius: 50%;
+            border: 3px solid #fff;
+            border-color: #fff transparent #fff transparent;
+            animation: loader-spin-dual-ring 1.2s linear infinite;
+        }
+        &.loader-50{
+            &:after{
+                width: 50px !important;
+                height: 50px !important;
+            }
+        }
+        &.loader-41{
+            &:after{
+                width: 41px !important;
+                height: 41px !important;
+            }
+        }
+        &.loader-height-22px{
+            height: 22px;
+        }
+        &.loader-height-26px{
+            height: 26px;
+        }
+        &.loader-mt-0px{
+            &:after{
+                margin-top: 0px;
+            }
+        }
+        &.loader-blue-whale{
+            &:after{
+                border: 3px solid $blue-whale;
+                border-color: $blue-whale transparent $blue-whale transparent;
+            }
+        }
+    }
+    .loader-backdrop {
+        opacity: 0.5;
+        transition: opacity 0.15s linear;
     }
 }
