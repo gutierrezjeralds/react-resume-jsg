@@ -44,6 +44,11 @@ class Splash extends React.Component {
                 })
             }
         )
+        .catch(
+            (err) => {
+                console.error(err)
+            }
+        )
     }
 
     displayChevronDown(anchor) {
