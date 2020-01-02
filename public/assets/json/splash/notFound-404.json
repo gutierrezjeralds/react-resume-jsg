@@ -1,0 +1,32 @@
+[
+    {
+      "id": 7,
+      "page": "notFound-404",
+      "category": "title",
+      "string": "Page not Found",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 8,
+      "page": "notFound-404",
+      "category": "description",
+      "string": "Sorry but it looks like this page no longer available.",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 9,
+      "page": "notFound-404",
+      "category": "anchor",
+      "string": "Back To Home",
+      "fa_icon": "home",
+      "uri": "/",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    }
+  ]

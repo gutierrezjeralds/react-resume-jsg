@@ -1,6 +1,7 @@
 import React from 'react'
 import { MDBAnimation, MDBView, MDBMask, MDBBtn, MDBBox, MDBIcon } from "mdbreact"
 import { Link } from 'react-router-dom'
+import $ from 'jquery'
 
 class Splash extends React.Component {
     constructor(props) {
@@ -18,23 +19,29 @@ class Splash extends React.Component {
     }
 
     getSplashData() {
-        fetch("https://gutierrez-jerald-cv-be.herokuapp.com/getSplash/" + this.state.page)
-        .then(res => res.json())
+        const uri = "./assets/json/splash/" + this.state.page + ".json"
+        // const uri = "https://gutierrez-jerald-cv-be.herokuapp.com/getSplash/" + this.state.page
+        $.ajax({
+            url: uri,
+            dataType: "json",
+            cache: false
+        })
         .then(
             (result) => {
                 this.setState({
                     isLoaded: true,
                     items: result
-                });
+                })
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
+                console.log(error.statusText)
                 this.setState({
                     isLoaded: true,
                     error: true
-                });
+                })
             }
         )
     }

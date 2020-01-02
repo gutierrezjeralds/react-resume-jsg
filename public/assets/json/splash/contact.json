@@ -1,0 +1,32 @@
+[
+    {
+      "id": 10,
+      "page": "contact",
+      "category": "title",
+      "string": "Connect with me",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 11,
+      "page": "contact",
+      "category": "description",
+      "string": "Or reach out to me directly",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 12,
+      "page": "contact",
+      "category": "slogan",
+      "string": "Call +63 908 893 6797 Mon-Sun: 9am - 5pm PHT.",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    }
+  ]

@@ -1,0 +1,22 @@
+[
+    {
+      "id": 5,
+      "page": "portfolio",
+      "category": "title",
+      "string": "My Portfolio",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 6,
+      "page": "portfolio",
+      "category": "description",
+      "string": "What I've done",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    }
+  ]

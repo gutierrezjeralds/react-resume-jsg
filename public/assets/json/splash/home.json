@@ -1,0 +1,42 @@
+[
+    {
+      "id": 1,
+      "page": "home",
+      "category": "title",
+      "string": "Jerald Gutierrez",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 2,
+      "page": "home",
+      "category": "description",
+      "string": "Web Developer",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 3,
+      "page": "home",
+      "category": "slogan",
+      "string": "Trust me, I'm a Developer and I'll do it with style!",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 4,
+      "page": "home",
+      "category": "anchor",
+      "string": "Hire Me Today",
+      "fa_icon": "id-card",
+      "uri": "/contact",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    }
+  ]

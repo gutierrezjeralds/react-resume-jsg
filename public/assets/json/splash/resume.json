@@ -1,0 +1,32 @@
+[
+    {
+      "id": 7,
+      "page": "resume",
+      "category": "title",
+      "string": "My Resume",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 8,
+      "page": "resume",
+      "category": "description",
+      "string": "What I can do",
+      "fa_icon": "",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    },
+    {
+      "id": 9,
+      "page": "resume",
+      "category": "anchor",
+      "string": "Download Resume",
+      "fa_icon": "download",
+      "uri": "",
+      "created_at": "2019-12-19 06:18:57",
+      "updated_at": "2019-12-19 06:18:57"
+    }
+  ]
