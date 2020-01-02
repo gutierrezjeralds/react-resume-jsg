@@ -1,5 +1,6 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact"
+import $ from 'jquery'
 
 class Contact extends React.Component {
     constructor(props) {
@@ -69,25 +70,42 @@ class Contact extends React.Component {
 
     handleSubmit (event) {
         event.preventDefault();
-        this.sendMessage(
-            "template_gwqFwjqA", //Template ID
-            {
-                from_name: this.state.in_name,
-                reply_to: this.state.in_email,
-                subject: this.state.in_subject,
-                message: this.state.in_message
-            }
-        )
+        this.sendMessage()
     }
 
-    sendMessage (templateId, variables) {
-        window.emailjs.send(
-            'gmail', templateId, variables
-        ).then(
-            (res) => {
-                console.log('Message successfully sent!', res)
+    sendMessage () {
+        const data = {
+            service_id: "gmail",
+            template_id: "template_gwqFwjqA",
+            user_id: "user_DKcMwG40VRnkIFionziRA",
+            template_params: {
+                "from_name": this.state.in_name,
+                "reply_to": this.state.in_email,
+                "subject": this.state.in_subject,
+                "message": this.state.in_message
+            }
+        }
+
+        $.ajax({
+            url: "https://api.emailjs.com/api/v1.0/email/send",
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            cache: false
+        })
+        .then(
+            (result) => {
+                console.log('Message successfully sent!', result)
                 alert("Message successfully sent!")
                 window.location.reload()
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                // Handle errors here
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+                alert("Unexpected error, please reload the page!")
             }
         )
         .catch(
