@@ -5,27 +5,31 @@ class Contact extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            in_name: "",
+            in_email: "",
+            in_subject: "",
+            in_message: "",
             form: [
                 {
                     id: 1,
                     label: "Enter your name",
                     icon: "user",
                     type: "text",
-                    fid: "form-name"
+                    fid: "in_name"
                 },
                 {
                     id: 2,
                     label: "Enter your email",
                     icon: "envelope",
                     type: "email",
-                    fid: "form-email"
+                    fid: "in_email"
                 },
                 {
                     id: 3,
                     label: "Enter your subject",
                     icon: "tag",
                     type: "text",
-                    fid: "form-subject",
+                    fid: "in_subject",
                     iconClass: "fa-flip-horizontal"
                 },
                 {
@@ -33,7 +37,7 @@ class Contact extends React.Component {
                     label: "Write your message",
                     icon: "pencil-alt",
                     type: "textarea",
-                    fid: "form-message",
+                    fid: "in_message",
                     maxlength: 250
                 }
             ],
@@ -57,6 +61,44 @@ class Contact extends React.Component {
         }
     }
 
+    handleChange(fid, event) {
+        this.setState({
+            [fid]: event.target.value
+        })
+    }
+
+    handleSubmit (event) {
+        event.preventDefault();
+        this.sendMessage(
+            "template_gwqFwjqA", //Template ID
+            {
+                from_name: this.state.in_name,
+                reply_to: this.state.in_email,
+                subject: this.state.in_subject,
+                message: this.state.in_message
+            }
+        )
+    }
+
+    sendMessage (templateId, variables) {
+        window.emailjs.send(
+            'gmail', templateId, variables
+        ).then(
+            (res) => {
+                console.log('Message successfully sent!', res)
+                alert("Message successfully sent!")
+                window.location.reload()
+            }
+        )
+        .catch(
+            // Handle errors here
+            (err) => {
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+                alert("Unexpected error, please reload the page!")
+            }
+        )
+    }
+
     render() {
         document.title = "Contact | Jerald Gutierrez"
         return (
@@ -72,23 +114,25 @@ class Contact extends React.Component {
                                             <MDBIcon icon="envelope" /> Message me!
                                         </MDBBox>
                                     </MDBBox>
-                                    {
-                                        this.state.form.map(items => (
-                                            <MDBBox tag="div" className="md-form" key={items.id}>
-                                                {items.type === "textarea" ? (
-                                                    <MDBInput icon={items.icon} label={items.label} iconClass="grey-text" type={items.type} id={items.fid} length={items.maxlength} maxLength={items.maxlength} />
-                                                ) : (
-                                                    <MDBInput icon={items.icon} label={items.label} iconClass={items.iconClass + " grey-text"} type={items.type} id={items.fid} />
-                                                )}
-                                            </MDBBox>
-                                        ))
-                                    }
-                                    <MDBBox tag="div" className="text-center">
-                                        <MDBBtn color="primary">
-                                            <MDBIcon icon="paper-plane" className="mr-2" />
-                                            Submit
-                                        </MDBBtn>
-                                    </MDBBox>
+                                    <form onSubmit={this.handleSubmit.bind(this)}>
+                                        {
+                                            this.state.form.map(items => (
+                                                <MDBBox tag="div" className="md-form" key={items.id}>
+                                                    {items.type === "textarea" ? (
+                                                        <MDBInput onChange={this.handleChange.bind(this, items.fid)} icon={items.icon} label={items.label} iconClass="grey-text" type={items.type} id={items.fid} length={items.maxlength} maxLength={items.maxlength} required />
+                                                    ) : (
+                                                        <MDBInput onChange={this.handleChange.bind(this, items.fid)} icon={items.icon} label={items.label} iconClass={items.iconClass + " grey-text"} type={items.type} id={items.fid} required />
+                                                    )}
+                                                </MDBBox>
+                                            ))
+                                        }
+                                        <MDBBox tag="div" className="text-center">
+                                            <MDBBtn type="submit" color="primary">
+                                                <MDBIcon icon="paper-plane" className="mr-2" />
+                                                Submit
+                                            </MDBBtn>
+                                        </MDBBox>
+                                    </form>
                                 </MDBCardBody>
                             </MDBCard>
                         </MDBCol>
