@@ -91,8 +91,8 @@ class Contact extends React.Component {
             }
         )
         .catch(
-            // Handle errors here
             (err) => {
+                // Handle errors here
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
                 alert("Unexpected error, please reload the page!")
             }
