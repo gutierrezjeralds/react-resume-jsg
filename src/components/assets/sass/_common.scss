@@ -180,6 +180,21 @@
     z-index: -10 !important;
  }
 
+ .cursor-default{
+    cursor: default !important;
+}
+.cursor-pointer{
+    cursor: pointer !important;
+}
+.cursor-not-allowed{
+    cursor: not-allowed !important;
+    pointer-events: auto !important;
+}
+.cursor-not-allowed-event-none{
+    cursor: not-allowed !important;
+    pointer-events: none !important;
+}
+
 html, body {
     height: 100%;
     margin: 0;

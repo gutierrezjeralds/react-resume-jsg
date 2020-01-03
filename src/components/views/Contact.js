@@ -1,15 +1,18 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact"
+import ReCAPTCHA from "react-google-recaptcha";
 import $ from 'jquery'
 
 class Contact extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            in_submit: false,
             in_name: "",
             in_email: "",
             in_subject: "",
             in_message: "",
+            in_reCaptcha: "",
             form: [
                 {
                     id: 1,
@@ -68,90 +71,96 @@ class Contact extends React.Component {
         })
     }
 
-    handleSubmit (event) {
+    handleReCaptchaChange(value) {
+        this.setState({
+            in_reCaptcha: value
+        })
+    }
+
+    handleSubmit(event) {
         event.preventDefault();
-        this.getReCaptchaRes()
+        this.sendMessage()
     }
 
-    getReCaptchaRes() {
-        const reCaptchaData = {
-            "secret": "6Let3csUAAAAANhYJr1yZINe-G7ZZXPP1rPCvXZS",
-            "response": "6Let3csUAAAAACNBGTJLupV20O3iRi2DXNbj-eUV"
-        }
+    sendMessage() {
+        if ( this.state.in_reCaptcha !== "" ) {
+            const eDMData = {
+                service_id: "gmail",
+                template_id: "template_gwqFwjqA",
+                user_id: "user_DKcMwG40VRnkIFionziRA",
+                template_params: {
+                    "from_name": this.state.in_name,
+                    "reply_to": this.state.in_email,
+                    "subject": this.state.in_subject,
+                    "message": this.state.in_message,
+                    "g-recaptcha-response": this.state.in_reCaptcha
+                }
+            }
 
-        $.ajax({
-            url: "https://www.google.com/recaptcha/api/siteverify",
-            type: 'POST',
-            data: JSON.stringify(reCaptchaData),
-            contentType: 'application/json',
-            cache: false
-        })
-        .then(
-            (result) => {
-                console.log(result)
-                // this.sendMessage()
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                // Handle errors here
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-                alert("Unexpected error, please reload the page!")
-            }
-        )
-        .catch(
-            (err) => {
-                // Handle errors here
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                alert("Unexpected error, please reload the page!")
-            }
-        )
+            this.setState({
+                in_submit: true
+            })
+    
+            $.ajax({
+                url: "https://api.emailjs.com/api/v1.0/email/send",
+                type: 'POST',
+                data: JSON.stringify(eDMData),
+                contentType: 'application/json',
+                cache: false
+            })
+            .then(
+                (result) => {
+                    console.log('Message successfully sent!', result)
+                    alert("Message successfully sent!")
+                    window.location.reload()
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    // Handle errors here
+                    this.setState({
+                        in_submit: false
+                    })
+
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+                    alert("Unexpected error, please reload the page!")
+                }
+            )
+            .catch(
+                (err) => {
+                    // Handle errors here
+                    this.setState({
+                        in_submit: false
+                    })
+                    
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+                    alert("Unexpected error, please reload the page!")
+                }
+            )
+        } else {
+            alert("Please accept reCaptcha!")
+        }
     }
 
-    sendMessage(reCaptchaRes) {
-        const eDMData = {
-            service_id: "gmail",
-            template_id: "template_gwqFwjqA",
-            user_id: "user_DKcMwG40VRnkIFionziRA",
-            template_params: {
-                "from_name": this.state.in_name,
-                "reply_to": this.state.in_email,
-                "subject": this.state.in_subject,
-                "message": this.state.in_message,
-                "g-recaptcha-response": reCaptchaRes
-            }
+    renderSubmitElement(){
+        if ( this.state.in_submit ) {
+            // Already clicked the submit button
+            return (
+                <MDBBtn type="submit" color="primary" className="cursor-not-allowed" disabled>
+                    <MDBIcon icon="spinner" className="fa-spin mr-2" />
+                    Loading
+                </MDBBtn>
+            )
+        } else {
+            // Onload element display
+            return (
+                <MDBBtn type="submit" color="primary">
+                    <MDBIcon icon="paper-plane" className="mr-2" />
+                    Submit
+                </MDBBtn>
+            )
         }
-
-        $.ajax({
-            url: "https://api.emailjs.com/api/v1.0/email/send",
-            type: 'POST',
-            data: JSON.stringify(eDMData),
-            contentType: 'application/json',
-            cache: false
-        })
-        .then(
-            (result) => {
-                console.log('Message successfully sent!', result)
-                alert("Message successfully sent!")
-                window.location.reload()
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                // Handle errors here
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-                alert("Unexpected error, please reload the page!")
-            }
-        )
-        .catch(
-            (err) => {
-                // Handle errors here
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                alert("Unexpected error, please reload the page!")
-            }
-        )
     }
 
     render() {
@@ -181,12 +190,14 @@ class Contact extends React.Component {
                                                 </MDBBox>
                                             ))
                                         }
-                                        <MDBBox tag="div" className="g-recaptcha md-form flex-center" data-sitekey="6Let3csUAAAAANhYJr1yZINe-G7ZZXPP1rPCvXZS"></MDBBox>
+                                        <MDBBox tag="div" className="md-form flex-center">
+                                            <ReCAPTCHA 
+                                                sitekey="6Let3csUAAAAANhYJr1yZINe-G7ZZXPP1rPCvXZS" 
+                                                onChange={this.handleReCaptchaChange.bind(this)} 
+                                            />
+                                        </MDBBox>
                                         <MDBBox tag="div" className="text-center">
-                                            <MDBBtn type="submit" color="primary">
-                                                <MDBIcon icon="paper-plane" className="mr-2" />
-                                                Submit
-                                            </MDBBtn>
+                                            {this.renderSubmitElement()}
                                         </MDBBox>
                                     </form>
                                 </MDBCardBody>
