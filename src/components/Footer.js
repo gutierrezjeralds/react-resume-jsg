@@ -51,7 +51,7 @@ class Footer extends React.Component {
                 </MDBContainer>
             <div className="footer-copyright text-center py-3">
               <MDBContainer fluid>
-                &copy; {new Date().getFullYear()} Copyright: Copyright: Jerald Seña Gutierrez
+                &copy; {new Date().getFullYear()} Copyright: Jerald Seña Gutierrez ® All Rights Reserved.
               </MDBContainer>
             </div>
           </MDBFooter>
