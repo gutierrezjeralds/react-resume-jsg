@@ -3,17 +3,17 @@
   "name": "Resume Jerald Gutierrez",
   "icons": [
     {
-      "src": "favicon-profile.ico",
+      "src": "assets/img/icons/favicon-profile.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "favicon-profile.ico",
+      "src": "assets/img/icons/favicon-profile.ico",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "favicon-profile.ico",
+      "src": "assets/img/icons/favicon-profile.ico",
       "type": "image/png",
       "sizes": "512x512"
     }
