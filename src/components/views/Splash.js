@@ -114,8 +114,8 @@ class Splash extends React.Component {
                                                                     item.category === "anchor" ? (
                                                                         <MDBBtn outline color="white">
                                                                             <Link to={item.uri} className="white-text">
+                                                                                <MDBIcon icon={item.fa_icon} className="mr-2" />
                                                                                 {item.string}
-                                                                                <MDBIcon icon={item.fa_icon} className="ml-2" />
                                                                             </Link>
                                                                             {anchor = true}
                                                                         </MDBBtn>

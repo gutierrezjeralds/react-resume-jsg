@@ -1,0 +1,126 @@
+{
+    "development":[
+        {
+            "id": "1d",
+            "src": "./assets/img/portfolio/kpph-xyzscan.png",
+            "alt": "XYZScan",
+            "title": "XYZ Scan",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, AngularJS, Bootstrap, Play Framework 1x, Three.js, GIT",
+            "uri": "http://www.xyz3dscan.com/",
+            "order": 1
+        },
+        {
+            "id": "2d",
+            "src": "./assets/img/portfolio/kpph-3dscan.png",
+            "alt": "3DScan",
+            "title": "XYZ 3D Scan",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, AngularJS, Bootstrap, Play Framework 1x, Three.js, GIT",
+            "uri": "http://www.xyz3dscan.com/us_en/eCard",
+            "order": 2
+        },
+        {
+            "id": "3d",
+            "src": "./assets/img/portfolio/portfolio-1.png",
+            "alt": "Portfolio",
+            "title": "Portfolio",
+            "company": "Personal Made",
+            "description": "HTML, SASS, JavaScript, JQuery, AngularJS, Bootstrap, Play Framework 1x, GIT",
+            "uri": "http://gutierrez.herokuapp.com/",
+            "order": 3
+        },
+        {
+            "id": "4d",
+            "src": "./assets/img/portfolio/kpph-banner-backstage.png",
+            "alt": "BannerBackstage",
+            "title": "Banner Backstage",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Bootstrap, Play Framework 1x, GIT",
+            "uri": "http://xyzprinting.com/IndexBannerView",
+            "order": 4
+        },
+        {
+            "id": "5d",
+            "src": "./assets/img/portfolio/kpph-cloud-con-2.png",
+            "alt": "CloudPrintConsumer",
+            "title": "Cloud Print Consumer",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, JAVA, WebScoket, Bootstrap, Play Framework 1x, GIT",
+            "uri": "http://cloudprint.xyzprinting.com/en-US/con/printerManagement",
+            "order": 5
+        },
+        {
+            "id": "6d",
+            "src": "./assets/img/portfolio/portfolio-2.png",
+            "alt": "Portfolio",
+            "title": "Portfolio",
+            "company": "Personal Made",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Bootstrap, Play Framework 1x, GIT",
+            "uri": "http://gutierrez-jerald.herokuapp.com/",
+            "order": 6
+        },
+        {
+            "id": "7d",
+            "src": "./assets/img/portfolio/kpph-cloud-edu.png",
+            "alt": "CloudPrintEducational",
+            "title": "Cloud Print Educational",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, JAVA, WebScoket, Bootstrap, Play Framework 1x, GIT",
+            "uri": "http://cloudprint.xyzprinting.com/en-US/edu/dashboard",
+            "order": 7
+        },
+        {
+            "id": "8d",
+            "src": "./assets/img/portfolio/portfolio-2.png",
+            "alt": "Portfolio",
+            "title": "Portfolio",
+            "company": "Personal Made",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Bootstrap, Play Framework 1x, GIT",
+            "uri": "http://gutierrez-jerald.herokuapp.com/",
+            "order": 8
+        },
+        {
+            "id": "9d",
+            "src": "./assets/img/portfolio/tssi-intranet.png",
+            "alt": "Intranet",
+            "title": "Intranet",
+            "company": "Think Support Services Inc",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Wordpress, Bootstrap, GIT",
+            "uri": "http://gutierrez-jerald.herokuapp.com/",
+            "order": 9
+        }
+    ],
+    "maintenance":[
+        {
+            "id": "1m",
+            "src": "./assets/img/portfolio/kpph-xyzprinting.png",
+            "alt": "XYZPrinting",
+            "title": "XYZPrinting",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, Bootstrap, GIT",
+            "uri": "http://www.xyzprinting.com/en-US/home",
+            "order": 1
+        },
+        {
+            "id": "2m",
+            "src": "./assets/img/portfolio/kpph-xyzauth.png",
+            "alt": "XYZAuth",
+            "title": "XYZAuth",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, Play Framework 2x, Bootstrap, GIT",
+            "uri": "http://www.xyzprinting.com/en-US/home",
+            "order": 2
+        },
+        {
+            "id": "3m",
+            "src": "./assets/img/portfolio/kpph-xyzauth.png",
+            "alt": "eDM",
+            "title": "eDM",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, JAVA, Play Framework 1x, GIT",
+            "uri": "http://www.xyzprinting.com/en-US/home",
+            "order": 3
+        }
+    ]
+}

@@ -28,7 +28,7 @@ class Footer extends React.Component {
                     link: "/"
                 },
                 {
-                    id: '3',
+                    id: '4',
                     title: 'Skype',
                     icon: "fa-skype",
                     class: "fab fa-lg white-text mr-md-5 mr-3 fa-2x",
