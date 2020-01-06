@@ -29,7 +29,7 @@ class Portfolio extends React.Component {
 
     getPortfolioCards() {
         $.ajax({
-            url: "./assets/json/content/portfolio-cards.json",
+            url: "./assets/json/content/portfolio.json",
             dataType: "json",
             cache: false
         })
