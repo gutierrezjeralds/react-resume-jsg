@@ -25,7 +25,7 @@
             "src": "./assets/img/portfolio/portfolio-1.png",
             "alt": "Portfolio",
             "title": "Portfolio",
-            "company": "Personal Made",
+            "company": "",
             "description": "HTML, SASS, JavaScript, JQuery, AngularJS, Bootstrap, Play Framework 1x, GIT",
             "uri": "http://gutierrez.herokuapp.com/",
             "order": 3
@@ -42,22 +42,22 @@
         },
         {
             "id": "5d",
-            "src": "./assets/img/portfolio/kpph-cloud-con-2.png",
-            "alt": "CloudPrintConsumer",
-            "title": "Cloud Print Consumer",
-            "company": "Kinpo Electronics Philippines Inc.",
-            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, JAVA, WebScoket, Bootstrap, Play Framework 1x, GIT",
-            "uri": "http://cloudprint.xyzprinting.com/en-US/con/printerManagement",
+            "src": "./assets/img/portfolio/portfolio-2.png",
+            "alt": "Portfolio",
+            "title": "Portfolio",
+            "company": "",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, MDBootstrap, Play Framework 1x, GIT",
+            "uri": "http://gutierrez-jerald.herokuapp.com/",
             "order": 5
         },
         {
             "id": "6d",
-            "src": "./assets/img/portfolio/portfolio-2.png",
-            "alt": "Portfolio",
-            "title": "Portfolio",
-            "company": "Personal Made",
-            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Bootstrap, Play Framework 1x, GIT",
-            "uri": "http://gutierrez-jerald.herokuapp.com/",
+            "src": "./assets/img/portfolio/kpph-cloud-con-2.png",
+            "alt": "CloudPrintConsumer",
+            "title": "Cloud Print Consumer",
+            "company": "Kinpo Electronics Philippines Inc.",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, JAVA, WebScoket, MDBootstrap, Play Framework 1x, GIT",
+            "uri": "http://cloudprint.xyzprinting.com/en-US/con/printerManagement",
             "order": 6
         },
         {
@@ -66,29 +66,19 @@
             "alt": "CloudPrintEducational",
             "title": "Cloud Print Educational",
             "company": "Kinpo Electronics Philippines Inc.",
-            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, JAVA, WebScoket, Bootstrap, Play Framework 1x, GIT",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, JAVA, WebScoket, MDBootstrap, Play Framework 1x, GIT",
             "uri": "http://cloudprint.xyzprinting.com/en-US/edu/dashboard",
             "order": 7
         },
         {
             "id": "8d",
-            "src": "./assets/img/portfolio/portfolio-2.png",
-            "alt": "Portfolio",
-            "title": "Portfolio",
-            "company": "Personal Made",
-            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Bootstrap, Play Framework 1x, GIT",
-            "uri": "http://gutierrez-jerald.herokuapp.com/",
-            "order": 8
-        },
-        {
-            "id": "9d",
             "src": "./assets/img/portfolio/tssi-intranet.png",
             "alt": "Intranet",
             "title": "Intranet",
-            "company": "Think Support Services Inc",
+            "company": "Think Support Services Inc.",
             "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Wordpress, Bootstrap, GIT",
             "uri": "http://gutierrez-jerald.herokuapp.com/",
-            "order": 9
+            "order": 8
         }
     ],
     "maintenance":[
@@ -109,18 +99,48 @@
             "title": "XYZAuth",
             "company": "Kinpo Electronics Philippines Inc.",
             "description": "HTML, SASS, JavaScript, JQuery, Play Framework 2x, Bootstrap, GIT",
-            "uri": "http://www.xyzprinting.com/en-US/home",
+            "uri": "https://auth.xyzfamily.com/",
             "order": 2
         },
         {
             "id": "3m",
-            "src": "./assets/img/portfolio/kpph-xyzauth.png",
+            "src": "./assets/img/portfolio/kpph-edm.png",
             "alt": "eDM",
             "title": "eDM",
             "company": "Kinpo Electronics Philippines Inc.",
-            "description": "HTML, JAVA, Play Framework 1x, GIT",
-            "uri": "http://www.xyzprinting.com/en-US/home",
+            "description": "HTML, JAVA, SoapUI, Play Framework 1x, GIT",
+            "uri": "",
             "order": 3
+        },
+        {
+            "id": "4m",
+            "src": "./assets/img/portfolio/tssi-main.png",
+            "alt": "ThinkConveyancing",
+            "title": "Think Conveyancing",
+            "company": "Think Support Services Inc.",
+            "description": "HTML, CSS, JavaScript, JQuery, Wordpress, Divi, GIT",
+            "uri": "https://www.thinkconveyancing.com.au/",
+            "order": 4
+        },
+        {
+            "id": "5m",
+            "src": "./assets/img/portfolio/tssi-rbi.png",
+            "alt": "RapidBuildingInspections",
+            "title": "Rapid Building Inspections",
+            "company": "Think Support Services Inc.",
+            "description": "HTML, CSS, JavaScript, JQuery, Wordpress, Divi, GIT",
+            "uri": "https://www.rapidbuildinginspections.com.au/",
+            "order": 5
+        },
+        {
+            "id": "6m",
+            "src": "./assets/img/portfolio/tssi-edm.png",
+            "alt": "eDM",
+            "title": "eDM",
+            "company": "Think Support Services Inc.",
+            "description": "HTML, Infusionsoft",
+            "uri": "",
+            "order": 6
         }
     ]
 }

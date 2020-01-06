@@ -352,6 +352,13 @@
     height: 100vh !important;
 }
 
+.min-h-233px{
+    min-height: 233px !important;
+}
+.min-h-287px{
+    min-height: 287px !important;
+}
+
 // Overflow
 .overflow-hidden{
     overflow: hidden !important;
@@ -493,6 +500,22 @@ body, #root{
     background-size: cover;
     &.portfolio-parallax-resume{
         background-image: url("https://mdbootstrap.com/img/Photos/Slides/img%20(35).jpg");
+    }
+}
+
+// Image Opacity
+.img-opacity-dark{
+    .view{
+        &:after{
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: rgba(0,0,0,0.3);
+            opacity: 1;
+        }
     }
 }
 

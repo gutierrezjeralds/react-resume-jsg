@@ -1,7 +1,7 @@
 import React from 'react'
 import { 
     MDBBox, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon,
-    MDBCard, MDBCardBody, MDBCardImage
+    MDBCardImage, MDBView, MDBMask
 } from "mdbreact"
 import { CardColumns } from 'react-bootstrap'
 import $ from 'jquery'
@@ -65,18 +65,24 @@ class Portfolio extends React.Component {
                         {
                             data.sort((a, b) =>  b.order - a.order ).map(items => (
                                 // <MDBCol md="4" className="mb-3">
-                                    <MDBCard className="mb-4">
-                                        <MDBCardImage className="img-fluid" src={items.src} alt={items.alt} waves />
-                                        <MDBCardBody>
-                                            <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-fantasy mb-1">{items.title}</MDBBox>
-                                            <MDBBox tag="p" className="content-company d-block font-size-1rem mb-1">{items.company}</MDBBox>
-                                            <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
-                                            <MDBBtn href={items.uri} target="_blank" className="m-0">
-                                                <MDBIcon icon="link" className="mr-2" />
-                                                Visit
-                                            </MDBBtn>
-                                        </MDBCardBody>
-                                    </MDBCard>
+                                    <MDBView key={items.id} className="overlay mb-4 z-depth-2 img-opacity-dark">
+                                        <MDBCardImage className="img-fluid min-h-233px" src={items.src} alt={items.alt} waves />
+                                        <MDBMask className="flex-center" overlay="black-strong" >
+                                            <MDBBox tag="div" className="d-block text-center white-text px-1">
+                                                <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-fantasy mb-1">{items.title}</MDBBox>
+                                                <MDBBox tag="p" className="content-company d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
+                                                <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
+                                                {
+                                                    items.uri !== "" ? (
+                                                        <MDBBtn outline color="white" href={items.uri} target="_blank" className="m-0">
+                                                            <MDBIcon icon="link" className="mr-2" />
+                                                            Visit
+                                                        </MDBBtn>
+                                                    ) : ("")
+                                                }
+                                            </MDBBox>
+                                        </MDBMask>
+                                    </MDBView>
                                 // </MDBCol>
                             ))
                         }
@@ -97,11 +103,11 @@ class Portfolio extends React.Component {
                 </MDBContainer>
                 <Parallax 
                     container="portfolio-parallax-resume"
-                    description="Some quick example text to build on the card title and make up the bulk of the card&apos;s content."
+                    description="Feel free to take a deeper look at what I'm able to do and what experienced and educational background I have."
                     overlay="black-strong"
                     color="white"
                     colorText="white-text"
-                    btnTitle="Resume"
+                    btnTitle="View My Resume"
                     btnIcon="link"
                     btnUri="/resume"
                 />
@@ -112,11 +118,11 @@ class Portfolio extends React.Component {
                 </MDBContainer>
                 <Bottom
                     container=""
-                    description="Some quick example text to build on the card title and make up the bulk of the card&apos;s content."
+                    description="Now that you know what I've done, feel free to reach out and start a conversation."
                     overlay="stylish-slight"
                     color="black"
                     colorText="black-text"
-                    btnTitle="Hire Me Today"
+                    btnTitle="Contact Me Today"
                     btnIcon="id-card"
                     btnUri="/contact"
                 />
