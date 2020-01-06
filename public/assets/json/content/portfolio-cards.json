@@ -2,7 +2,7 @@
     "development":[
         {
             "id": "1d",
-            "src": "./assets/img/portfolio/kpph-xyzscan.png",
+            "src": "/assets/img/portfolio/kpph-xyzscan.png",
             "alt": "XYZScan",
             "title": "XYZ Scan",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -12,7 +12,7 @@
         },
         {
             "id": "2d",
-            "src": "./assets/img/portfolio/kpph-3dscan.png",
+            "src": "/assets/img/portfolio/kpph-3dscan.png",
             "alt": "3DScan",
             "title": "XYZ 3D Scan",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -22,7 +22,7 @@
         },
         {
             "id": "3d",
-            "src": "./assets/img/portfolio/portfolio-1.png",
+            "src": "/assets/img/portfolio/portfolio-1.png",
             "alt": "Portfolio",
             "title": "Portfolio",
             "company": "",
@@ -32,7 +32,7 @@
         },
         {
             "id": "4d",
-            "src": "./assets/img/portfolio/kpph-banner-backstage.png",
+            "src": "/assets/img/portfolio/kpph-banner-backstage.png",
             "alt": "BannerBackstage",
             "title": "Banner Backstage",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -42,7 +42,7 @@
         },
         {
             "id": "5d",
-            "src": "./assets/img/portfolio/portfolio-2.png",
+            "src": "/assets/img/portfolio/portfolio-2.png",
             "alt": "Portfolio",
             "title": "Portfolio",
             "company": "",
@@ -52,7 +52,7 @@
         },
         {
             "id": "6d",
-            "src": "./assets/img/portfolio/kpph-cloud-con-2.png",
+            "src": "/assets/img/portfolio/kpph-cloud-con-2.png",
             "alt": "CloudPrintConsumer",
             "title": "Cloud Print Consumer",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -62,7 +62,7 @@
         },
         {
             "id": "7d",
-            "src": "./assets/img/portfolio/kpph-cloud-edu.png",
+            "src": "/assets/img/portfolio/kpph-cloud-edu.png",
             "alt": "CloudPrintEducational",
             "title": "Cloud Print Educational",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -72,7 +72,7 @@
         },
         {
             "id": "8d",
-            "src": "./assets/img/portfolio/tssi-intranet.png",
+            "src": "/assets/img/portfolio/tssi-intranet.png",
             "alt": "Intranet",
             "title": "Intranet",
             "company": "Think Support Services Inc.",
@@ -84,7 +84,7 @@
     "maintenance":[
         {
             "id": "1m",
-            "src": "./assets/img/portfolio/kpph-xyzprinting.png",
+            "src": "/assets/img/portfolio/kpph-xyzprinting.png",
             "alt": "XYZPrinting",
             "title": "XYZPrinting",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -94,7 +94,7 @@
         },
         {
             "id": "2m",
-            "src": "./assets/img/portfolio/kpph-xyzauth.png",
+            "src": "/assets/img/portfolio/kpph-xyzauth.png",
             "alt": "XYZAuth",
             "title": "XYZAuth",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -104,7 +104,7 @@
         },
         {
             "id": "3m",
-            "src": "./assets/img/portfolio/kpph-edm.png",
+            "src": "/assets/img/portfolio/kpph-edm.png",
             "alt": "eDM",
             "title": "eDM",
             "company": "Kinpo Electronics Philippines Inc.",
@@ -114,7 +114,7 @@
         },
         {
             "id": "4m",
-            "src": "./assets/img/portfolio/tssi-main.png",
+            "src": "/assets/img/portfolio/tssi-main.png",
             "alt": "ThinkConveyancing",
             "title": "Think Conveyancing",
             "company": "Think Support Services Inc.",
@@ -124,7 +124,7 @@
         },
         {
             "id": "5m",
-            "src": "./assets/img/portfolio/tssi-rbi.png",
+            "src": "/assets/img/portfolio/tssi-rbi.png",
             "alt": "RapidBuildingInspections",
             "title": "Rapid Building Inspections",
             "company": "Think Support Services Inc.",
@@ -134,7 +134,7 @@
         },
         {
             "id": "6m",
-            "src": "./assets/img/portfolio/tssi-edm.png",
+            "src": "/assets/img/portfolio/tssi-edm.png",
             "alt": "eDM",
             "title": "eDM",
             "company": "Think Support Services Inc.",

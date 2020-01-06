@@ -61,7 +61,7 @@ class Home extends React.Component {
                                 <Fade right>
                                     {/* {this.carouselRender(this.state.carousel)} */}
                                     <MDBBox tag="div">
-                                        <img className="img-fluid" src={require("../assets/img/chibi-about.png")} alt="Chibi About" />
+                                        <img className="img-fluid" src="/assets/img/chibi-about.png" alt="Chibi About" />
                                     </MDBBox>
                                 </Fade>
                             </MDBCol>

@@ -468,19 +468,19 @@ body, #root{
         background-repeat: no-repeat;
         background-size: cover;
         &.home-splash{
-            background-image: url("../img/banners/home-banner.webm");
+            background-image: url("/assets/img/splash/home-banner.webm");
         }
         &.portfolio-splash{
-            background-image: url("../img/banners/portfolio-banner.webm");
+            background-image: url("/assets/img/splash/portfolio-banner.webm");
         }
         &.resume-splash{
-            background-image: url("../img/banners/resume-banner.webm");
+            background-image: url("/assets/img/splash/resume-banner.webm");
         }
         &.contact-splash{
-            background-image: url("../img/banners/contact-banner.webm");
+            background-image: url("/assets/img/splash/contact-banner.webm");
         }
         &.notFound-404-splash{
-            background-image: url("../img/banners/404-banner.webm");
+            background-image: url("/assets/img/splash/404-banner.webm");
         }
         .slogan{
             span{
@@ -499,7 +499,7 @@ body, #root{
     background-repeat: no-repeat;
     background-size: cover;
     &.portfolio-parallax-resume{
-        background-image: url("https://mdbootstrap.com/img/Photos/Slides/img%20(35).jpg");
+        background-image: url("/assets/img/background/bg-parallax-1.png");
     }
 }
 

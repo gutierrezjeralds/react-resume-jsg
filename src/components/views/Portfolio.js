@@ -4,6 +4,7 @@ import {
     MDBCardImage, MDBView, MDBMask
 } from "mdbreact"
 import { CardColumns } from 'react-bootstrap'
+import { Fade } from 'react-reveal';
 import $ from 'jquery'
 import ReactHtmlParser from 'react-html-parser';
 import Parallax from './includes/Parallax'
@@ -65,24 +66,26 @@ class Portfolio extends React.Component {
                         {
                             data.sort((a, b) =>  b.order - a.order ).map(items => (
                                 // <MDBCol md="4" className="mb-3">
-                                    <MDBView key={items.id} className="overlay mb-4 z-depth-2 img-opacity-dark">
-                                        <MDBCardImage className="img-fluid min-h-233px" src={items.src} alt={items.alt} waves />
-                                        <MDBMask className="flex-center" overlay="black-strong" >
-                                            <MDBBox tag="div" className="d-block text-center white-text px-1">
-                                                <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-fantasy mb-1">{items.title}</MDBBox>
-                                                <MDBBox tag="p" className="content-company d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
-                                                <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
-                                                {
-                                                    items.uri !== "" ? (
-                                                        <MDBBtn outline color="white" href={items.uri} target="_blank" className="m-0">
-                                                            <MDBIcon icon="link" className="mr-2" />
-                                                            Visit
-                                                        </MDBBtn>
-                                                    ) : ("")
-                                                }
-                                            </MDBBox>
-                                        </MDBMask>
-                                    </MDBView>
+                                    <Fade key={items.id}>
+                                        <MDBView className="overlay mb-4 z-depth-2 img-opacity-dark">
+                                            <MDBCardImage className="img-fluid min-h-233px" src={items.src} alt={items.alt} waves />
+                                            <MDBMask className="flex-center" overlay="black-strong" >
+                                                <MDBBox tag="div" className="d-block text-center white-text px-1">
+                                                    <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-fantasy mb-1">{items.title}</MDBBox>
+                                                    <MDBBox tag="p" className="content-company d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
+                                                    <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
+                                                    {
+                                                        items.uri !== "" ? (
+                                                            <MDBBtn outline color="white" href={items.uri} target="_blank" className="m-0">
+                                                                <MDBIcon icon="link" className="mr-2" />
+                                                                Visit
+                                                            </MDBBtn>
+                                                        ) : ("")
+                                                    }
+                                                </MDBBox>
+                                            </MDBMask>
+                                        </MDBView>
+                                    </Fade>
                                 // </MDBCol>
                             ))
                         }
