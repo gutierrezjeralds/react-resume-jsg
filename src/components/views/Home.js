@@ -51,7 +51,7 @@ class Home extends React.Component {
         document.title = "Home | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="home-wrapper">
-                <MDBContainer fluid className="py-5 position-relative home-about-content white">
+                <MDBContainer fluid className="py-5 position-relative home-about-content very-light-gray-bg">
                     <MDBContainer>
                         <MDBRow className="flex-center">
                             <MDBCol md="12" className="mb-3">
@@ -75,7 +75,7 @@ class Home extends React.Component {
                         </MDBRow>
                     </MDBContainer>
                 </MDBContainer>
-                <MDBContainer fluid className="very-light-gray-bg">
+                <MDBContainer fluid className="white">
                     <div style={{height: "100vh"}}></div>
                 </MDBContainer>
             </MDBBox>

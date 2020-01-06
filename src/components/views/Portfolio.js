@@ -124,7 +124,7 @@ class Portfolio extends React.Component {
         document.title = "Portfolio | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="portfolio-wrapper">
-                <MDBContainer fluid className="py-5 position-relative white">
+                <MDBContainer fluid className="py-5 position-relative very-light-gray-bg">
                     <MDBContainer>
                         {this.renderCard(this.state.items.development, "Web Development")}
                     </MDBContainer>
@@ -139,7 +139,7 @@ class Portfolio extends React.Component {
                     btnIcon="link"
                     btnUri="/resume"
                 />
-                <MDBContainer fluid className="py-5 position-relative very-light-gray-bg">
+                <MDBContainer fluid className="py-5 position-relative white">
                     <MDBContainer>
                         {this.renderCard(this.state.items.maintenance, "Web Maintenance")}
                     </MDBContainer>
