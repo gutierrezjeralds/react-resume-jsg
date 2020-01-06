@@ -3,6 +3,7 @@ import {
     MDBBox, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon,
     MDBCardImage, MDBView, MDBMask
 } from "mdbreact"
+import { MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 import { CardColumns } from 'react-bootstrap'
 import { Fade } from 'react-reveal';
 import $ from 'jquery'
@@ -16,7 +17,9 @@ class Portfolio extends React.Component {
         this.state = {
             error: false,
             isLoaded: false,
-            items: []
+            items: [],
+            isOpen: false,
+            imgModal: ""
         }
     }
 
@@ -74,14 +77,18 @@ class Portfolio extends React.Component {
                                                     <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-fantasy mb-1">{items.title}</MDBBox>
                                                     <MDBBox tag="p" className="content-company d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
                                                     <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
-                                                    {
-                                                        items.uri !== "" ? (
-                                                            <MDBBtn outline color="white" href={items.uri} target="_blank" className="m-0">
-                                                                <MDBIcon icon="link" className="mr-2" />
-                                                                Visit
-                                                            </MDBBtn>
-                                                        ) : ("")
-                                                    }
+                                                    <MDBBox tag="div">
+                                                        <MDBBtn outline color="white" onClick={this.modalToggle(items.src)} className="m-0 mr-2 py-2 px-4">
+                                                            <MDBIcon icon="camera" />
+                                                        </MDBBtn>
+                                                        {
+                                                            items.uri !== "" ? (
+                                                                <MDBBtn outline color="white" href={items.uri} target="_blank" className="m-0 py-2 px-4">
+                                                                    <MDBIcon icon="link" />
+                                                                </MDBBtn>
+                                                            ) : ("")
+                                                        }
+                                                    </MDBBox>
                                                 </MDBBox>
                                             </MDBMask>
                                         </MDBView>
@@ -93,6 +100,24 @@ class Portfolio extends React.Component {
                 </MDBRow>
             )
         }
+    }
+
+    modalToggle = img => () => {
+        this.setState({
+            isOpen: !this.state.isOpen,
+            imgModal: img
+        });
+    }
+
+    renderImgModal() {
+        return (
+            <MDBModal isOpen={this.state.isOpen} size="lg">
+                <MDBModalHeader toggle={this.modalToggle()} className="position-absolute r-0 z-index-5 border-0"></MDBModalHeader>
+                <MDBModalBody className="p-0 flex-center very-light-gray-bg">
+                    <img className="img-fluid" src={this.state.imgModal} alt="" />
+                </MDBModalBody>
+            </MDBModal>
+        )
     }
 
     render() {
@@ -129,6 +154,7 @@ class Portfolio extends React.Component {
                     btnIcon="id-card"
                     btnUri="/contact"
                 />
+                {this.renderImgModal()}
             </MDBBox>
         )
     }
