@@ -1,0 +1,250 @@
+{
+    "skills": [
+        {
+            "id": "1s",
+            "title": "HTML/HTML5",
+            "percent": 100
+        },
+        {
+            "id": "2s",
+            "title": "CSS/CSS3",
+            "percent": 95
+        },
+        {
+            "id": "3s",
+            "title": "SASS",
+            "percent": 100
+        },
+        {
+            "id": "4s",
+            "title": "WordPress",
+            "percent": 75
+        },
+        {
+            "id": "5s",
+            "title": "JQuery",
+            "percent": 100
+        },
+        {
+            "id": "6s",
+            "title": "JavaScript",
+            "percent": 100
+        },
+        {
+            "id": "7s",
+            "title": "Bootstrap/MDBootstrap",
+            "percent": 100
+        },
+        {
+            "id": "8s",
+            "title": "WebSocket",
+            "percent": 70
+        },
+        {
+            "id": "9s",
+            "title": "Java",
+            "percent": 60
+        },
+        {
+            "id": "10s",
+            "title": "AngularJS",
+            "percent": 60
+        },
+        {
+            "id": "11s",
+            "title": "ReactJs",
+            "percent": 65
+        },
+        {
+            "id": "12s",
+            "title": "PHP/Laravel",
+            "percent": 60
+        },
+        {
+            "id": "13s",
+            "title": "GIT",
+            "percent": 95
+        },
+        {
+            "id": "14s",
+            "title": "AJAX",
+            "percent": 98
+        },
+        {
+            "id": "15s",
+            "title": "Three.JS",
+            "percent": 75
+        },
+        {
+            "id": "16s",
+            "title": "eDM",
+            "percent": 85
+        }
+    ],
+    "timeline" : [
+        {
+            "experience" : [
+                {
+                    "id": "1ex",
+                    "order": 1,
+                    "icon": "code",
+                    "date": "August 2015 - June 2019",
+                    "title": "Kinpo Electronics Philippines Inc.",
+                    "subTitle": "Software Engineer - Web Developer (Front End)",
+                    "address": "",
+                    "jobDesc": [
+                        {
+                            "id": "1exjd1",
+                            "title": "Develop Projects Scope and Created concepts",
+                            "sub": [
+                                {
+                                    "id": "1exjdsub1",
+                                    "title": "Cloud Print - Consumer/Educational",
+                                    "desc": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, JAVA, WebScoket, MDBootstrap, Play Framework 1x, GIT"
+                                },
+                                {
+                                    "id": "1exjdsub2",
+                                    "title": "Banner Backstage",
+                                    "desc": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Bootstrap, Play Framework 1x, GIT"
+                                },
+                                {
+                                    "id": "1exjdsub3",
+                                    "title": "3D Scan and eCard Gallery",
+                                    "desc": "HTML, SASS, JavaScript, JQuery, AngularJS, Bootstrap, Play Framework 1x, Three.js, GIT"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "1exjd2",
+                            "title": "Develop EDM (Electronic Direct Email) template",
+                            "sub": []
+                        },
+                        {
+                            "id": "1exjd3",
+                            "title": "Using SoapUI for testing",
+                            "sub": [
+                                {
+                                    "id": "1exjdsub4",
+                                    "title": "EDM",
+                                    "desc": ""
+                                },
+                                {
+                                    "id": "1exjdsub5",
+                                    "title": "REST API",
+                                    "desc": ""
+                                }
+                            ]
+                        },
+                        {
+                            "id": "1exjd4",
+                            "title": "Modified and Maintained XYZ Websites",
+                            "sub": []
+                        },
+                        {
+                            "id": "1exjd5",
+                            "title": "Rendered OBJ, STL, PLY 3D Models",
+                            "sub": [
+                                {
+                                    "id": "1exjdsub6",
+                                    "title": "Three.js",
+                                    "desc": ""
+                                }
+                            ]
+                        },
+                        {
+                            "id": "1exjd6",
+                            "title": "Performed Committing and Merging task in Mercurial Sourcetree",
+                            "sub": [
+                                {
+                                    "id": "1exjdsub7",
+                                    "title": "GIT",
+                                    "desc": ""
+                                }
+                            ]
+                        }
+                    ],
+                    "achievement": [
+                        {
+                            "id": "1exach1",
+                            "order": 1,
+                            "title": "Promoted as an Engineed B from Junior Engineer (Nov 2016)"
+                        },
+                        {
+                            "id": "1exach2",
+                            "order": 2,
+                            "title": "Become Deputy Team Leader (Aug 2018)"
+                        },
+                        {
+                            "id": "1exach3",
+                            "order": 3,
+                            "title": "Project Training at Taiwan (Aug - Sept 2018)"
+                        }
+                    ]
+                },
+                {
+                    "id": "2ex",
+                    "order": 2,
+                    "icon": "code",
+                    "date": "June 2019 - Present",
+                    "title": "Think Support Services Inc.",
+                    "subTitle": "Web Developer (Front End)",
+                    "address": "",
+                    "jobDesc": [
+                        {
+                            "id": "2exjd1",
+                            "title": "Develop Projects Scope",
+                            "sub": [
+                                {
+                                    "id": "2exjdsub1",
+                                    "title": "Intranet Social",
+                                    "desc": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, WordPress, Bootstrap, GIT"
+                                }
+                            ]
+                        },
+                        {
+                            "id": "2exjd2",
+                            "title": "Maintained Think Website",
+                            "sub": []
+                        }
+                    ],
+                    "achievement": []
+                }
+            ],
+            "educational" : [
+                {
+                    "id": "1ed",
+                    "order": 1,
+                    "icon": "hourglass-end",
+                    "date": "2001 - 2007",
+                    "title": "Dalipit West Elementary School",
+                    "subTitle": "",
+                    "address": "Dalipit West, Alitagtag, Batangas",
+                    "jobDesc": [],
+                    "achievement": []
+                },
+                {
+                    "id": "2ed",
+                    "order": 2,
+                    "icon": "certificate",
+                    "date": "2007 - 2011",
+                    "title": "Alitagtag National High School",
+                    "subTitle": "",
+                    "address": "Dominador West, Alitagtag, Batangas",
+                    "jobDesc": [],
+                    "achievement": []
+                },
+                {
+                    "id": "3ed",
+                    "order": 3,
+                    "icon": "graduation-cap",
+                    "date": "2011 - 2015",
+                    "title": "De La Salle Lipa",
+                    "subTitle": "Bachelor of Science in Information Systems",
+                    "address": "Lipa City, Batangas",
+                    "jobDesc": [],
+                    "achievement": []
+                }
+            ]
+        }
+    ]
+}

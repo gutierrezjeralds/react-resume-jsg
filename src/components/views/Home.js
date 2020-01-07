@@ -51,7 +51,7 @@ class Home extends React.Component {
         document.title = "Home | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="home-wrapper">
-                <MDBContainer fluid className="py-5 position-relative home-about-content very-light-gray-bg">
+                <MDBContainer fluid className="py-5 position-relative home-about-content">
                     <MDBContainer>
                         <MDBRow className="flex-center">
                             <MDBCol md="12" className="mb-3">

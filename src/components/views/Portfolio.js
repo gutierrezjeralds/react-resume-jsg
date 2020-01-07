@@ -3,7 +3,7 @@ import {
     MDBBox, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon,
     MDBCardImage, MDBView, MDBMask
 } from "mdbreact"
-import { MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
+import { MDBModal, MDBModalBody, MDBModalHeader } from 'mdbreact';
 import { CardColumns } from 'react-bootstrap'
 import { Fade } from 'react-reveal';
 import $ from 'jquery'
@@ -124,13 +124,13 @@ class Portfolio extends React.Component {
         document.title = "Portfolio | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="portfolio-wrapper">
-                <MDBContainer fluid className="py-5 position-relative very-light-gray-bg">
+                <MDBContainer fluid className="py-5 position-relative">
                     <MDBContainer>
                         {this.renderCard(this.state.items.development, "Web Development")}
                     </MDBContainer>
                 </MDBContainer>
                 <Parallax 
-                    container="portfolio-parallax-resume"
+                    container="commmon-parallax"
                     description="Feel free to take a deeper look at what I'm able to do and what experienced and educational background I have."
                     overlay="black-strong"
                     color="white"

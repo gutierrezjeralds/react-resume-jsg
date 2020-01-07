@@ -3,6 +3,9 @@
 .font-size-1rem{
     font-size: $size-1rem !important;
 }
+.font-size-1pt3rem{
+    font-size: $size-1pt3rem !important;
+}
 .font-size-1pt5rem{
     font-size: $size-1pt5rem !important;
 }
@@ -86,11 +89,118 @@
     font-family: $family-fantasy !important;
 }
 // Color
+.info{
+    color: $info !important;
+}
+.info-dark{
+    color: $info-dark !important;
+}
+.info-bg{
+    background: $info !important;
+}
+.info-dark-bg{
+    background: $info-dark !important;
+}
+
+.success{
+    color: $success !important;
+}
+.success-dark{
+    color: $success-dark !important;
+}
+.success-bg{
+    background: $success !important;
+}
+.success-dark-bg{
+    background: $success-dark !important;
+}
+
+.warning{
+    color: $warning !important;
+}
+.warning-dark{
+    color: $warning-dark !important;
+}
+.warning-bg{
+    background: $warning !important;
+}
+.warning-dark-bg{
+    background: $warning-dark !important;
+}
+
+.danger{
+    color: $danger !important;
+}
+.danger-dark{
+    color: $danger-dark !important;
+}
+.danger-bg{
+    background: $danger !important;
+}
+.danger-dark-bg{
+    background: $danger-dark !important;
+}
+
+.default{
+    color: $default !important;
+}
+.default-dark{
+    color: $default-dark !important;
+}
+.default-bg{
+    background: $default !important;
+}
+.default-dark-bg{
+    background: $default-dark !important;
+}
+
+.primary{
+    color: $primary !important;
+}
+.primary-dark{
+    color: $primary-dark !important;
+}
+.primary-bg{
+    background: $primary !important;
+}
+.primary-dark-bg{
+    background: $primary-dark !important;
+}
+
+.secondary{
+    color: $secondary !important;
+}
+.secondary-dark{
+    color: $secondary-dark !important;
+}
+.secondary-bg{
+    background: $secondary !important;
+}
+.secondary-dark-bg{
+    background: $secondary-dark !important;
+}
+
 .unique-color-bg{
     background-color: $unique-color !important;
 }
 .very-light-gray-bg{
     background-color: $very-light-gray !important;
+}
+.pale-turquoise-bg{
+    background-color: $pale-turquoise !important;
+}
+//Line Height
+.line-height-0-6{
+    line-height: 0.6 !important;
+}
+.line-height-1{
+    line-height: 1 !important;
+}
+.line-height-1-7{
+    line-height: 1.7 !important;
+}
+.line-height-2{
+    line-height: 2 !important;
 }
 // Margin
 .mt-6rem-neg{
@@ -99,11 +209,17 @@
 .t-0{
     top: 0 !important;
 }
+.t-10px{
+    top: 10px !important;
+}
 .b-0{
     bottom: 0 !important;
 }
 .r-0{
     right: 0 !important;
+}
+.r-15px{
+    right: 15px !important;
 }
 .l-0{
     left: 0 !important;
@@ -201,6 +317,9 @@
 .w-37px{
     width: 37px !important;
 }
+.w-40px{
+    width: 40px !important;
+}
 .w-80px{
     width: 80px !important;
 }
@@ -258,8 +377,14 @@
 }
 
 // Height
+.h-8px{
+    height: 8px !important;
+}
 .h-37px{
     height: 37px !important;
+}
+.h-40px{
+    height: 40px !important;
 }
 .h-80px{
     height: 80px !important;
@@ -405,6 +530,9 @@
 .z-index-1{
     z-index: 1 !important;
  }
+ .z-index-2{
+     z-index: 2 !important;
+  }
  .z-index-4{
     z-index: 4 !important;
  }
@@ -498,7 +626,7 @@ body, #root{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    &.portfolio-parallax-resume{
+    &.commmon-parallax{
         background-image: url("/assets/img/background/bg-parallax-1.png");
     }
 }
@@ -523,6 +651,35 @@ body, #root{
 .bottom-content-footer{
     min-height: 200px;
     height: 200px;
+}
+
+// Timeline Content
+.timeline-content-wrapper{
+    .timeline-content{
+        &:before{
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 1px;
+            left: 20%;
+            margin-left: -5px;
+            background: $default;
+            z-index: 1;
+        }
+        .content-list{
+            .content-icon{
+                text-transform: none;
+                -webkit-font-smoothing: antialiased;
+                color: $default;
+                left: 20%;
+                margin: 0 0 0 -25px;
+            }
+        }
+        .content-details{
+            margin: 0 0 15px 25%;
+        }
+    }
 }
 
 // Loader

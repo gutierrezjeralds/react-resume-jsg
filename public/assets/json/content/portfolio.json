@@ -76,7 +76,7 @@
             "alt": "Intranet",
             "title": "Intranet",
             "company": "Think Support Services Inc.",
-            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, Wordpress, Bootstrap, GIT",
+            "description": "HTML, SASS, JavaScript, JQuery, AJAX, JSON, WordPress, Bootstrap, GIT",
             "uri": "http://gutierrez-jerald.herokuapp.com/",
             "order": 8
         }
@@ -118,7 +118,7 @@
             "alt": "ThinkConveyancing",
             "title": "Think Conveyancing",
             "company": "Think Support Services Inc.",
-            "description": "HTML, CSS, JavaScript, JQuery, Wordpress, Divi, GIT",
+            "description": "HTML, CSS, JavaScript, JQuery, WordPress, Divi, GIT",
             "uri": "https://www.thinkconveyancing.com.au/",
             "order": 4
         },
@@ -128,7 +128,7 @@
             "alt": "RapidBuildingInspections",
             "title": "Rapid Building Inspections",
             "company": "Think Support Services Inc.",
-            "description": "HTML, CSS, JavaScript, JQuery, Wordpress, Divi, GIT",
+            "description": "HTML, CSS, JavaScript, JQuery, WordPress, Divi, GIT",
             "uri": "https://www.rapidbuildinginspections.com.au/",
             "order": 5
         },
