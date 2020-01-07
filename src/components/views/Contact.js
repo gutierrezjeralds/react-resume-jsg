@@ -1,6 +1,7 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact"
 import ReCAPTCHA from "react-google-recaptcha";
+import Bottom from './includes/Bottom'
 import $ from 'jquery'
 
 class Contact extends React.Component {
@@ -224,6 +225,16 @@ class Contact extends React.Component {
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>
+                <Bottom
+                    container=""
+                    description="Feel free to take a deeper look at what I'm able to do and what experienced and educational background I have."
+                    overlay="stylish-slight"
+                    color="black"
+                    colorText="black-text"
+                    btnTitle="View My Resume"
+                    btnIcon="link"
+                    btnUri="/resume"
+                />
             </MDBBox>
         )
     }
