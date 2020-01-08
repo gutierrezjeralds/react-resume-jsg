@@ -49,7 +49,7 @@ class Contact extends React.Component {
             info: [
                 {
                     id: 1,
-                    text: "Alitagtag, Batangas, 4205",
+                    text: "Batangas City, 4200",
                     icon: "map-marker-alt"
                 },
                 {
@@ -206,8 +206,8 @@ class Contact extends React.Component {
                         </MDBCol>
                         <MDBCol lg="7">
                             <MDBBox tag="div" id="map-container" className="rounded z-depth-1-half map-container" style={{ height: "400px" }}  >
-                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30987.803371642072!2d121.00103316455555!3d13.870497291667654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd0c1e6a4aef21%3A0xd572d65f900bb6ec!2sAlitagtag%2C%20Batangas%2C%20Philippines!5e0!3m2!1sen!2spl!4v1575251913027!5m2!1sen!2spl"
-                                title="This is a unique title" width="100%" height="100%" frameBorder="0" className="boder-0" />
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d248097.06049634505!2d120.96484491363832!3d13.687134028577619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x33bd1b1d4c1cd013%3A0xe4592a820e411177!2sBatangas%2C%20Philippines!5e0!3m2!1sen!2spl!4v1578458215186!5m2!1sen!2spl"
+                                title="Google Map" width="100%" height="100%" frameBorder="0" className="boder-0" />
                             </MDBBox>
                             <br />
                             <MDBRow className="text-center">
