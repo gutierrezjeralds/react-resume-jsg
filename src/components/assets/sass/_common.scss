@@ -86,7 +86,10 @@
 }
 // Font family
 .font-family-fantasy{
-    font-family: $family-fantasy !important;
+    font-family: $family-fantasy, $family-roboto, $family-sans-serif !important;
+}
+.font-family-architects-daughter{
+    font-family: $architects-daughter, $family-roboto, $family-sans-serif !important;
 }
 // Color
 .info{

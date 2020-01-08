@@ -56,7 +56,7 @@ class Resume extends React.Component {
         if ( counter === 1 ) {
             return (
                 <React.Fragment key={data.id}>
-                    <MDBBox tag="span" display="block" className={titleClass + " sub-content-title font-size-2rem font-family-fantasy text-center w-100"}>{title}</MDBBox>
+                    <MDBBox tag="span" display="block" className={titleClass + " sub-content-title font-size-2rem font-family-architects-daughter text-center w-100"}>{title}</MDBBox>
                     <MDBCol lg="4" className="mb-3">
                         <MDBBox tag="span" display="block" className="skill-title font-size-1rem">{data.title}</MDBBox>
                         <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="pale-turquoise-bg"/>
@@ -82,7 +82,7 @@ class Resume extends React.Component {
                         <Fade>
                             <MDBRow>
                                 <MDBCol lg="12" className="mb-3">
-                                    <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-fantasy text-center">Technologies</MDBBox>
+                                    <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-architects-daughter text-center">Technologies</MDBBox>
                                 </MDBCol>
                                 {
                                     this.state.items.skills.sort((a, b) =>  b.percent - a.percent ).map(item => (

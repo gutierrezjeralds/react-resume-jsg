@@ -55,7 +55,7 @@ class Home extends React.Component {
                     <MDBContainer>
                         <MDBRow className="flex-center">
                             <MDBCol md="12" className="mb-3">
-                                <MDBBox tag="span" className="content-title d-block font-size-3rem font-family-fantasy text-center">My Passions &amp; Personality</MDBBox>
+                                <MDBBox tag="span" className="content-title d-block font-size-3rem font-family-architects-daughter text-center">My Passions &amp; Personality</MDBBox>
                             </MDBCol>
                             <MDBCol lg="4" className="d-none d-lg-block home-carousel">
                                 <Fade right>

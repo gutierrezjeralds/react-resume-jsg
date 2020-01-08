@@ -97,7 +97,7 @@ class Splash extends React.Component {
                                     </MDBBox>
                                 ) : (
                                     // Success render
-                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-fantasy">
+                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-architects-daughter">
                                         {
                                             items.map((item, index) => (
                                                 <MDBBox tag="div" key={item.id}>

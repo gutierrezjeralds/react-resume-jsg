@@ -63,7 +63,7 @@ class Timeline extends React.Component{
             <MDBContainer className="timeline-content-wrapper">
                 <MDBRow>
                     <MDBCol lg="12" className="mb-3">
-                        <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-fantasy text-center">{this.props.title}</MDBBox>
+                        <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-architects-daughter text-center">{this.props.title}</MDBBox>
                     </MDBCol>
                     <MDBCol lg="12">
                         <MDBBox tag="ul" className="list-group timeline-content position-relative list-style-none p-0">

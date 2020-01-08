@@ -63,7 +63,7 @@ class Portfolio extends React.Component {
             return (
                 <MDBRow>
                     <MDBCol md="12" className="mb-3">
-                        <MDBBox tag="span" className="content-title d-block font-size-3rem font-family-fantasy text-center">{title}</MDBBox>
+                        <MDBBox tag="span" className="content-title d-block font-size-3rem font-family-architects-daughter text-center">{title}</MDBBox>
                     </MDBCol>
                     <CardColumns>
                         {
@@ -74,7 +74,7 @@ class Portfolio extends React.Component {
                                             <MDBCardImage className="img-fluid min-h-233px" src={items.src} alt={items.alt} waves />
                                             <MDBMask className="flex-center" overlay="black-strong" >
                                                 <MDBBox tag="div" className="d-block text-center white-text px-1">
-                                                    <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-fantasy mb-1">{items.title}</MDBBox>
+                                                    <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-architects-daughter mb-1">{items.title}</MDBBox>
                                                     <MDBBox tag="p" className="content-company d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
                                                     <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
                                                     <MDBBox tag="div">
