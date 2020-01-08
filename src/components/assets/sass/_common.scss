@@ -626,8 +626,11 @@ body, #root{
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    &.commmon-parallax{
-        background-image: url("/assets/img/background/bg-parallax-1.png");
+    &.bg-parallax-1{
+        background-image: url("/assets/img/background/bg-item-1.png");
+    }
+    &.bg-parallax-2{
+        background-image: url("/assets/img/background/bg-item-2.png");
     }
 }
 

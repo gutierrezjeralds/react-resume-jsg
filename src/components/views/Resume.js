@@ -1,5 +1,6 @@
 import React from 'react'
 import { MDBBox, MDBContainer, MDBRow, MDBCol } from "mdbreact"
+import ProgressBar from 'react-bootstrap/ProgressBar'
 import { Fade } from 'react-reveal';
 import $ from 'jquery'
 import Parallax from './includes/Parallax'
@@ -50,16 +51,47 @@ class Resume extends React.Component {
             }
         )
     }
+    
+    renderSkills(data, counter, title, titleClass) {
+        if ( counter === 1 ) {
+            return (
+                <React.Fragment key={data.id}>
+                    <MDBBox tag="span" display="block" className={titleClass + " sub-content-title font-size-2rem font-family-fantasy text-center w-100"}>{title}</MDBBox>
+                    <MDBCol lg="4" className="mb-3">
+                        <MDBBox tag="span" display="block" className="skill-title font-size-1rem">{data.title}</MDBBox>
+                        <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="pale-turquoise-bg"/>
+                    </MDBCol>
+                </React.Fragment>
+            )
+        }
 
-    renderData() {
+        return (
+            <MDBCol key={data.id} lg="4" className="mb-3">
+                <MDBBox tag="span" display="block" className="skill-title font-size-1rem">{data.title}</MDBBox>
+                <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="pale-turquoise-bg"/>
+            </MDBCol>
+        )
+    }
+
+    renderTechnologies() {
+        let skillAdvnc = 0, skillBasic = 0
         if( this.state.isLoaded && !this.state.error ) {
-            if ( Object.keys(this.state.items).length !== 0 ) {
+            if ( Object.keys(this.state.items.skills).length !== 0 ) {
                 return (
                     <MDBContainer>
                         <MDBRow>
-                            <MDBCol md="12" className="mb-3">
+                            <MDBCol lg="12" className="mb-3">
                                 <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-fantasy text-center">Technologies</MDBBox>
                             </MDBCol>
+                            {
+                                this.state.items.skills.sort((a, b) =>  b.percent - a.percent ).map(item => (
+                                    item.percent >= 80 ? (
+                                        this.renderSkills(item, skillAdvnc+=1, "Day-To-Day Comfort", "")
+                                    ) : (
+                                        this.renderSkills(item, skillBasic+=1, "Experience With", "mt-4")
+                                    )
+                                ))
+                            }
                         </MDBRow>
                     </MDBContainer>
                 )
@@ -82,10 +114,10 @@ class Resume extends React.Component {
         return (
             <MDBBox tag="div" className="resume-wrapper">
                 <MDBContainer fluid className="py-5 position-relative">
-                    {this.renderData()}
+                    {this.renderTechnologies()}
                 </MDBContainer>
                 <Parallax 
-                    container="commmon-parallax"
+                    container="bg-parallax-1"
                     description="Feel free to take a deeper look at what I've done."
                     overlay="black-strong"
                     color="white"
@@ -98,7 +130,7 @@ class Resume extends React.Component {
                     {this.renderTimeline(this.state.items.timeline, "Experience")}
                 </MDBContainer>
                 <Parallax 
-                    container="commmon-parallax"
+                    container="bg-parallax-2"
                     description="Feel free to download my resume for hard copy of yours."
                     overlay="black-strong"
                     color="white"

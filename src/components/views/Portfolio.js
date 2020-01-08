@@ -130,7 +130,7 @@ class Portfolio extends React.Component {
                     </MDBContainer>
                 </MDBContainer>
                 <Parallax 
-                    container="commmon-parallax"
+                    container="bg-parallax-1"
                     description="Feel free to take a deeper look at what I'm able to do and what experienced and educational background I have."
                     overlay="black-strong"
                     color="white"

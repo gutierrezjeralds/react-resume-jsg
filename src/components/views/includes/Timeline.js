@@ -2,10 +2,6 @@ import React from 'react'
 import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact"
 
 class Timeline extends React.Component{
-    constructor(props) {
-        super(props)
-    }
-
     renderJobsDesc(data) {
         if ( Object.keys(data).length !== 0 ) {
             return (
@@ -81,6 +77,7 @@ class Timeline extends React.Component{
                                         <MDBBox tag="div" className="content-details very-light-gray-bg z-depth-1 rounded position-relative p-4">
                                             <MDBBox tag="span" className="details-title font-size-1pt5rem d-block">{items.title}</MDBBox>
                                             <MDBBox tag="span" className="details-sub-title font-size-1rem d-block">{items.subTitle}</MDBBox>
+                                            <MDBBox tag="span" className="details-sub-title font-size-1rem d-block d-md-none">{items.date}</MDBBox>
                                             <MDBBox tag="span" className="details-address font-size-1rem d-block">{items.address}</MDBBox>
                                             {this.renderJobsDesc(items.jobDesc)}
                                             {this.renderAchievement(items.achievement)}
