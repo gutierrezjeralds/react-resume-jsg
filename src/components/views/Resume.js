@@ -103,11 +103,13 @@ class Resume extends React.Component {
 
     renderTimeline(items, title){
         if ( this.state.isLoaded && !this.state.error ) {
-            return (
-                <Fade>
-                    <Timeline title={title} data={items[0][title.toLowerCase()]}/>
-                </Fade>
-            )
+            if ( Object.keys(items).length !== 0 ) {
+                return (
+                    <Fade>
+                        <Timeline title={title} data={items[0][title.toLowerCase()]} counter=""/>
+                    </Fade>
+                )
+            }
         }
     }
 

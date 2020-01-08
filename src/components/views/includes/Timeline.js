@@ -2,6 +2,41 @@ import React from 'react'
 import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact"
 
 class Timeline extends React.Component{
+    renderData(data, counter, propsCounter) {
+        if ( Object.keys(data).length !== 0 ) {
+            if ( propsCounter === "1" ) {
+                if ( counter === 1) {
+                    return (
+                        this.renderElem(data)
+                    )
+                }
+            } else {
+                return (
+                    this.renderElem(data)
+                )
+            }
+        }
+    }
+
+    renderElem(data) {
+        return (
+            <MDBBox key={data.id} tag="li" className="list-group-item content-list position-relative border-0 bg-transparent">
+                <MDBBox tag="div" className="content-date d-none d-md-block position-absolute w-13">
+                    <MDBBox tag="span" className="text-uppercase">{data.date}</MDBBox>
+                </MDBBox>
+                <MDBIcon icon={data.icon} className="content-icon z-index-2 text-center t-0 h-40px w-40px position-absolute very-light-gray-bg rounded-circle z-depth-1 font-size-1pt3rem line-height-2" />
+                <MDBBox tag="div" className="content-details very-light-gray-bg z-depth-1 rounded position-relative p-4">
+                    <MDBBox tag="span" className="details-title font-size-1pt5rem d-block">{data.title}</MDBBox>
+                    <MDBBox tag="span" className="details-sub-title font-size-1rem d-block">{data.subTitle}</MDBBox>
+                    <MDBBox tag="span" className="details-sub-title font-size-1rem d-block d-md-none">{data.date}</MDBBox>
+                    <MDBBox tag="span" className="details-address font-size-1rem d-block">{data.address}</MDBBox>
+                    {this.renderJobsDesc(data.jobDesc)}
+                    {this.renderAchievement(data.achievement)}
+                </MDBBox>
+            </MDBBox>
+        )
+    }
+
     renderJobsDesc(data) {
         if ( Object.keys(data).length !== 0 ) {
             return (
@@ -59,6 +94,7 @@ class Timeline extends React.Component{
     }
 
     render () {
+        let counters = 0
         return (
             <MDBContainer className="timeline-content-wrapper">
                 <MDBRow>
@@ -69,20 +105,7 @@ class Timeline extends React.Component{
                         <MDBBox tag="ul" className="list-group timeline-content position-relative list-style-none p-0">
                             {
                                 this.props.data.sort((a, b) =>  b.order - a.order ).map(items => (
-                                    <MDBBox key={items.id} tag="li" className="list-group-item content-list position-relative border-0 bg-transparent">
-                                        <MDBBox tag="div" className="content-date d-none d-md-block position-absolute w-13">
-                                            <MDBBox tag="span" className="text-uppercase">{items.date}</MDBBox>
-                                        </MDBBox>
-                                        <MDBIcon icon={items.icon} className="content-icon z-index-2 text-center t-0 h-40px w-40px position-absolute very-light-gray-bg rounded-circle z-depth-1 font-size-1pt3rem line-height-2" />
-                                        <MDBBox tag="div" className="content-details very-light-gray-bg z-depth-1 rounded position-relative p-4">
-                                            <MDBBox tag="span" className="details-title font-size-1pt5rem d-block">{items.title}</MDBBox>
-                                            <MDBBox tag="span" className="details-sub-title font-size-1rem d-block">{items.subTitle}</MDBBox>
-                                            <MDBBox tag="span" className="details-sub-title font-size-1rem d-block d-md-none">{items.date}</MDBBox>
-                                            <MDBBox tag="span" className="details-address font-size-1rem d-block">{items.address}</MDBBox>
-                                            {this.renderJobsDesc(items.jobDesc)}
-                                            {this.renderAchievement(items.achievement)}
-                                        </MDBBox>
-                                    </MDBBox>
+                                    this.renderData(items, counters+=1, this.props.counter)
                                 ))
                             }
                         </MDBBox>

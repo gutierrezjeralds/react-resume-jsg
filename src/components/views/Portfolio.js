@@ -60,7 +60,7 @@ class Portfolio extends React.Component {
 
     renderCard(data, title) {
         if( this.state.isLoaded && !this.state.error ) {
-            return (
+            if ( Object.keys(data).length !== 0 ) {return (
                 <MDBRow>
                     <MDBCol md="12" className="mb-3">
                         <MDBBox tag="span" className="content-title d-block font-size-3rem font-family-architects-daughter text-center">{title}</MDBBox>
@@ -99,6 +99,7 @@ class Portfolio extends React.Component {
                     </CardColumns>
                 </MDBRow>
             )
+            }
         }
     }
 
