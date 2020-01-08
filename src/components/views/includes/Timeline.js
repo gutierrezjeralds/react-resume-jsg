@@ -4,8 +4,8 @@ import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact"
 class Timeline extends React.Component{
     renderData(data, counter, propsCounter) {
         if ( Object.keys(data).length !== 0 ) {
-            if ( propsCounter === "1" ) {
-                if ( counter === 1) {
+            if ( propsCounter === 1 ) {
+                if ( counter === propsCounter) {
                     return (
                         this.renderElem(data)
                     )
@@ -105,7 +105,7 @@ class Timeline extends React.Component{
                         <MDBBox tag="ul" className="list-group timeline-content position-relative list-style-none p-0">
                             {
                                 this.props.data.sort((a, b) =>  b.order - a.order ).map(items => (
-                                    this.renderData(items, counters+=1, this.props.counter)
+                                    this.renderData(items, counters+=1, parseInt(this.props.counter))
                                 ))
                             }
                         </MDBBox>
