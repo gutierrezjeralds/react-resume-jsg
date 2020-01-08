@@ -79,20 +79,22 @@ class Resume extends React.Component {
             if ( Object.keys(this.state.items.skills).length !== 0 ) {
                 return (
                     <MDBContainer>
-                        <MDBRow>
-                            <MDBCol lg="12" className="mb-3">
-                                <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-fantasy text-center">Technologies</MDBBox>
-                            </MDBCol>
-                            {
-                                this.state.items.skills.sort((a, b) =>  b.percent - a.percent ).map(item => (
-                                    item.percent >= 80 ? (
-                                        this.renderSkills(item, skillAdvnc+=1, "Day-To-Day Comfort", "")
-                                    ) : (
-                                        this.renderSkills(item, skillBasic+=1, "Experience With", "mt-4")
-                                    )
-                                ))
-                            }
-                        </MDBRow>
+                        <Fade>
+                            <MDBRow>
+                                <MDBCol lg="12" className="mb-3">
+                                    <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-fantasy text-center">Technologies</MDBBox>
+                                </MDBCol>
+                                {
+                                    this.state.items.skills.sort((a, b) =>  b.percent - a.percent ).map(item => (
+                                        item.percent >= 80 ? (
+                                            this.renderSkills(item, skillAdvnc+=1, "Day-To-Day Comfort", "")
+                                        ) : (
+                                            this.renderSkills(item, skillBasic+=1, "Experience With", "mt-4")
+                                        )
+                                    ))
+                                }
+                            </MDBRow>
+                        </Fade>
                     </MDBContainer>
                 )
             }
