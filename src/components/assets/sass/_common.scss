@@ -598,6 +598,7 @@ body, #root{
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
+        background-image: url("/assets/img/splash/default-banner.webm");
         &.home-splash{
             background-image: url("/assets/img/splash/home-banner.webm");
         }

@@ -72,67 +72,74 @@ class Splash extends React.Component {
         })
     }
 
+    renderData = () => {
+        if ( this.state.error ) {
+            return (
+                // Has error
+                <MDBBox tag="div" className="error-section flex-center">
+                    <MDBBox tag="span" className="font-size-2rem white-text">Unexpected error, please reload the page.</MDBBox>
+                </MDBBox>
+            )
+        } else if ( !this.state.isLoaded ) {
+            return (
+                // Loading
+                <MDBBox tag="div" className="loader-section">
+                    <MDBBox tag="div" className="position-fixed z-index-9999 l-0 t-0 r-0 b-0 m-auto overflow-visible flex-center">
+                        <MDBBox tag="span" className="loader-spin-dual-ring"></MDBBox>
+                        <MDBBox tag="span" className="ml-2 white-text font-size-1rem">Loading, please wait...</MDBBox>
+                    </MDBBox>
+                    <MDBBox tag="div" className="loader-backdrop position-fixed z-index-1040 l-0 t-0 r-0 b-0 black"></MDBBox>
+                </MDBBox>
+            )
+        } else {
+            if ( Object.keys(this.state.items).length !== 0 ) {
+                let anchor = false
+                return (
+                    // Success render
+                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-architects-daughter">
+                        {
+                            this.state.items.map((item, index) => (
+                                <MDBBox tag="div" key={item.id}>
+                                    {
+                                        item.category === "title" ? (
+                                            <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">{item.string}</MDBBox>
+                                        ) : (
+                                            item.category === "description" ? (
+                                                <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">{item.string}</MDBBox>
+                                            ) : (
+                                                item.category === "slogan" ? (
+                                                    <MDBBox tag="span" className="slogan font-weight-light d-block">{item.string} <span>|</span></MDBBox>
+                                                ) : (
+                                                    item.category === "anchor" ? (
+                                                        <MDBBtn outline color="white">
+                                                            <Link to={item.uri} className="white-text">
+                                                                <MDBIcon icon={item.fa_icon} className="mr-2" />
+                                                                {item.string}
+                                                            </Link>
+                                                            {anchor = true}
+                                                        </MDBBtn>
+                                                    ) : ("")
+                                                )
+                                            )
+                                        )
+                                    }
+                                </MDBBox>
+                            ))
+                        }
+                        {/* Display arrow down */}
+                        {this.displayChevronDown(anchor)}
+                    </MDBAnimation>
+                )
+            }
+        }
+    }
+
     render() {
-        const { error, isLoaded, items } = this.state
-        let anchor = false
         return (
             <MDBBox tag="div" className="splash-wrapper">
                 <MDBView className={this.props.wrapper + "-splash splash-content"}>
                     <MDBMask className="flex-center" overlay="black-strong">
-                        {
-                            error ? (
-                                // Has error
-                                <MDBBox tag="div" className="error-section flex-center">
-                                    <MDBBox tag="span" className="font-size-2rem white-text">Unexpected error, please reload the page.</MDBBox>
-                                </MDBBox>
-                            ) : (
-                                !isLoaded ? (
-                                    // Loading
-                                    <MDBBox tag="div" className="loader-section">
-                                        <MDBBox tag="div" className="position-fixed z-index-9999 l-0 t-0 r-0 b-0 m-auto overflow-visible flex-center">
-                                            <MDBBox tag="span" className="loader-spin-dual-ring"></MDBBox>
-                                            <MDBBox tag="span" className="ml-2 white-text font-size-1rem">Loading, please wait...</MDBBox>
-                                        </MDBBox>
-                                        <MDBBox tag="div" className="loader-backdrop position-fixed z-index-1040 l-0 t-0 r-0 b-0 black"></MDBBox>
-                                    </MDBBox>
-                                ) : (
-                                    // Success render
-                                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-architects-daughter">
-                                        {
-                                            items.map((item, index) => (
-                                                <MDBBox tag="div" key={item.id}>
-                                                    {
-                                                        item.category === "title" ? (
-                                                            <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">{item.string}</MDBBox>
-                                                        ) : (
-                                                            item.category === "description" ? (
-                                                                <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">{item.string}</MDBBox>
-                                                            ) : (
-                                                                item.category === "slogan" ? (
-                                                                    <MDBBox tag="span" className="slogan font-weight-light d-block">{item.string} <span>|</span></MDBBox>
-                                                                ) : (
-                                                                    item.category === "anchor" ? (
-                                                                        <MDBBtn outline color="white">
-                                                                            <Link to={item.uri} className="white-text">
-                                                                                <MDBIcon icon={item.fa_icon} className="mr-2" />
-                                                                                {item.string}
-                                                                            </Link>
-                                                                            {anchor = true}
-                                                                        </MDBBtn>
-                                                                    ) : ("")
-                                                                )
-                                                            )
-                                                        )
-                                                    }
-                                                </MDBBox>
-                                            ))
-                                        }
-                                        {/* Display arrow down */}
-                                        {this.displayChevronDown(anchor)}
-                                    </MDBAnimation>
-                                )
-                            )
-                        }
+                        {this.renderData()}
                     </MDBMask>
                 </MDBView>
             </MDBBox>
