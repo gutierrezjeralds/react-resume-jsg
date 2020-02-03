@@ -7,6 +7,7 @@ import Resume from './views/Resume'
 import Contact from './views/Contact'
 import NotFound from './views/NotFound'
 import Splash from './views/Splash'
+import Panel from './views/controls/Panel'
 import { MDBBox } from 'mdbreact'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -38,6 +39,12 @@ class Main extends React.Component {
                     render: <Contact />,
                     wrapper: "contact",
                     path: "/contact"
+                },
+                {
+                    id: 6,
+                    render: <Panel />,
+                    wrapper: "control-panel",
+                    path: "/control-panel"
                 },
                 {
                     id: 5,
