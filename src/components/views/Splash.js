@@ -55,7 +55,7 @@ class Splash extends React.Component {
         const id = this.state.page + "Content" //"Content" based in other class function
         if ( !anchor ) {
             return (
-                <MDBBox tag="a" className="white-text" onClick={this.handleClickedAnchor.bind(this, id)}>
+                <MDBBox tag="a" onClick={this.handleClickedAnchor.bind(this, id)}>
                     <MDBAnimation type="bounce" infinite>
                         <MDBIcon icon="chevron-down" className="fa-3x ml-2" />
                     </MDBAnimation>
@@ -77,7 +77,7 @@ class Splash extends React.Component {
             return (
                 // Has error
                 <MDBBox tag="div" className="error-section flex-center">
-                    <MDBBox tag="span" className="font-size-2rem white-text">Unexpected error, please reload the page.</MDBBox>
+                    <MDBBox tag="span" className="font-size-2rem">Unexpected error, please reload the page.</MDBBox>
                 </MDBBox>
             )
         } else if ( !this.state.isLoaded ) {
@@ -86,7 +86,7 @@ class Splash extends React.Component {
                 <MDBBox tag="div" className="loader-section">
                     <MDBBox tag="div" className="position-fixed z-index-9999 l-0 t-0 r-0 b-0 m-auto overflow-visible flex-center">
                         <MDBBox tag="span" className="loader-spin-dual-ring"></MDBBox>
-                        <MDBBox tag="span" className="ml-2 white-text font-size-1rem">Loading, please wait...</MDBBox>
+                        <MDBBox tag="span" className="ml-2 font-size-1rem">Loading, please wait...</MDBBox>
                     </MDBBox>
                     <MDBBox tag="div" className="loader-backdrop position-fixed z-index-1040 l-0 t-0 r-0 b-0 black"></MDBBox>
                 </MDBBox>
@@ -96,7 +96,7 @@ class Splash extends React.Component {
                 let anchor = false
                 return (
                     // Success render
-                    <MDBAnimation type="fadeIn" className="text-center white-text mx-5 wow font-family-architects-daughter">
+                    <MDBAnimation type="fadeIn" className="text-center mx-5 wow font-family-architects-daughter">
                         {
                             this.state.items.map((item, index) => (
                                 <MDBBox tag="div" key={item.id}>
@@ -111,8 +111,8 @@ class Splash extends React.Component {
                                                     <MDBBox tag="span" className="slogan font-weight-light d-block">{item.string} <span>|</span></MDBBox>
                                                 ) : (
                                                     item.category === "anchor" ? (
-                                                        <MDBBtn outline color="white">
-                                                            <Link to={item.uri} className="white-text">
+                                                        <MDBBtn outline>
+                                                            <Link to={item.uri}>
                                                                 <MDBIcon icon={item.fa_icon} className="mr-2" />
                                                                 {item.string}
                                                             </Link>

@@ -1,10 +1,7 @@
 header{
-    // .top-nav-collapse {
-    //     background-color: $unique-color !important;
-    // }
     .navbar:not(.top-nav-collapse) {
         @include mediaQueries (mixin-min-medium) {
-            background: transparent !important;
+            background: $transparent !important;
         }
     }
     .navbar-brand{

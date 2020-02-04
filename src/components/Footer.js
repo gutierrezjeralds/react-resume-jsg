@@ -10,28 +10,28 @@ class Footer extends React.Component {
                     id: '1',
                     title: 'Facebook',
                     icon: "fa-facebook-f",
-                    class: "fab fa-lg white-text mr-md-5 mr-3 fa-2x",
+                    class: "fab fa-lg mr-md-5 mr-3 fa-2x",
                     link: "/"
                 },
                 {
                     id: '2',
                     title: 'Instagram',
                     icon: "fa-instagram",
-                    class: "fab fa-lg white-text mr-md-5 mr-3 fa-2x",
+                    class: "fab fa-lg mr-md-5 mr-3 fa-2x",
                     link: "/"
                 },
                 {
                     id: '3',
                     title: 'LinkedIn',
                     icon: "fa-linkedin-in",
-                    class: "fab fa-lg white-text mr-md-5 mr-3 fa-2x",
+                    class: "fab fa-lg mr-md-5 mr-3 fa-2x",
                     link: "/"
                 },
                 {
                     id: '4',
                     title: 'Skype',
                     icon: "fa-skype",
-                    class: "fab fa-lg white-text mr-md-5 mr-3 fa-2x",
+                    class: "fab fa-lg mr-md-5 mr-3 fa-2x",
                     link: "/"
                 }
             ]
@@ -40,7 +40,7 @@ class Footer extends React.Component {
 
     render() {
         return (
-            <MDBFooter color="unique-color-dark" className="font-small pt-4">
+            <MDBFooter color="" className="font-small pt-4">
                 <MDBContainer>
                     <MDBRow>
                         <MDBCol md="12" className="py-5">

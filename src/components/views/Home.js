@@ -10,7 +10,6 @@ import { Fade } from 'react-reveal';
 import $ from 'jquery'
 import ReactHtmlParser from 'react-html-parser';
 import Parallax from './includes/Parallax'
-import Bottom from './includes/Bottom'
 import Timeline from './includes/Timeline'
 
 class Home extends React.Component {
@@ -107,8 +106,8 @@ class Home extends React.Component {
                                     this.state.resumeItems.skills.sort((a, b) =>  b.percent - a.percent ).map(item => (
                                         item.percent >= 80 ? (
                                             <MDBCol key={item.id} lg="4" className="mb-3">
-                                                <MDBBox tag="span" display="block" className="skill-title font-size-1rem">{item.title}</MDBBox>
-                                                <ProgressBar striped variant="default" now={item.percent} label={item.percent + "%"} className="pale-turquoise-bg"/>
+                                                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{item.title}</MDBBox>
+                                                <ProgressBar striped variant="default" now={item.percent} label={item.percent + "%"} className="progress-holder"/>
                                             </MDBCol>
                                         ) : ("")
                                     ))
@@ -139,15 +138,15 @@ class Home extends React.Component {
                                                 <MDBMask className="flex-center" overlay="black-strong" >
                                                     <MDBBox tag="div" className="d-block text-center white-text px-1">
                                                         <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-architects-daughter mb-1">{items.title}</MDBBox>
-                                                        <MDBBox tag="p" className="content-company d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
+                                                        <MDBBox tag="p" className="content-sub-title d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
                                                         <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
-                                                        <MDBBox tag="div">
-                                                            <MDBBtn outline color="white" onClick={this.modalToggle(items.src)} className="m-0 mr-2 py-2 px-4">
+                                                        <MDBBox tag="div" className="content-action">
+                                                            <MDBBtn outline onClick={this.modalToggle(items.src)} className="m-0 mr-2 py-2 px-4">
                                                                 <MDBIcon icon="camera" />
                                                             </MDBBtn>
                                                             {
                                                                 items.uri !== "" ? (
-                                                                    <MDBBtn outline color="white" href={items.uri} target="_blank" className="m-0 py-2 px-4">
+                                                                    <MDBBtn outline href={items.uri} target="_blank" className="m-0 py-2 px-4">
                                                                         <MDBIcon icon="link" />
                                                                     </MDBBtn>
                                                                 ) : ("")
@@ -178,7 +177,7 @@ class Home extends React.Component {
         return (
             <MDBModal isOpen={this.state.isOpen} size="lg">
                 <MDBModalHeader toggle={this.modalToggle()} className="position-absolute r-0 z-index-5 border-0"></MDBModalHeader>
-                <MDBModalBody className="p-0 flex-center very-light-gray-bg">
+                <MDBModalBody className="p-0 flex-center">
                     <img className="img-fluid" src={this.state.imgModal} alt="" />
                 </MDBModalBody>
             </MDBModal>
@@ -217,8 +216,8 @@ class Home extends React.Component {
                             <MDBCol lg="6" md="12" className="mb-5">
                                 <Fade left>
                                     <MDBBox tag="span" className="content-sub-title d-block font-size-2rem font-weight-light text-center text-lg-left">A few fun facts about myself</MDBBox>
-                                    <MDBBox tag="p" clas="content-description">I am ambitious and hardworking individual, with broad skills and experience in Web Development (Front-End) and I am able to handle multiple tasks on a daily basis and at working well under pressure.</MDBBox>
-                                    <MDBBox tag="p">Furthermore, I am adventurous person, I love to hike in different mountains and experience extreme activities. I am a online gamer (Special Force) and aslo I like to watch and play basketball.</MDBBox>
+                                    <MDBBox tag="p" className="content-description">I am ambitious and hardworking individual, with broad skills and experience in Web Development (Front-End) and I am able to handle multiple tasks on a daily basis and at working well under pressure.</MDBBox>
+                                    <MDBBox tag="p" className="content-description">Furthermore, I am adventurous person, I love to hike in different mountains and experience extreme activities. I am a online gamer (Special Force) and aslo I like to watch and play basketball.</MDBBox>
                                 </Fade>
                             </MDBCol>
                         </MDBRow>
@@ -228,11 +227,11 @@ class Home extends React.Component {
                     {this.renderSkills()}
                 </MDBContainer>
                 <Parallax 
-                    container="bg-parallax-1"
+                    container="parallax-palette bg-parallax-1"
                     description="Feel free to take a deeper look at what I'm able to do and what experienced and educational background I have."
                     overlay="black-strong"
-                    color="white"
-                    colorText="white-text"
+                    color="default"
+                    colorText=""
                     btnTitle="View My Resume"
                     btnIcon="link"
                     btnUri="/resume"
@@ -243,11 +242,11 @@ class Home extends React.Component {
                     </MDBContainer>
                 </MDBContainer>
                 <Parallax 
-                    container="bg-parallax-2"
+                    container="parallax-palette bg-parallax-2"
                     description="Feel free to take a deeper look at what I've done."
                     overlay="black-strong"
-                    color="white"
-                    colorText="white-text"
+                    color="default"
+                    colorText=""
                     btnTitle="View My Portfolio"
                     btnIcon="link"
                     btnUri="/portfolio"
@@ -255,12 +254,12 @@ class Home extends React.Component {
                 <MDBContainer fluid className="py-5 position-relative white">
                     {this.renderTimeline(this.state.resumeItems.timeline, "Experience")}
                 </MDBContainer>
-                <Bottom
-                    container=""
+                <Parallax
+                    container="parallax-bottom-palette"
                     description="Now that you know you have a brief introduction about me, feel free to reach out and start a conversation."
-                    overlay="stylish-slight"
+                    overlay=""
                     color="black"
-                    colorText="black-text"
+                    colorText=""
                     btnTitle="Contact Me Today"
                     btnIcon="id-card"
                     btnUri="/contact"

@@ -20,16 +20,16 @@ class Timeline extends React.Component{
 
     renderElem(data) {
         return (
-            <MDBBox key={data.id} tag="li" className="list-group-item content-list position-relative border-0 bg-transparent">
+            <MDBBox key={data.id} tag="li" className="list-group-item content-timeline content-list position-relative border-0 bg-transparent">
                 <MDBBox tag="div" className="content-date d-none d-md-block position-absolute w-13">
                     <MDBBox tag="span" className="text-uppercase">{data.date}</MDBBox>
                 </MDBBox>
-                <MDBIcon icon={data.icon} className="content-icon z-index-2 text-center t-0 h-40px w-40px position-absolute very-light-gray-bg rounded-circle z-depth-1 font-size-1pt3rem line-height-2" />
-                <MDBBox tag="div" className="content-details very-light-gray-bg z-depth-1 rounded position-relative p-4">
-                    <MDBBox tag="span" className="details-title font-size-1pt5rem d-block">{data.title}</MDBBox>
-                    <MDBBox tag="span" className="details-sub-title font-size-1rem d-block">{data.subTitle}</MDBBox>
-                    <MDBBox tag="span" className="details-sub-title font-size-1rem d-block d-md-none">{data.date}</MDBBox>
-                    <MDBBox tag="span" className="details-address font-size-1rem d-block">{data.address}</MDBBox>
+                <MDBIcon icon={data.icon} className="content-icon z-index-2 text-center t-0 h-40px w-40px position-absolute rounded-circle z-depth-1 font-size-1pt3rem line-height-2" />
+                <MDBBox tag="div" className="content-timeline-details content-details z-depth-1 rounded position-relative p-4">
+                    <MDBBox tag="span" className="content-title details-title font-size-1pt5rem d-block">{data.title}</MDBBox>
+                    <MDBBox tag="span" className="content-sub-title details-sub-title font-size-1rem d-block">{data.subTitle}</MDBBox>
+                    <MDBBox tag="span" className="content-description details-sub-title font-size-1rem d-block d-md-none">{data.date}</MDBBox>
+                    <MDBBox tag="span" className="content-description details-address font-size-1rem d-block">{data.address}</MDBBox>
                     {this.renderJobsDesc(data.jobDesc)}
                     {this.renderAchievement(data.achievement)}
                 </MDBBox>
@@ -40,7 +40,7 @@ class Timeline extends React.Component{
     renderJobsDesc(data) {
         if ( Object.keys(data).length !== 0 ) {
             return (
-                <MDBBox tag="div" className="details-job-decs d-block">
+                <MDBBox tag="div" className="details-job-decs d-block content-description">
                     <MDBBox tag="span" className=""><u>Job Description</u></MDBBox>
                     <MDBBox tag="ul">
                         {

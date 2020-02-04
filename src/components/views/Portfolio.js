@@ -9,7 +9,6 @@ import { Fade } from 'react-reveal';
 import $ from 'jquery'
 import ReactHtmlParser from 'react-html-parser';
 import Parallax from './includes/Parallax'
-import Bottom from './includes/Bottom'
 
 class Portfolio extends React.Component {
     constructor(props) {
@@ -114,7 +113,7 @@ class Portfolio extends React.Component {
         return (
             <MDBModal isOpen={this.state.isOpen} size="lg">
                 <MDBModalHeader toggle={this.modalToggle()} className="position-absolute r-0 z-index-5 border-0"></MDBModalHeader>
-                <MDBModalBody className="p-0 flex-center very-light-gray-bg">
+                <MDBModalBody className="p-0 flex-center">
                     <img className="img-fluid" src={this.state.imgModal} alt="" />
                 </MDBModalBody>
             </MDBModal>
@@ -131,11 +130,11 @@ class Portfolio extends React.Component {
                     </MDBContainer>
                 </MDBContainer>
                 <Parallax 
-                    container="bg-parallax-1"
+                    container="parallax-palette bg-parallax-1"
                     description="Feel free to take a deeper look at what I'm able to do and what experienced and educational background I have."
                     overlay="black-strong"
-                    color="white"
-                    colorText="white-text"
+                    color="default"
+                    colorText=""
                     btnTitle="View My Resume"
                     btnIcon="link"
                     btnUri="/resume"
@@ -145,12 +144,12 @@ class Portfolio extends React.Component {
                         {this.renderCard(this.state.items.maintenance, "Web Maintenance")}
                     </MDBContainer>
                 </MDBContainer>
-                <Bottom
-                    container=""
+                <Parallax
+                    container="parallax-bottom-palette"
                     description="Now that you know what I've done, feel free to reach out and start a conversation."
-                    overlay="stylish-slight"
+                    overlay=""
                     color="black"
-                    colorText="black-text"
+                    colorText=""
                     btnTitle="Contact Me Today"
                     btnIcon="id-card"
                     btnUri="/contact"

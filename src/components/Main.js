@@ -58,7 +58,7 @@ class Main extends React.Component {
 
     render() {
         return (
-            <MDBBox tag="div" className="resume-app">
+            <MDBBox tag="div" className="resume-app icy-blues-grays-palette">
                 <Router>
                     <Header />
                         {/* Body */}

@@ -1,7 +1,7 @@
 import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact"
 import ReCAPTCHA from "react-google-recaptcha";
-import Bottom from './includes/Bottom'
+import Parallax from './includes/Parallax'
 import $ from 'jquery'
 
 class Contact extends React.Component {
@@ -148,7 +148,7 @@ class Contact extends React.Component {
         if ( this.state.in_submit ) {
             // Already clicked the submit button
             return (
-                <MDBBtn type="submit" color="primary" className="cursor-not-allowed" disabled>
+                <MDBBtn type="submit" className="btn-palette-1 cursor-not-allowed" disabled>
                     <MDBIcon icon="spinner" className="fa-spin mr-2" />
                     Loading
                 </MDBBtn>
@@ -156,7 +156,7 @@ class Contact extends React.Component {
         } else {
             // Onload element display
             return (
-                <MDBBtn type="submit" color="primary">
+                <MDBBtn type="submit" className="btn-palette-1">
                     <MDBIcon icon="paper-plane" className="mr-2" />
                     Submit
                 </MDBBtn>
@@ -174,7 +174,7 @@ class Contact extends React.Component {
                         <MDBCol lg="5" className="lg-0 mb-4">
                             <MDBCard>
                                 <MDBCardBody>
-                                    <MDBBox tag="div" className="form-header contact-form-header blue accent-2">
+                                    <MDBBox tag="div" className="form-header contact-form-header">
                                         <MDBBox tag="h3" className="mt-2">
                                             <MDBIcon icon="envelope" /> Message me!
                                         </MDBBox>
@@ -214,7 +214,7 @@ class Contact extends React.Component {
                                 {
                                     this.state.info.map(items => (
                                         <MDBCol md="4" key={items.id}>
-                                            <MDBBtn tag="a" floating color="light-blue" className="accent-1 contact-info-btn overflow-hidden position-relative p-0 rounded-circle align-middle">
+                                            <MDBBtn tag="a" floating className="btn-palette-2 contact-info-btn overflow-hidden position-relative p-0 rounded-circle align-middle">
                                                 <MDBIcon icon={items.icon} />
                                             </MDBBtn>
                                             <MDBBox tag="p">{items.text}</MDBBox>
@@ -225,12 +225,12 @@ class Contact extends React.Component {
                         </MDBCol>
                     </MDBRow>
                 </MDBContainer>
-                <Bottom
-                    container=""
+                <Parallax
+                    container="parallax-bottom-palette"
                     description="Feel free to take a deeper look at what I'm able to do and what experienced and educational background I have."
                     overlay="stylish-slight"
                     color="black"
-                    colorText="black-text"
+                    colorText=""
                     btnTitle="View My Resume"
                     btnIcon="link"
                     btnUri="/resume"

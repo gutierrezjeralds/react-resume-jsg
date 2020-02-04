@@ -4,7 +4,6 @@ import ProgressBar from 'react-bootstrap/ProgressBar'
 import { Fade } from 'react-reveal';
 import $ from 'jquery'
 import Parallax from './includes/Parallax'
-import Bottom from './includes/Bottom'
 import Timeline from './includes/Timeline'
 
 class Resume extends React.Component {
@@ -58,8 +57,8 @@ class Resume extends React.Component {
                 <React.Fragment key={data.id}>
                     <MDBBox tag="span" display="block" className={titleClass + " sub-content-title font-size-2rem font-family-architects-daughter text-center w-100"}>{title}</MDBBox>
                     <MDBCol lg="4" className="mb-3">
-                        <MDBBox tag="span" display="block" className="skill-title font-size-1rem">{data.title}</MDBBox>
-                        <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="pale-turquoise-bg"/>
+                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
+                        <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="progress-holder"/>
                     </MDBCol>
                 </React.Fragment>
             )
@@ -67,8 +66,8 @@ class Resume extends React.Component {
 
         return (
             <MDBCol key={data.id} lg="4" className="mb-3">
-                <MDBBox tag="span" display="block" className="skill-title font-size-1rem">{data.title}</MDBBox>
-                <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="pale-turquoise-bg"/>
+                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
+                <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="progress-holder"/>
             </MDBCol>
         )
     }
@@ -121,11 +120,11 @@ class Resume extends React.Component {
                     {this.renderTechnologies()}
                 </MDBContainer>
                 <Parallax 
-                    container="bg-parallax-1"
+                    container="parallax-palette bg-parallax-1"
                     description="Feel free to take a deeper look at what I've done."
                     overlay="black-strong"
-                    color="white"
-                    colorText="white-text"
+                    color="default"
+                    colorText=""
                     btnTitle="View My Portfolio"
                     btnIcon="link"
                     btnUri="/portfolio"
@@ -134,24 +133,24 @@ class Resume extends React.Component {
                     {this.renderTimeline(this.state.items.timeline, "Experience")}
                 </MDBContainer>
                 <Parallax 
-                    container="bg-parallax-2"
+                    container="parallax-palette bg-parallax-2"
                     description="Feel free to download my resume for hard copy of yours."
                     overlay="black-strong"
-                    color="white"
-                    colorText="white-text"
+                    color="default"
+                    colorText=""
                     btnTitle="Download My Resume"
                     btnIcon="download"
                     btnUri="/"
                 />
-                <MDBContainer fluid className="py-5 position-relative very-light-gray-bg">
+                <MDBContainer fluid className="py-5 position-relative">
                     {this.renderTimeline(this.state.items.timeline, "Educational")}
                 </MDBContainer>
-                <Bottom
-                    container=""
+                <Parallax
+                    container="parallax-bottom-palette"
                     description="Now that you know what I'm able to do and what experienced and educational background I have, feel free to reach out and start a conversation."
                     overlay="stylish-slight"
                     color="black"
-                    colorText="black-text"
+                    colorText=""
                     btnTitle="Contact Me Today"
                     btnIcon="id-card"
                     btnUri="/contact"

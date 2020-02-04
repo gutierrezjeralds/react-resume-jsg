@@ -20,11 +20,11 @@ class Header extends React.Component {
     render() {
         return (
             <MDBBox tag="header">
-                <MDBNavbar scrolling fixed="top" color="unique-color-dark" dark expand="lg">
+                <MDBNavbar scrolling fixed="top" dark expand="lg">
                     <MDBContainer>
                         <MDBNavbarBrand>
                             <Link to="/">
-                                <MDBBox tag="p" className="logo-text white-text d-dlock m-0 text-center font-size-1pt5rem z-depth-0 rounded-circle unique-color-bg">JG</MDBBox>
+                                <MDBBox tag="p" className="logo-text d-dlock m-0 text-center font-size-1pt5rem z-depth-0 rounded-circle">JG</MDBBox>
                             </Link>
                         </MDBNavbarBrand>
                         <MDBNavbarToggler onClick={this.toggleCollapse} />
