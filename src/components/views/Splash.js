@@ -52,6 +52,7 @@ class Splash extends React.Component {
     }
 
     displayChevronDown(anchor) {
+        // Display arrow down
         const id = this.state.page + "Content" //"Content" based in other class function
         if ( !anchor ) {
             return (
@@ -93,41 +94,42 @@ class Splash extends React.Component {
             )
         } else {
             if ( Object.keys(this.state.items).length !== 0 ) {
-                let anchor = false
                 return (
                     // Success render
                     <MDBAnimation type="fadeIn" className="text-center mx-5 wow font-family-architects-daughter">
                         {
                             this.state.items.map((item, index) => (
-                                <MDBBox tag="div" key={item.id}>
-                                    {
-                                        item.category === "title" ? (
-                                            <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">{item.string}</MDBBox>
-                                        ) : (
-                                            item.category === "description" ? (
-                                                <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">{item.string}</MDBBox>
-                                            ) : (
-                                                item.category === "slogan" ? (
-                                                    <MDBBox tag="span" className="slogan font-weight-light d-block">{item.string} <span>|</span></MDBBox>
-                                                ) : (
-                                                    item.category === "anchor" ? (
-                                                        <MDBBtn outline>
-                                                            <Link to={item.uri}>
-                                                                <MDBIcon icon={item.fa_icon} className="mr-2" />
-                                                                {item.string}
-                                                            </Link>
-                                                            {anchor = true}
-                                                        </MDBBtn>
-                                                    ) : ("")
-                                                )
-                                            )
-                                        )
-                                    }
-                                </MDBBox>
+                                Object.keys(this.state.items).length === index + 1 ? (
+                                    <MDBBox tag="div" key={item.id}>
+                                        {
+                                            item.title !== "" ? (
+                                                <MDBBox tag="span" className="title font-weight-light font-size-6rem d-block">{item.title}</MDBBox>
+                                            ) : ("")
+                                        }
+                                        {
+                                            item.description !== "" ? (
+                                                <MDBBox tag="span" className="sub-title font-weight-light font-size-3rem d-block">{item.description}</MDBBox>
+                                            ) : ("")
+                                        }
+                                        {
+                                            item.slogan !== "" ? (
+                                                <MDBBox tag="span" className="slogan font-weight-light d-block">{item.slogan} <span>|</span></MDBBox>
+                                            ) : ("")
+                                        }
+                                        {
+                                            item.button_string !== "" ? (
+                                                <MDBBtn outline>
+                                                    <Link to={item.button_link}>
+                                                        <MDBIcon icon={item.button_icon} className="mr-2" />
+                                                        {item.button_string}
+                                                    </Link>
+                                                </MDBBtn>
+                                            ) : (this.displayChevronDown(false))
+                                        }
+                                    </MDBBox>
+                                ) : ("")
                             ))
                         }
-                        {/* Display arrow down */}
-                        {this.displayChevronDown(anchor)}
                     </MDBAnimation>
                 )
             }

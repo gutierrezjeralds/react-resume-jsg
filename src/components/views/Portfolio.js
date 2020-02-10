@@ -123,7 +123,7 @@ class Portfolio extends React.Component {
     render() {
         document.title = "Portfolio | Jerald Gutierrez"
         return (
-            <MDBBox tag="div" className="portfolio-wrapper">
+            <MDBBox tag="div" className="portfolio-wrapper" id="portfolioContent">
                 <MDBContainer fluid className="py-5 position-relative">
                     <MDBContainer>
                         {this.renderCard(this.state.items.development, "Web Development")}
