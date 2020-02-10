@@ -37,16 +37,24 @@ class Splash extends React.Component {
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
-                console.log(error.statusText)
                 this.setState({
                     isLoaded: true,
                     error: true
                 })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+                alert("Unexpected error, please reload the page!")
             }
         )
         .catch(
             (err) => {
-                console.error(err)
+                this.setState({
+                    isLoaded: true,
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+                alert("Unexpected error, please reload the page!")
             }
         )
     }
