@@ -142,7 +142,7 @@ class FormSplash extends React.Component {
             contentType: 'application/json',
             cache: false,
             headers: {
-                'X-CSRF-TOKEN': cookie.load('jsg-xsrf-token')
+                'X-Auth-Token': cookie.load('jsg-xsrf-token')
             }
         }).then(
             (result) => {
