@@ -20,7 +20,7 @@ class Splash extends React.Component {
 
     getSplashData() {
         // const uri = "./assets/json/splash/" + this.state.page + ".json"
-        const uri = "https://gutierrez-jerald-cv-be.herokuapp.com/getSplash/" + this.state.page
+        const uri = "https://gutierrez-jerald-cv-be.herokuapp.com/api/getSplash/" + this.state.page
         $.ajax({
             url: uri,
             dataType: "json",

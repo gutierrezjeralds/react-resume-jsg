@@ -26,7 +26,7 @@ class FormSplash extends React.Component {
 
     // First load
     UNSAFE_componentWillMount() {
-        this.getSplashData("https://gutierrez-jerald-cv-be.herokuapp.com/getSplash/" + this.state.in_page)
+        this.getSplashData("https://gutierrez-jerald-cv-be.herokuapp.com/api/getSplash/" + this.state.in_page)
     }
 
     handlePageChange(event) {
@@ -35,7 +35,7 @@ class FormSplash extends React.Component {
             in_page: event.target.value
         })
 
-        this.getSplashData("https://gutierrez-jerald-cv-be.herokuapp.com/getSplash/" + event.target.value)
+        this.getSplashData("https://gutierrez-jerald-cv-be.herokuapp.com/api/getSplash/" + event.target.value)
     }
 
     handleInputChange(fid, event) {
@@ -136,7 +136,7 @@ class FormSplash extends React.Component {
         // });
 
         $.ajax({
-            url: "https://gutierrez-jerald-cv-be.herokuapp.com/setSplash",
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setSplash",
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
