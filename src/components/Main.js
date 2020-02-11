@@ -10,11 +10,14 @@ import Splash from './views/Splash'
 import Panel from './views/controls/Panel'
 import { MDBBox } from 'mdbreact'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import cookie from 'react-cookies'
+import $ from 'jquery'
 
 class Main extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            csrf_token: "",
             pages: [
                 {
                     id: 1,
@@ -54,6 +57,39 @@ class Main extends React.Component {
                 }
             ]
         }
+    }
+
+    UNSAFE_componentWillMount() {
+        this.getCsrfToken()
+    }
+
+    getCsrfToken() {
+        const uri = "http://gutierrez-jerald-cv-be.herokuapp.com/get-csrf-token"
+        $.ajax({
+            url: uri,
+            dataType: "json",
+            cache: false
+        })
+        .then(
+            (result) => {
+                this.setState({
+                    csrf_token: result.token
+                })
+                // Save cookie
+                cookie.save('jsg-xsrf-token', result.token, { path: '/' })
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            }
+        )
     }
 
     render() {
