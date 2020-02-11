@@ -3,7 +3,7 @@ import {
     MDBBox, MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn, MDBInput
 } from "mdbreact"
 import cookie from 'react-cookies'
-import axios from 'axios'
+// import axios from 'axios'
 import $ from 'jquery'
 
 class FormSplash extends React.Component {
@@ -111,8 +111,8 @@ class FormSplash extends React.Component {
         }
 
         // axios.defaults.headers.common = {
-        //     'X-Requested-With': 'XMLHttpRequest',
-        //     'X-CSRF-TOKEN' : cookie.load('jsg-xsrf-token')
+        //     'Content-Type': 'XMLHttpRequest',
+        //     'X-Auth-Token' : cookie.load('jsg-xsrf-token')
         // }
 
         // axios.post("https://gutierrez-jerald-cv-be.herokuapp.com/setSplash", {data})
@@ -125,13 +125,13 @@ class FormSplash extends React.Component {
 
         // $.ajaxSetup({
         //     headers: {
-        //         'X-CSRF-TOKEN': cookie.load('jsg-xsrf-token')
+        //         'X-Auth-Token': cookie.load('jsg-xsrf-token')
         //     }
         // })
 
         // $.ajaxSetup( {
         //     beforeSend: function ( xhr ) {
-        //         xhr.setRequestHeader( 'X-CSRF-Token', cookie.load('jsg-xsrf-token') );
+        //         xhr.setRequestHeader( 'X-Auth-Token', cookie.load('jsg-xsrf-token') );
         //     }
         // });
 
