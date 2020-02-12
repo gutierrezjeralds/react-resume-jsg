@@ -2,8 +2,6 @@ import React from 'react'
 import { 
     MDBBox, MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn, MDBInput
 } from "mdbreact"
-import cookie from 'react-cookies'
-// import axios from 'axios'
 import $ from 'jquery'
 
 class FormSplash extends React.Component {
@@ -110,40 +108,12 @@ class FormSplash extends React.Component {
             button_icon: this.state.in_button_icon
         }
 
-        // axios.defaults.headers.common = {
-        //     'Content-Type': 'XMLHttpRequest',
-        //     'X-Auth-Token' : cookie.load('jsg-xsrf-token')
-        // }
-
-        // axios.post("https://gutierrez-jerald-cv-be.herokuapp.com/setSplash", {data})
-        // .then(response => { 
-        //     console.log(response)
-        // })
-        // .catch(error => {
-        //     console.log(error.response)
-        // });
-
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-Auth-Token': cookie.load('jsg-xsrf-token')
-        //     }
-        // })
-
-        // $.ajaxSetup( {
-        //     beforeSend: function ( xhr ) {
-        //         xhr.setRequestHeader( 'X-Auth-Token', cookie.load('jsg-xsrf-token') );
-        //     }
-        // });
-
         $.ajax({
             url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setSplash",
             type: 'POST',
             data: JSON.stringify(data),
             contentType: 'application/json',
-            cache: false,
-            headers: {
-                'X-Auth-Token': cookie.load('jsg-xsrf-token')
-            }
+            cache: false
         }).then(
             (result) => {
                 this.setState({
