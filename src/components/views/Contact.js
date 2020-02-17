@@ -125,7 +125,7 @@ class Contact extends React.Component {
                     setTimeout(
                         function() {
                             window.location.reload()
-                        }.bind(this) , 2000
+                        } , 2000
                     )
                 },
                 // Note: it's important to handle errors here
@@ -241,7 +241,7 @@ class Contact extends React.Component {
                                 {
                                     this.state.info.map(items => (
                                         <MDBCol md="4" key={items.id}>
-                                            <MDBBtn tag="a" floating className="btn-palette-2 contact-info-btn overflow-hidden position-relative p-0 rounded-circle align-middle">
+                                            <MDBBtn tag="a" floating="true" className="btn-palette-2 contact-info-btn overflow-hidden position-relative p-0 rounded-circle align-middle">
                                                 <MDBIcon icon={items.icon} />
                                             </MDBBtn>
                                             <MDBBox tag="p">{items.text}</MDBBox>
