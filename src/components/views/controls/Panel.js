@@ -1,5 +1,6 @@
 import React from 'react'
 import FormSplash from "./includes/form-splash"
+import FormHome from './includes/form-home'
 import { 
     MDBBox, MDBContainer, MDBRow, MDBCol
 } from "mdbreact"
@@ -26,7 +27,9 @@ class Panel extends React.Component {
             )
 
         } else if ( this.state.category === "home" ) {
-            console.log(this.state.category)
+            return (
+                <FormHome />
+            )
 
         } else if ( this.state.category === "portfolio" ) {
             console.log(this.state.category)
