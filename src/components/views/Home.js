@@ -11,11 +11,15 @@ import $ from 'jquery'
 import ReactHtmlParser from 'react-html-parser';
 import Parallax from './includes/Parallax'
 import Timeline from './includes/Timeline'
+import Snackbar from "../views/includes/Snackbar"
 
 class Home extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            isNotif: false,
+            notifCat: "default",
+            notifStr: "",
             resumeError: false,
             resumeIsLoaded: false,
             resumeItems: [],
@@ -49,22 +53,26 @@ class Home extends React.Component {
             (error) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-                alert("Unexpected error, please reload the page!")
             }
         )
         .catch(
             (err) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                alert("Unexpected error, please reload the page!")
             }
         )
     }
@@ -86,15 +94,25 @@ class Home extends React.Component {
             // instead of a catch() block so that we don't swallow
             // exceptions from actual bugs in components.
             (error) => {
-                console.log(error.statusText)
                 this.setState({
                     portfolioIsLoaded: true,
-                    portfolioError: true
+                    portfolioError: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                 })
+
+                console.log(error.statusText)
             }
         )
         .catch(
             (err) => {
+                this.setState({
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                })
+
                 console.error(err)
             }
         )
@@ -208,6 +226,12 @@ class Home extends React.Component {
         document.title = "Home | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="home-wrapper">
+                {
+                    this.state.isNotif ? (
+                        <Snackbar category={this.state.notifCat} string={this.state.notifStr} />
+                    ) : ("")
+                }
+
                 <MDBContainer fluid className="py-5 position-relative home-about-content">
                     <MDBContainer>
                         <MDBRow className="flex-center">

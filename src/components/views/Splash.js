@@ -1,6 +1,7 @@
 import React from 'react'
 import { MDBAnimation, MDBView, MDBMask, MDBBtn, MDBBox, MDBIcon } from "mdbreact"
 import { Link } from 'react-router-dom'
+import Snackbar from "../views/includes/Snackbar"
 import $ from 'jquery'
 
 class Splash extends React.Component {
@@ -8,6 +9,9 @@ class Splash extends React.Component {
         super(props)
         this.state = {
             page: this.props.wrapper,
+            isNotif: false,
+            notifCat: "default",
+            notifStr: "",
             error: false,
             isLoaded: false,
             items: []
@@ -39,22 +43,26 @@ class Splash extends React.Component {
             (error) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-                alert("Unexpected error, please reload the page!")
             }
         )
         .catch(
             (err) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                alert("Unexpected error, please reload the page!")
             }
         )
     }
@@ -147,6 +155,12 @@ class Splash extends React.Component {
     render() {
         return (
             <MDBBox tag="div" className="splash-wrapper">
+                {
+                    this.state.isNotif ? (
+                        <Snackbar category={this.state.notifCat} string={this.state.notifStr} />
+                    ) : ("")
+                }
+                
                 <MDBView className={this.props.wrapper + "-splash splash-content"}>
                     <MDBMask className="flex-center" overlay="black-strong">
                         {this.renderData()}

@@ -2,12 +2,16 @@ import React from "react";
 import { MDBRow, MDBCol, MDBCard, MDBCardBody, MDBIcon, MDBBtn, MDBInput, MDBContainer, MDBBox } from "mdbreact"
 import ReCAPTCHA from "react-google-recaptcha";
 import Parallax from './includes/Parallax'
+import Snackbar from "../views/includes/Snackbar"
 import $ from 'jquery'
 
 class Contact extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            isNotif: false,
+            notifCat: "default",
+            notifStr: "",
             in_submit: false,
             in_name: "",
             in_email: "",
@@ -99,7 +103,8 @@ class Contact extends React.Component {
             }
 
             this.setState({
-                in_submit: true
+                in_submit: true,
+                isNotif: false
             })
     
             $.ajax({
@@ -111,9 +116,17 @@ class Contact extends React.Component {
             })
             .then(
                 (result) => {
-                    console.log('Message successfully sent!', result)
-                    alert("Message successfully sent!")
-                    window.location.reload()
+                    this.setState({
+                        isNotif: true,
+                        notifCat: "success",
+                        notifStr: "Message successfully sent!"
+                    })
+                    
+                    setTimeout(
+                        function() {
+                            window.location.reload()
+                        }.bind(this) , 2000
+                    )
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -121,26 +134,34 @@ class Contact extends React.Component {
                 (error) => {
                     // Handle errors here
                     this.setState({
-                        in_submit: false
+                        in_submit: false,
+                        isNotif: true,
+                        notifCat: "error",
+                        notifStr: "Unexpected error, please reload the page!"
                     })
 
                     console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-                    alert("Unexpected error, please reload the page!")
                 }
             )
             .catch(
                 (err) => {
                     // Handle errors here
                     this.setState({
-                        in_submit: false
+                        in_submit: false,
+                        isNotif: true,
+                        notifCat: "error",
+                        notifStr: "Unexpected error, please reload the page!"
                     })
                     
                     console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                    alert("Unexpected error, please reload the page!")
                 }
             )
         } else {
-            alert("Please accept reCaptcha!")
+            this.setState({
+                isNotif: true,
+                notifCat: "warning",
+                notifStr: "Please accept reCaptcha!",
+            })
         }
     }
 
@@ -168,6 +189,12 @@ class Contact extends React.Component {
         document.title = "Contact | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="contact-wrapper">
+                {
+                    this.state.isNotif ? (
+                        <Snackbar category={this.state.notifCat} string={this.state.notifStr} />
+                    ) : ("")
+                }
+
                 <MDBBox tag="div" className="position-absolute py-4 mt-6rem-neg" id="contactContent"></MDBBox>
                 <MDBContainer className="py-5 my-5 contact-wrapper">
                     <MDBRow>

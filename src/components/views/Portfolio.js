@@ -9,11 +9,15 @@ import { Fade } from 'react-reveal';
 import $ from 'jquery'
 import ReactHtmlParser from 'react-html-parser';
 import Parallax from './includes/Parallax'
+import Snackbar from "../views/includes/Snackbar"
 
 class Portfolio extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            isNotif: false,
+            notifCat: "default",
+            notifStr: "",
             error: false,
             isLoaded: false,
             items: [],
@@ -45,22 +49,26 @@ class Portfolio extends React.Component {
             (error) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-                alert("Unexpected error, please reload the page!")
             }
         )
         .catch(
             (err) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                alert("Unexpected error, please reload the page!")
             }
         )
     }
@@ -132,6 +140,12 @@ class Portfolio extends React.Component {
         document.title = "Portfolio | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="portfolio-wrapper" id="portfolioContent">
+                {
+                    this.state.isNotif ? (
+                        <Snackbar category={this.state.notifCat} string={this.state.notifStr} />
+                    ) : ("")
+                }
+                
                 <MDBContainer fluid className="py-5 position-relative">
                     <MDBContainer>
                         {this.renderCard(this.state.items.development, "Web Development")}

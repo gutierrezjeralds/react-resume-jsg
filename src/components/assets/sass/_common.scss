@@ -857,3 +857,41 @@ body, #root{
     	font-size: 14px;
     }
 }
+
+// Snackbar Notification
+.snackbar-content {
+    visibility: visible;
+    right: 20px;
+    top: 75px;
+    color: $white !important;
+    &.default {
+        background-color: $default !important;
+        &:hover {
+            background-color: $default-dark !important;
+        }
+    }
+    &.info {
+        background-color: $info !important;
+        &:hover {
+            background-color: $info-dark !important;
+        }
+    }
+    &.success {
+        background-color: $success !important;
+        &:hover {
+            background-color: $success-dark !important;
+        }
+    }
+    &.error {
+        background-color: $danger !important;
+        &:hover {
+            background-color: $danger-dark !important;
+        }
+    }
+    &.warning {
+        background-color: $warning !important;
+        &:hover {
+            background-color: $warning-dark !important;
+        }
+    }
+}

@@ -5,11 +5,15 @@ import { Fade } from 'react-reveal';
 import $ from 'jquery'
 import Parallax from './includes/Parallax'
 import Timeline from './includes/Timeline'
+import Snackbar from "../views/includes/Snackbar"
 
 class Resume extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            isNotif: false,
+            notifCat: "default",
+            notifStr: "",
             error: false,
             isLoaded: false,
             items: []
@@ -39,22 +43,26 @@ class Resume extends React.Component {
             (error) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-                alert("Unexpected error, please reload the page!")
             }
         )
         .catch(
             (err) => {
                 this.setState({
                     isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
                     
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                alert("Unexpected error, please reload the page!")
             }
         )
     }
@@ -124,6 +132,12 @@ class Resume extends React.Component {
         document.title = "Resume | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="resume-wrapper">
+                {
+                    this.state.isNotif ? (
+                        <Snackbar category={this.state.notifCat} string={this.state.notifStr} />
+                    ) : ("")
+                }
+
                 <MDBContainer fluid className="py-5 position-relative">
                     {this.renderTechnologies()}
                 </MDBContainer>
