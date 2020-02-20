@@ -1,9 +1,9 @@
 import React from 'react'
 import { 
     MDBBox, MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon,
-    MDBCardImage, MDBView, MDBMask
+    MDBCardImage, MDBView, MDBMask,
+    MDBModal, MDBModalBody, MDBModalHeader
 } from "mdbreact"
-import { MDBModal, MDBModalBody, MDBModalHeader } from 'mdbreact';
 import { CardColumns } from 'react-bootstrap'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import { Fade } from 'react-reveal';
@@ -24,6 +24,8 @@ class Home extends React.Component {
             notifStr: "",
             isHomeLoaded: false,
             homeItems: [],
+            isSkillLoaded: false,
+            skillItems: [],
             isResumeLoaded: false,
             resumeItems: [],
             isPortfolioLoaded: false,
@@ -53,6 +55,52 @@ class Home extends React.Component {
                 this.setState({
                     isHomeLoaded: true,
                     homeItems: result
+                })
+
+                // Get Resume Skills data ajax
+                this.getSkills()
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            }
+        )
+    }
+    
+    getSkills = () => {
+        $.ajax({
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getSkills",
+            dataType: "json",
+            cache: false
+        })
+        .then(
+            (result) => {
+                this.setState({
+                    isSkillLoaded: true,
+                    skillItems: result
                 })
 
                 // Get Resume data ajax
@@ -214,8 +262,8 @@ class Home extends React.Component {
     }
 
     renderSkills() {
-        if ( this.state.isResumeLoaded ) {
-            if ( Object.keys(this.state.resumeItems.skills).length !== 0 ) {
+        if ( this.state.isSkillLoaded ) {
+            if ( Object.keys(this.state.skillItems).length !== 0 ) {
                 return (
                     <MDBContainer>
                         <Fade>
@@ -224,10 +272,17 @@ class Home extends React.Component {
                                     <MDBBox tag="span" display="block" className="content-title d-block font-size-3rem font-family-architects-daughter text-center">Day-To-Day-Comfort</MDBBox>
                                 </MDBCol>
                                 {
-                                    this.state.resumeItems.skills.sort((a, b) =>  b.percent - a.percent ).map(item => (
-                                        item.percent >= 80 ? (
+                                    this.state.skillItems.sort((a, b) =>  b.percent - a.percent ).map(item => (
+                                        item.percent >= 95 ? (
                                             <MDBCol key={item.id} lg="4" className="mb-3">
-                                                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{item.title}</MDBBox>
+                                                <MDBRow className="justify-content-between">
+                                                    <MDBCol size="6">
+                                                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{item.title}</MDBBox>
+                                                    </MDBCol>
+                                                    <MDBCol size="6" className="text-right">
+                                                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{item.start_in}</MDBBox>
+                                                    </MDBCol>
+                                                </MDBRow>
                                                 <ProgressBar striped variant="default" now={item.percent} label={item.percent + "%"} className="progress-holder"/>
                                             </MDBCol>
                                         ) : ("")
