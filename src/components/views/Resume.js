@@ -16,12 +16,60 @@ class Resume extends React.Component {
             notifStr: "",
             error: false,
             isLoaded: false,
+            isSkillLoaded: false,
+            skillItems: [],
             items: []
         }
     }
 
     UNSAFE_componentWillMount() {
-        this.getResumeData()
+        this.getSkills()
+    }
+
+    getSkills = () => {
+        $.ajax({
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getSkills",
+            dataType: "json",
+            cache: false
+        })
+        .then(
+            (result) => {
+                this.setState({
+                    isSkillLoaded: true,
+                    skillItems: result
+                })
+
+                // Get Resume data ajax
+                this.getResumeData()
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            }
+        )
     }
 
     getResumeData() {
@@ -90,8 +138,8 @@ class Resume extends React.Component {
 
     renderTechnologies() {
         let skillAdvnc = 0, skillBasic = 0
-        if( this.state.isLoaded && !this.state.error ) {
-            if ( Object.keys(this.state.items.skills).length !== 0 ) {
+        if ( this.state.isSkillLoaded ) {
+            if ( Object.keys(this.state.skillItems).length !== 0 ) {
                 return (
                     <MDBContainer>
                         <Fade>
@@ -100,8 +148,8 @@ class Resume extends React.Component {
                                     <MDBBox tag="span" display="block" className="content-title font-size-3rem font-family-architects-daughter text-center">Technologies</MDBBox>
                                 </MDBCol>
                                 {
-                                    this.state.items.skills.sort((a, b) =>  b.percent - a.percent ).map(item => (
-                                        item.percent >= 80 ? (
+                                    this.state.skillItems.sort((a, b) =>  b.percent - a.percent ).map(item => (
+                                        item.percent >= 90 ? (
                                             this.renderSkills(item, skillAdvnc+=1, "Day-To-Day Comfort", "")
                                         ) : (
                                             this.renderSkills(item, skillBasic+=1, "Experience With", "mt-4")
