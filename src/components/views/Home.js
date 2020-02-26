@@ -12,6 +12,7 @@ import ReactHtmlParser from 'react-html-parser';
 import Parallax from './includes/Parallax'
 import Timeline from './includes/Timeline'
 import Snackbar from "../views/includes/Snackbar"
+import Moment from 'react-moment';
 
 class Home extends React.Component {
     constructor(props) {
@@ -284,7 +285,17 @@ class Home extends React.Component {
                                                         <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{item.title}</MDBBox>
                                                     </MDBCol>
                                                     <MDBCol size="6" className="text-right">
-                                                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{item.start_in}</MDBBox>
+                                                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">
+                                                            {
+                                                                new Date().getTime() > new Date(item.end_in).getTime() ? (
+                                                                    // Already past the date
+                                                                    <Moment from={item.end_in} ago>{item.start_in}</Moment>
+                                                                ) : (
+                                                                    // Still in this date
+                                                                    <Moment fromNow ago>{item.start_in}</Moment>
+                                                                )
+                                                            }
+                                                            </MDBBox>
                                                     </MDBCol>
                                                 </MDBRow>
                                                 <ProgressBar striped variant="default" now={item.percent} label={item.percent + "%"} className="progress-holder"/>

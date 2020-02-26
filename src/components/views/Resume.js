@@ -6,6 +6,7 @@ import $ from 'jquery'
 import Parallax from './includes/Parallax'
 import Timeline from './includes/Timeline'
 import Snackbar from "../views/includes/Snackbar"
+import Moment from 'react-moment';
 
 class Resume extends React.Component {
     constructor(props) {
@@ -176,7 +177,17 @@ class Resume extends React.Component {
                                 <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
                             </MDBCol>
                             <MDBCol size="6" className="text-right">
-                                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.start_in}</MDBBox>
+                                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">
+                                    {
+                                        new Date().getTime() > new Date(data.end_in).getTime() ? (
+                                            // Already past the date
+                                            <Moment from={data.end_in} ago>{data.start_in}</Moment>
+                                        ) : (
+                                            // Still in this date
+                                            <Moment fromNow ago>{data.start_in}</Moment>
+                                        )
+                                    }
+                                </MDBBox>
                             </MDBCol>
                         </MDBRow>
                         <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="progress-holder"/>
@@ -192,7 +203,17 @@ class Resume extends React.Component {
                         <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
                     </MDBCol>
                     <MDBCol size="6" className="text-right">
-                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.start_in}</MDBBox>
+                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">
+                            {
+                                new Date().getTime() > new Date(data.end_in).getTime() ? (
+                                    // Already past the date
+                                    <Moment from={data.end_in} ago>{data.start_in}</Moment>
+                                ) : (
+                                    // Still in this date
+                                    <Moment fromNow ago>{data.start_in}</Moment>
+                                )
+                            }
+                        </MDBBox>
                     </MDBCol>
                 </MDBRow>
                 <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="progress-holder"/>

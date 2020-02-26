@@ -1,5 +1,6 @@
 import React from 'react'
 import { MDBBox, MDBContainer, MDBRow, MDBCol, MDBIcon } from "mdbreact"
+import Moment from 'react-moment';
 
 class Timeline extends React.Component{
     renderData(data, counter, propsCounter, category) {
@@ -37,10 +38,34 @@ class Timeline extends React.Component{
                     <MDBBox tag="span" className="text-uppercase">
                         { 
                             data.start_in !== "" && data.start_in !== undefined ? (
-                                data.start_in
+                                <React.Fragment>
+                                    {
+                                        category.toLowerCase() === 'educational' ? (
+                                            <Moment format="YYYY">{data.start_in}</Moment>
+                                        ) : (
+                                            <Moment format="MMMM YYYY">{data.start_in}</Moment>
+                                        )
+                                    }
+                                    &nbsp;-&nbsp;
+                                    {
+                                        new Date().getTime() > new Date(data.end_in).getTime() ? (
+                                            // Already past the date
+                                            category.toLowerCase() === 'educational' ? (
+                                                <Moment format="YYYY">{data.end_in}</Moment>
+                                            ) : (
+                                                <Moment format="MMMM YYYY">{data.end_in}</Moment>
+                                            )
+                                        ) : (
+                                            // Still in this date
+                                            <MDBBox tag="span">Present</MDBBox>
+                                        )
+                                    }
+                                </React.Fragment>
                             ) : (
                                 data.date !== "" && data.date !== undefined ? (
-                                    data.date 
+                                    <React.Fragment>
+                                        <Moment format="MMM YYYY">{data.date}</Moment>
+                                    </React.Fragment>
                                 ) : ("") 
                             ) 
                         }
@@ -72,13 +97,27 @@ class Timeline extends React.Component{
                     </MDBBox>
                     <MDBBox tag="span" className="content-description details-sub-title font-size-1rem d-block d-md-none">
                         {
-                            data.start_in !== "" && data.start_in !== undefined ? (
-                                data.start_in
+                             data.start_in !== "" && data.start_in !== undefined ? (
+                                <React.Fragment>
+                                    <Moment format="MMMM YYYY">{data.start_in}</Moment>
+                                    &nbsp;-&nbsp;
+                                    {
+                                        new Date().getTime() > new Date(data.end_in).getTime() ? (
+                                            // Already past the date
+                                            <Moment format="MMMM YYYY">{data.end_in}</Moment>
+                                        ) : (
+                                            // Still in this date
+                                            <MDBBox tag="span">Present</MDBBox>
+                                        )
+                                    }
+                                </React.Fragment>
                             ) : (
                                 data.date !== "" && data.date !== undefined ? (
-                                    data.date
-                                ) : ("")
-                            )
+                                    <React.Fragment>
+                                        <Moment format="MMM YYYY">{data.date}</Moment>
+                                    </React.Fragment>
+                                ) : ("") 
+                            ) 
                         }
                     </MDBBox>
                     <MDBBox tag="span" className="content-description details-address font-size-1rem d-block">{data.address}</MDBBox>
