@@ -26,10 +26,10 @@ class Home extends React.Component {
             homeItems: [],
             isSkillLoaded: false,
             skillItems: [],
-            isResumeLoaded: false,
-            resumeItems: [],
             isPortfolioLoaded: false,
-            portfolioItems: []
+            portfolioItems: [],
+            isExperienceLoaded: false,
+            experienceItems: []
         }
     }
 
@@ -103,53 +103,7 @@ class Home extends React.Component {
                     skillItems: result
                 })
 
-                // Get Resume data ajax
-                this.getResumeData()
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
-                    
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-            }
-        )
-        .catch(
-            (err) => {
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
-                    
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-            }
-        )
-    }
-
-    getResumeData = () => {
-        $.ajax({
-            url: "./assets/json/content/resume.json",
-            dataType: "json",
-            cache: false
-        })
-        .then(
-            (result) => {
-                this.setState({
-                    isResumeLoaded: true,
-                    resumeItems: result
-                })
-
-                // Get Portfolio data ajax
+                // Get Porfolio data ajax
                 this.getPortfolioCards()
             },
             // Note: it's important to handle errors here
@@ -191,10 +145,12 @@ class Home extends React.Component {
         .then(
             (result) => {
                 this.setState({
-                    isLoaded: true,
                     isPortfolioLoaded: true,
                     portfolioItems: result
                 })
+
+                // Get Experience ajax
+                this.getExperience()
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -222,6 +178,54 @@ class Home extends React.Component {
                 })
 
                 console.error(err)
+            }
+        )
+    }
+
+    getExperience() {
+        $.ajax({
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/get-all-experience",
+            type: 'GET',
+            data: {
+                'is_single': 1
+            },
+            dataType: "json",
+            cache: false
+        })
+        .then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    isExperienceLoaded: true,
+                    experienceItems: result
+                })
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
             }
         )
     }
@@ -354,11 +358,11 @@ class Home extends React.Component {
     }
 
     renderTimeline(items, title){
-        if( this.state.isResumeLoaded ) {
+        if( this.state.isExperienceLoaded ) {
             if ( Object.keys(items).length !== 0 ) {
                 return (
                     <Fade>
-                        <Timeline title={title} data={items[0][title.toLowerCase()]} counter="1"/>
+                        <Timeline title={title} data={items} counter="1"/>
                     </Fade>
                 )
             }
@@ -420,7 +424,7 @@ class Home extends React.Component {
                     btnUri="/portfolio"
                 />
                 <MDBContainer fluid className="py-5 position-relative white">
-                    {this.renderTimeline(this.state.resumeItems.timeline, "Experience")}
+                    {this.renderTimeline(this.state.experienceItems, "Experience")}
                 </MDBContainer>
                 <Parallax
                     container="parallax-bottom-palette"

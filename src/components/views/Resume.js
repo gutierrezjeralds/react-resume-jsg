@@ -18,7 +18,10 @@ class Resume extends React.Component {
             isLoaded: false,
             isSkillLoaded: false,
             skillItems: [],
-            items: []
+            isExperienceLoaded: false,
+            experienceItems: [],
+            isEducationalLoaded: false,
+            educationalItems: []
         }
     }
 
@@ -39,8 +42,8 @@ class Resume extends React.Component {
                     skillItems: result
                 })
 
-                // Get Resume data ajax
-                this.getResumeData()
+                // Get Experience data ajax
+                this.getExperience()
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -72,9 +75,55 @@ class Resume extends React.Component {
         )
     }
 
-    getResumeData() {
+    getExperience() {
         $.ajax({
-            url: "./assets/json/content/resume.json",
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/get-all-experience",
+            dataType: "json",
+            cache: false
+        })
+        .then(
+            (result) => {
+                this.setState({
+                    isExperienceLoaded: true,
+                    experienceItems: result
+                })
+
+                // Get Educational data ajax
+                this.getEducational()
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            }
+        )
+    }
+
+    getEducational() {
+        $.ajax({
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getEducational",
             dataType: "json",
             cache: false
         })
@@ -82,7 +131,8 @@ class Resume extends React.Component {
             (result) => {
                 this.setState({
                     isLoaded: true,
-                    items: result
+                    isEducationalLoaded: true,
+                    educationalItems: result
                 })
             },
             // Note: it's important to handle errors here
@@ -121,7 +171,14 @@ class Resume extends React.Component {
                 <React.Fragment key={data.id}>
                     <MDBBox tag="span" display="block" className={titleClass + " sub-content-title font-size-2rem font-family-architects-daughter text-center w-100"}>{title}</MDBBox>
                     <MDBCol lg="4" className="mb-3">
-                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
+                        <MDBRow className="justify-content-between">
+                            <MDBCol size="6">
+                                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
+                            </MDBCol>
+                            <MDBCol size="6" className="text-right">
+                                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.start_in}</MDBBox>
+                            </MDBCol>
+                        </MDBRow>
                         <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="progress-holder"/>
                     </MDBCol>
                 </React.Fragment>
@@ -130,7 +187,14 @@ class Resume extends React.Component {
 
         return (
             <MDBCol key={data.id} lg="4" className="mb-3">
-                <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
+                <MDBRow className="justify-content-between">
+                    <MDBCol size="6">
+                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.title}</MDBBox>
+                    </MDBCol>
+                    <MDBCol size="6" className="text-right">
+                        <MDBBox tag="span" display="block" className="content-description skill-title font-size-1rem">{data.start_in}</MDBBox>
+                    </MDBCol>
+                </MDBRow>
                 <ProgressBar striped variant="default" now={data.percent} label={data.percent + "%"} className="progress-holder"/>
             </MDBCol>
         )
@@ -164,12 +228,24 @@ class Resume extends React.Component {
         }
     }
 
-    renderTimeline(items, title){
-        if ( this.state.isLoaded && !this.state.error ) {
-            if ( Object.keys(items).length !== 0 ) {
+    renderExperience(){
+        if ( this.state.isExperienceLoaded ) {
+            if ( Object.keys(this.state.experienceItems).length !== 0 ) {
                 return (
                     <Fade>
-                        <Timeline title={title} data={items[0][title.toLowerCase()]} counter=""/>
+                        <Timeline title="Experience" data={this.state.experienceItems} counter=""/>
+                    </Fade>
+                )
+            }
+        }
+    }
+
+    renderEducational(){
+        if ( this.state.isEducationalLoaded ) {
+            if ( Object.keys(this.state.educationalItems).length !== 0 ) {
+                return (
+                    <Fade>
+                        <Timeline title="Educational" data={this.state.educationalItems} counter=""/>
                     </Fade>
                 )
             }
@@ -180,6 +256,19 @@ class Resume extends React.Component {
         document.title = "Resume | Jerald Gutierrez"
         return (
             <MDBBox tag="div" className="resume-wrapper">
+                {
+                    !this.state.isLoaded ? (
+                        // Loading
+                    <MDBBox tag="div" className="loader-section">
+                        <MDBBox tag="div" className="position-fixed z-index-9999 l-0 t-0 r-0 b-0 m-auto overflow-visible flex-center">
+                            <MDBBox tag="span" className="loader-spin-dual-ring"></MDBBox>
+                            <MDBBox tag="span" className="ml-2 font-size-1rem white-text">Loading, please wait...</MDBBox>
+                        </MDBBox>
+                        <MDBBox tag="div" className="loader-backdrop position-fixed z-index-1040 l-0 t-0 r-0 b-0 black"></MDBBox>
+                    </MDBBox>
+                    ) : ("")
+                }
+
                 {
                     this.state.isNotif ? (
                         <Snackbar category={this.state.notifCat} string={this.state.notifStr} />
@@ -200,7 +289,7 @@ class Resume extends React.Component {
                     btnUri="/portfolio"
                 />
                 <MDBContainer fluid className="py-5 position-relative white">
-                    {this.renderTimeline(this.state.items.timeline, "Experience")}
+                    {this.renderExperience()}
                 </MDBContainer>
                 <Parallax 
                     container="parallax-palette bg-parallax-2"
@@ -213,7 +302,7 @@ class Resume extends React.Component {
                     btnUri="/"
                 />
                 <MDBContainer fluid className="py-5 position-relative">
-                    {this.renderTimeline(this.state.items.timeline, "Educational")}
+                    {this.renderEducational()}
                 </MDBContainer>
                 <Parallax
                     container="parallax-bottom-palette"
