@@ -202,7 +202,7 @@ class Resume extends React.Component {
 
     renderTechnologies() {
         let skillAdvnc = 0, skillBasic = 0
-        if ( this.state.isSkillLoaded ) {
+        if ( this.state.isSkillLoaded && this.state.isLoaded && !this.state.error ) {
             if ( Object.keys(this.state.skillItems).length !== 0 ) {
                 return (
                     <MDBContainer>
@@ -229,7 +229,7 @@ class Resume extends React.Component {
     }
 
     renderExperience(){
-        if ( this.state.isExperienceLoaded ) {
+        if ( this.state.isExperienceLoaded && this.state.isLoaded && !this.state.error ) {
             if ( Object.keys(this.state.experienceItems).length !== 0 ) {
                 return (
                     <Fade>
@@ -241,7 +241,7 @@ class Resume extends React.Component {
     }
 
     renderEducational(){
-        if ( this.state.isEducationalLoaded ) {
+        if ( this.state.isEducationalLoaded && this.state.isLoaded && !this.state.error ) {
             if ( Object.keys(this.state.educationalItems).length !== 0 ) {
                 return (
                     <Fade>

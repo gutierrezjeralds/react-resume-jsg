@@ -231,7 +231,7 @@ class Home extends React.Component {
     }
 
     renderHomeAbout() {
-        if ( this.state.isHomeLoaded ) {
+        if ( this.state.isHomeLoaded && this.state.isLoaded && !this.state.error ) {
             if ( Object.keys(this.state.homeItems).length !== 0 ) {
                 return (
                     <MDBContainer>
@@ -266,7 +266,7 @@ class Home extends React.Component {
     }
 
     renderSkills() {
-        if ( this.state.isSkillLoaded ) {
+        if ( this.state.isSkillLoaded && this.state.isLoaded && !this.state.error ) {
             if ( Object.keys(this.state.skillItems).length !== 0 ) {
                 return (
                     <MDBContainer>
@@ -301,7 +301,7 @@ class Home extends React.Component {
     }
 
     renderPortfolio() {
-        if( this.state.isPortfolioLoaded ) {
+        if( this.state.isPortfolioLoaded && this.state.isLoaded && !this.state.error ) {
             if ( Object.keys(this.state.portfolioItems.development).length !== 0 ) {
                 return (
                     <MDBRow>
@@ -358,7 +358,7 @@ class Home extends React.Component {
     }
 
     renderTimeline(items, title){
-        if( this.state.isExperienceLoaded ) {
+        if( this.state.isExperienceLoaded && this.state.isLoaded && !this.state.error ) {
             if ( Object.keys(items).length !== 0 ) {
                 return (
                     <Fade>
