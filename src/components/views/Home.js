@@ -45,6 +45,10 @@ class Home extends React.Component {
         });
     }
 
+    thisDefaultSrc(event){
+        event.target.src = "/assets/img/background/bg-item-3.png"
+    }
+
     getHomeData = () => {
         $.ajax({
             url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getHome",
@@ -325,7 +329,7 @@ class Home extends React.Component {
                                     // <MDBCol md="4" className="mb-3">
                                         <Fade key={items.id}>
                                             <MDBView className="overlay mb-4 z-depth-2 img-opacity-dark">
-                                                <MDBCardImage className="img-fluid min-h-233px" src={items.src} alt={items.alt} waves />
+                                                <MDBCardImage className="img-fluid min-h-233px" src={items.src} onError={this.thisDefaultSrc} alt={items.alt} waves />
                                                 <MDBMask className="flex-center" overlay="black-strong" >
                                                     <MDBBox tag="div" className="d-block text-center white-text px-1">
                                                         <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-architects-daughter mb-1">{items.title}</MDBBox>
@@ -362,7 +366,7 @@ class Home extends React.Component {
             <MDBModal isOpen={this.state.isOpen} size="lg">
                 <MDBModalHeader toggle={this.modalToggle()} className="position-absolute r-0 z-index-5 border-0"></MDBModalHeader>
                 <MDBModalBody className="p-0 flex-center">
-                    <img className="img-fluid" src={this.state.imgModal} alt="" />
+                    <img className="img-fluid" src={this.state.imgModal} onError={this.thisDefaultSrc} alt="" />
                 </MDBModalBody>
             </MDBModal>
         )
