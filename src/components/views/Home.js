@@ -109,7 +109,7 @@ class Home extends React.Component {
                 })
 
                 // Get Porfolio data ajax
-                this.getPortfolioCards()
+                this.getProjects()
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -141,10 +141,13 @@ class Home extends React.Component {
         )
     }
 
-    getPortfolioCards = () => {
+    getProjects() {
         $.ajax({
-            url: "./assets/json/content/portfolio.json",
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getProjects",
             dataType: "json",
+            data: {
+                'category': "development"
+            },
             cache: false
         })
         .then(
@@ -168,8 +171,8 @@ class Home extends React.Component {
                     notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
-
-                console.log(error.statusText)
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
             }
         )
         .catch(
@@ -181,8 +184,8 @@ class Home extends React.Component {
                     notifStr: "Unexpected error, please reload the page!",
                     error: true
                 })
-
-                console.error(err)
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
             }
         )
     }
@@ -317,7 +320,7 @@ class Home extends React.Component {
 
     renderPortfolio() {
         if( this.state.isPortfolioLoaded && this.state.isLoaded && !this.state.error ) {
-            if ( Object.keys(this.state.portfolioItems.development).length !== 0 ) {
+            if ( Object.keys(this.state.portfolioItems).length !== 0 ) {
                 return (
                     <MDBRow>
                         <MDBCol md="12" className="mb-3">
@@ -325,23 +328,23 @@ class Home extends React.Component {
                         </MDBCol>
                         <CardColumns>
                             {
-                                this.state.portfolioItems.development.sort((a, b) =>  b.order - a.order ).map(items => (
+                                this.state.portfolioItems.sort((a, b) =>  b.start_in - a.start_in ).map(items => (
                                     // <MDBCol md="4" className="mb-3">
                                         <Fade key={items.id}>
                                             <MDBView className="overlay mb-4 z-depth-2 img-opacity-dark">
-                                                <MDBCardImage className="img-fluid min-h-233px" src={items.src} onError={this.thisDefaultSrc} alt={items.alt} waves />
+                                                <MDBCardImage className="img-fluid min-h-233px" src={items.image} onError={this.thisDefaultSrc} alt={items.title} waves />
                                                 <MDBMask className="flex-center" overlay="black-strong" >
                                                     <MDBBox tag="div" className="d-block text-center white-text px-1">
                                                         <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-architects-daughter mb-1">{items.title}</MDBBox>
                                                         <MDBBox tag="p" className="content-sub-title d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
                                                         <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
                                                         <MDBBox tag="div" className="content-action">
-                                                            <MDBBtn outline onClick={this.modalToggle(items.src)} className="m-0 mr-2 py-2 px-4">
+                                                            <MDBBtn outline onClick={this.modalToggle(items.image)} className="m-0 mr-2 py-2 px-4">
                                                                 <MDBIcon icon="camera" />
                                                             </MDBBtn>
                                                             {
                                                                 items.uri !== "" ? (
-                                                                    <MDBBtn outline href={items.uri} target="_blank" className="m-0 py-2 px-4">
+                                                                    <MDBBtn outline href={items.website} target="_blank" className="m-0 py-2 px-4">
                                                                         <MDBIcon icon="link" />
                                                                     </MDBBtn>
                                                                 ) : ("")
