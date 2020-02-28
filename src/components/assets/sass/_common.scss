@@ -404,6 +404,12 @@
 .h-80px{
     height: 80px !important;
 }
+.h-100px{
+    height: 100px !important;
+}
+.h-150px{
+    height: 150px !important;
+}
 .h-233px{
     height: 233px !important;
 }
@@ -764,6 +770,7 @@ body, #root{
 
 //Select MDBootstrap
 .select-mdb-custom{
+    position: relative;
     /* Use custom arrow */
     &:after {
         position: absolute;
@@ -835,26 +842,26 @@ body, #root{
     /* LABEL */
     .select-mdb-label {
     	font-size: 18px;
-    	font-weight: normal;
+    	font-weight: lighter;
     	position: absolute;
     	pointer-events: none;
-    	left: 0;
+    	left: -15px;
     	top: 10px;
     	transition: 0.2s ease all;
     }
 
     /* active state */
     .select-mdb-content:focus ~ .select-label, .select-mdb-content:valid ~ .select-mdb-label {
-        color: #2F80ED;
-    	top: -20px;
+        color: #757575;
+    	top: -8px;
     	transition: 0.2s ease all;
-    	font-size: 14px;
+    	font-size: 0.8rem;
     }
     .select-mdb-content:focus ~ .select-label, .select-mdb-content:disabled ~ .select-mdb-label {
-        color: #2F80ED;
-    	top: -20px;
+        color: #757575;
+    	top: -8px;
     	transition: 0.2s ease all;
-    	font-size: 14px;
+    	font-size: 0.8rem;
     }
 }
 
@@ -894,4 +901,9 @@ body, #root{
             background-color: $warning-dark !important;
         }
     }
+}
+
+// React Date Picker
+.react-datepicker-wrapper{
+    width: 100% !important;
 }

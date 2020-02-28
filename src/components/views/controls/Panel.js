@@ -1,6 +1,7 @@
 import React from 'react'
 import FormSplash from "./includes/form-splash"
 import FormHome from './includes/form-home'
+import FormProjects from './includes/form-projects'
 import { 
     MDBBox, MDBContainer, MDBRow, MDBCol
 } from "mdbreact"
@@ -29,6 +30,11 @@ class Panel extends React.Component {
         } else if ( this.state.category === "home" ) {
             return (
                 <FormHome />
+            )
+
+        } else if ( this.state.category === "projects" ) {
+            return (
+                <FormProjects />
             )
 
         } else if ( this.state.category === "portfolio" ) {
@@ -65,6 +71,7 @@ class Panel extends React.Component {
                                 <MDBBox tag="select" className="select-mdb-content" onChange={this.handleCatChange.bind(this)}>
                                     <MDBBox tag="option" value="splash">Splash</MDBBox>
                                     <MDBBox tag="option" value="home">Home</MDBBox>
+                                    <MDBBox tag="option" value="projects">Projects</MDBBox>
                                     <MDBBox tag="option" value="portfolio">Portfolio</MDBBox>
                                     <MDBBox tag="option" value="resume">Resume</MDBBox>
                                     <MDBBox tag="option" value="contact">Contact</MDBBox>
