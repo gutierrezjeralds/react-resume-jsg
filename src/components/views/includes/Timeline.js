@@ -151,10 +151,10 @@ class Timeline extends React.Component{
                                                     <MDBBox key={subItems.id} tag="li">
                                                         <MDBBox tag="span">{subItems.title}</MDBBox>
                                                         {
-                                                            subItems.description !== "" ? (
+                                                            subItems.skills !== "" ? (
                                                                 <MDBBox tag="ul">
                                                                     <MDBBox tag="li">
-                                                                        <MDBBox tag="span">{subItems.description}</MDBBox>
+                                                                        <MDBBox tag="span">{subItems.skills}</MDBBox>
                                                                     </MDBBox>
                                                                 </MDBBox>
                                                             ) : ("")

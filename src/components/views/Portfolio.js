@@ -97,7 +97,7 @@ class Portfolio extends React.Component {
                                                         <MDBBox tag="div" className="d-block text-center white-text px-1">
                                                             <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-architects-daughter mb-1">{items.title}</MDBBox>
                                                             <MDBBox tag="p" className="content-company d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
-                                                            <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
+                                                            <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.skills) }</MDBBox>
                                                             <MDBBox tag="div">
                                                                 <MDBBtn outline color="white" onClick={this.modalToggle(items.image)} className="m-0 mr-2 py-2 px-4">
                                                                     <MDBIcon icon="camera" />

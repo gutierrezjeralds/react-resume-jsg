@@ -337,7 +337,7 @@ class Home extends React.Component {
                                                     <MDBBox tag="div" className="d-block text-center white-text px-1">
                                                         <MDBBox tag="p" className="content-title d-block font-size-2rem font-family-architects-daughter mb-1">{items.title}</MDBBox>
                                                         <MDBBox tag="p" className="content-sub-title d-block font-size-1rem font-weight-bold mb-1">{items.company}</MDBBox>
-                                                        <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.description) }</MDBBox>
+                                                        <MDBBox tag="p" className="content-description d-block card-text mb-2">{ ReactHtmlParser(items.skills) }</MDBBox>
                                                         <MDBBox tag="div" className="content-action">
                                                             <MDBBtn outline onClick={this.modalToggle(items.image)} className="m-0 mr-2 py-2 px-4">
                                                                 <MDBIcon icon="camera" />
