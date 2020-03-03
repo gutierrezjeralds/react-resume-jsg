@@ -120,6 +120,23 @@ class Timeline extends React.Component{
                             ) 
                         }
                     </MDBBox>
+                    <MDBBox tag="span" className="content-description details-sub-title font-size-1rem d-block">
+                        {
+                            data.start_in !== "" && data.start_in !== undefined && data.end_in !== "" && data.end_in !== undefined ? (
+                                <React.Fragment>
+                                    {
+                                        new Date().getTime() > new Date(data.end_in).getTime() ? (
+                                            // Already past the date
+                                            <Moment from={data.end_in} ago>{data.start_in}</Moment>
+                                        ) : (
+                                            // Still in this date
+                                            <Moment fromNow ago>{data.start_in}</Moment>
+                                        )
+                                    }
+                                </React.Fragment>
+                            ) : ("") 
+                        }
+                    </MDBBox>
                     <MDBBox tag="span" className="content-description details-address font-size-1rem d-block">{data.address}</MDBBox>
                     {
                         category.toLowerCase() === 'experience' ? (
