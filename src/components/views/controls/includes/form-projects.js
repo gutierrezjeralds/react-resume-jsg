@@ -3,6 +3,8 @@ import {
     MDBBox, MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn, MDBInput
 } from "mdbreact"
 import Snackbar from "../../includes/Snackbar"
+import Multiselect from "react-bootstrap-multiselect";
+import "react-bootstrap-multiselect/css/bootstrap-multiselect.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import $ from 'jquery'
@@ -19,6 +21,7 @@ class FormProjects extends React.Component {
             projectId: "",
             titleItems: [],
             expItems: [],
+            skillItems: [],
             fileSrc: "",
             fileLoaded: false,
             in_key: 0,
@@ -26,8 +29,8 @@ class FormProjects extends React.Component {
             in_company: "",
             in_title: "",
             in_category: "",
+            in_skills: "",
             in_description: "",
-            in_sub_description: "",
             in_image: "",
             in_website: "",
             in_start_in: ""
@@ -221,6 +224,51 @@ class FormProjects extends React.Component {
                     expItems: result
                 })
 
+                // Load ajax of get skills for multi select option
+                this.getSkillsMultiSelect()
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                    
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            }
+        )
+    }
+
+    getSkillsMultiSelect(){
+        $.ajax({
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/multi-select-skills",
+            dataType: "json",
+            cache: false
+        })
+        .then(
+            (result) => {
+                this.setState({
+                    skillItems: result
+                })
+
                 // Load ajax of get projects by id
                 this.getProjectById(this.state.projectId)
             },
@@ -268,18 +316,20 @@ class FormProjects extends React.Component {
                 let startInRes = result[0].start_in
                 let startIn = startInRes !== "" && startInRes !== undefined ? ( new Date(startInRes).getFullYear() + "-" + ( "0" + ( new Date(startInRes).getMonth()+1 ) ).slice(-2) + "-" + new Date(startInRes).getDate() ) : ("")
                 this.setState({
-                    isLoaded: true,
                     in_key: result[0].id,
                     in_tag: result[0].tag,
                     in_company: result[0].company,
                     in_title: result[0].title,
                     in_category: result[0].category,
+                    in_skills: result[0].skills,
                     in_description: result[0].description,
-                    in_sub_description: result[0].sub_description,
                     in_image: result[0].image,
                     in_website: result[0].website,
                     in_start_in: new Date(startIn)
                 })
+
+                // Run skills multi select option to be selected
+                this.skillSelected( result[0].skills )
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -309,6 +359,29 @@ class FormProjects extends React.Component {
                 console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
             }
         )
+    }
+
+    skillSelected(skills) {
+        if ( skills !== "" && skills !== undefined ) {
+            skills.split(", ").map(code => (
+                (
+                    this.setState({
+                        skillItems: this.state.skillItems.map(item => {
+                            if (item.value === code) {
+                                item['selected'] = true;
+                                return item;
+                            }
+                    
+                            return item;
+                        })
+                    })
+                )
+            ))
+        }
+
+        this.setState({
+            isLoaded: true
+        })
     }
 
     render() {
@@ -400,8 +473,8 @@ class FormProjects extends React.Component {
                                         <MDBBox tag="label" className="col select-mdb-label">Category</MDBBox>
                                     </MDBBox>
                                     <MDBInput label="Title" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
+                                    <Multiselect data={this.state.skillItems} multiple />
                                     <MDBInput containerClass="mt-0" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
-                                    <MDBInput containerClass="mt-0" label="Sub Description" value={this.state.in_sub_description} onChange={this.handleInputChange.bind(this, "in_sub_description")} />
                                     <MDBInput containerClass="mt-0" label="Website URL" value={this.state.in_website} onChange={this.handleInputChange.bind(this, "in_website")} />
                                     <MDBBox tag="div" className="md-form mt-0">
                                         <MDBBox tag="label" className="active">Start In</MDBBox>
