@@ -473,8 +473,11 @@ class FormProjects extends React.Component {
                                         <MDBBox tag="label" className="col select-mdb-label">Category</MDBBox>
                                     </MDBBox>
                                     <MDBInput label="Title" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
-                                    <Multiselect data={this.state.skillItems} multiple />
-                                    <MDBInput containerClass="mt-0" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
+                                    <MDBBox tag="div" className="multi-select-custom">
+                                        <MDBBox tag="span" className="col select-mdb-label">Skills</MDBBox>
+                                        <Multiselect data={this.state.skillItems} multiple />
+                                    </MDBBox>
+                                    <MDBInput containerClass="" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
                                     <MDBInput containerClass="mt-0" label="Website URL" value={this.state.in_website} onChange={this.handleInputChange.bind(this, "in_website")} />
                                     <MDBBox tag="div" className="md-form mt-0">
                                         <MDBBox tag="label" className="active">Start In</MDBBox>

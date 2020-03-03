@@ -786,17 +786,13 @@ body, #root{
         border-top: 6px solid rgba(0, 0, 0, 0.7);
         pointer-events: none;
     }
-    &.slice-para-material-content{
-        &:after {
-             content: none !important;
-        }
-    }
     .select-mdb-content{
+        color: $very-dark-grayish-blue;
         position: relative;
         background-color: transparent;
         width: 100%;
-        padding: 10px 10px 10px 0;
-        font-size: 18px;
+        padding: 10px 10px 5px 0;
+        font-size: 1rem;
         border-radius: 0;
         border: none;
         border-bottom: 1px solid rgba(0,0,0, 0.12);
@@ -853,15 +849,89 @@ body, #root{
     /* active state */
     .select-mdb-content:focus ~ .select-label, .select-mdb-content:valid ~ .select-mdb-label {
         color: #757575;
-    	top: -8px;
+    	top: -10px;
     	transition: 0.2s ease all;
     	font-size: 0.8rem;
     }
     .select-mdb-content:focus ~ .select-label, .select-mdb-content:disabled ~ .select-mdb-label {
         color: #757575;
-    	top: -8px;
+    	top: -10px;
     	transition: 0.2s ease all;
     	font-size: 0.8rem;
+    }
+}
+
+// Select Multi-Select
+.multi-select-custom {
+    position: relative;
+    /* Use custom arrow */
+    &:after {
+        position: absolute;
+        top: 18px;
+        right: 10px;
+        /* Styling the down arrow */
+        width: 0;
+        height: 0;
+        padding: 0;
+        content: '';
+        border-left: 6px solid $transparent;
+        border-right: 6px solid $transparent;
+        border-top: 6px solid rgba(0, 0, 0, 0.7);
+        pointer-events: none;
+    }
+    .select-mdb-label{
+    	font-weight: lighter;
+    	position: absolute;
+    	pointer-events: none;
+    	left: -15px;
+    	top: 10px;
+        color: #757575;
+    	top: -10px;
+    	transition: 0.2s ease all;
+    	font-size: 0.8rem;
+    }
+    .btn-group{
+        width: 100% !important;
+        border-bottom: 1px solid rgba(0,0,0, 0.12);
+        .multiselect{
+            background-color: $transparent !important;
+            box-shadow: none !important;
+            padding: 10px 10px 5px 0px !important;
+            margin: 0px !important;
+            text-align: left !important;
+            &:after{
+                display: none !important;
+            }
+            &:active {
+                background-color: $transparent !important;
+            }
+            .multiselect-selected-text{
+                text-transform: capitalize;
+                color: $very-dark-grayish-blue;
+                position: relative;
+                background-color: $transparent;
+                width: 100%;
+                font-size: 1rem;
+                border-radius: 0;
+                border: none;
+                appearance: none;
+                -webkit-appearance: none;
+        
+                /* Remove focus */
+                &:focus {
+                    outline: none;
+                    border-bottom: 1px solid rgba(0,0,0, 0);
+                }
+            }
+        }
+        .multiselect-container {
+            width: 100% !important;
+            max-height: 200px !important;
+            overflow-y: scroll !important;
+            label {
+                padding-left: 10px !important;
+            }
+        }
     }
 }
 
