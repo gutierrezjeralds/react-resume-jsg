@@ -933,6 +933,21 @@ body, #root{
             }
         }
     }
+    #multiselectContainerReact{
+        div:not(.optionListContainer ) {
+            border: none !important;
+            border-bottom: 1px solid rgba(0,0,0, 0.12) !important;
+            background-color: $transparent !important;
+            box-shadow: none !important;
+            padding: 15px 15px 5px 0px !important;
+            margin: 0px !important;
+            text-align: left !important;
+            span {
+                background: $blue-whale !important;
+                border-radius: 4px !important;
+            }
+        }
+    }
 }
 
 // Snackbar Notification

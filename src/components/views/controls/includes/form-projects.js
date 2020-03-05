@@ -3,8 +3,7 @@ import {
     MDBBox, MDBRow, MDBCol, MDBCard, MDBIcon, MDBBtn, MDBInput
 } from "mdbreact"
 import Snackbar from "../../includes/Snackbar"
-import Multiselect from "react-bootstrap-multiselect";
-import "react-bootstrap-multiselect/css/bootstrap-multiselect.css";
+import { Multiselect } from 'multiselect-react-dropdown'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import $ from 'jquery'
@@ -63,6 +62,36 @@ class FormProjects extends React.Component {
         this.setState({
             in_category: event.target.value
         })
+    }
+
+    onSelectSkills = (selectedList, selectedItem) => {
+        let skillsLength = this.state.skillItems.length
+        let selectedLength = selectedList.length
+
+        // Update in_skills item
+        this.setState({
+            in_skills: selectedList
+        })
+
+        if ( selectedLength - 1 >= skillsLength ) {
+            // Hide input search
+            $(".project-form-skills").find("input.searchBox").addClass("d-none")
+        }
+    }
+    
+    onRemoveSkills = (selectedList, removedItem) => {
+        let skillsLength = this.state.skillItems.length
+        let selectedLength = selectedList.length
+
+        // Update in_skills item
+        this.setState({
+            in_skills: selectedList
+        })
+
+        if ( selectedLength - 1 < skillsLength ) {
+            // Show input search
+            $(".project-form-skills").find("input.searchBox").removeClass("d-none")
+        }
     }
 
     handleDateChange = date => {
@@ -316,20 +345,28 @@ class FormProjects extends React.Component {
                 let startInRes = result[0].start_in
                 let startIn = startInRes !== "" && startInRes !== undefined ? ( new Date(startInRes).getFullYear() + "-" + ( "0" + ( new Date(startInRes).getMonth()+1 ) ).slice(-2) + "-" + new Date(startInRes).getDate() ) : ("")
                 this.setState({
+                    isLoaded: true,
                     in_key: result[0].id,
                     in_tag: result[0].tag,
                     in_company: result[0].company,
                     in_title: result[0].title,
                     in_category: result[0].category,
-                    in_skills: result[0].skills,
+                    in_skills: JSON.parse(result[0].skills),
                     in_description: result[0].description,
                     in_image: result[0].image,
                     in_website: result[0].website,
                     in_start_in: new Date(startIn)
                 })
 
+                if ( result[0].image !== "" && result[0].image !== undefined ) {
+                    this.setState({
+                        fileSrc: result[0].image,
+                        fileLoaded: true
+                    })
+                }
+
                 // Run skills multi select option to be selected
-                this.skillSelected( result[0].skills )
+                // this.skillSelected( result[0].skills )
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
@@ -367,6 +404,10 @@ class FormProjects extends React.Component {
                 (
                     this.setState({
                         skillItems: this.state.skillItems.map(item => {
+                            /* 
+                                This map function is for addting json value with key based in equality of item
+                                Can be use also in edit json
+                            */
                             if (item.value === code) {
                                 item['selected'] = true;
                                 return item;
@@ -473,9 +514,17 @@ class FormProjects extends React.Component {
                                         <MDBBox tag="label" className="col select-mdb-label">Category</MDBBox>
                                     </MDBBox>
                                     <MDBInput label="Title" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
-                                    <MDBBox tag="div" className="multi-select-custom">
+                                    <MDBBox tag="div" className="multi-select-custom project-form-skills">
                                         <MDBBox tag="span" className="col select-mdb-label">Skills</MDBBox>
-                                        <Multiselect data={this.state.skillItems} multiple />
+                                        <Multiselect 
+                                            options={this.state.skillItems}
+                                            selectedValues={this.state.in_skills}
+                                            onSelect={this.onSelectSkills}
+                                            onRemove={this.onRemoveSkills}
+                                            placeholder="Choose skills"
+                                            closeIcon="cancel"
+                                            displayValue="title" 
+                                        />
                                     </MDBBox>
                                     <MDBInput containerClass="" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
                                     <MDBInput containerClass="mt-0" label="Website URL" value={this.state.in_website} onChange={this.handleInputChange.bind(this, "in_website")} />
