@@ -24,6 +24,7 @@ class FormProjects extends React.Component {
             fileSrc: "",
             fileLoaded: false,
             in_method: "edit",
+            in_projOptShow: true,
             in_key: 0,
             in_tag: "",
             in_company: "",
@@ -39,7 +40,7 @@ class FormProjects extends React.Component {
 
     // First load
     UNSAFE_componentWillMount() {
-        this.getProjectsTitle("https://gutierrez-jerald-cv-be.herokuapp.com/api/getProjectsTitle")
+        this.getProjectsTitle()
     }
 
     isJson(str) {
@@ -119,6 +120,11 @@ class FormProjects extends React.Component {
         this.setState({
             in_start_in: date
         })
+    }
+
+    handleDateKeyDown = event => {
+        event.stopPropagation()
+        event.preventDefault()
     }
 
     handleUploadClick(fid){
@@ -210,29 +216,70 @@ class FormProjects extends React.Component {
         }
     }
 
-    handleButtonSubmit() {
+    handleButtonAdd = () => {
+        this.setState({
+            in_method: "add",
+            in_projOptShow: false,
+            in_key: 0,
+            in_tag: "",
+            in_company: "",
+            in_title: "",
+            in_category: "",
+            in_skills: [],
+            in_description: "",
+            in_image: "",
+            in_website: "",
+            in_start_in: new Date(),
+            fileSrc: "",
+            fileLoaded: false,
+        })
+    }
+
+    handleButtonDelete = () => {
+        this.setState({
+            in_method: "delete",
+            isLoaded: false,
+            isNotif: false,
+            notifCat: "default",
+        })
+        
+        this.setProjectsData("delete")
+    }
+
+    handleButtonCancel = () => {
+        this.setState({
+            isLoaded: false,
+            in_method: "edit",
+            in_projOptShow: true
+        })
+
+        // Load ajax of get projects by id
+        this.getProjectById(this.state.projectId)
+    }
+
+    handleButtonSubmit = () => {
         this.setState({
             isLoaded: false,
             isNotif: false,
             notifCat: "default",
         })
         
-        this.setProjectsData()
+        this.setProjectsData(this.state.in_method)
     }
 
-    setProjectsData = () => {
+    setProjectsData = (method) => {
         const data = {
-            method: this.state.in_method,
+            method: method,
             key: this.state.in_key,
             tag: this.state.in_tag,
             company: this.state.in_company,
             title: this.state.in_title,
             category: this.state.in_category,
-            skills: JSON.stringify(this.state.in_skills),
             description: this.state.in_description,
             image: this.state.in_image,
             website: this.state.in_website,
-            start_in: this.state.in_start_in
+            start_in: this.state.in_start_in,
+            skills: JSON.stringify(this.state.in_skills)
         }
 
         $.ajax({
@@ -248,8 +295,6 @@ class FormProjects extends React.Component {
                     isNotif: true
                 })
 
-                console.log(result.response)
-
                 // Conditional alert message
                 if ( result.response || !result.response ) {
                     if ( this.state.in_method === "add" ) {
@@ -264,9 +309,13 @@ class FormProjects extends React.Component {
                         })
                     } else if ( this.state.in_method === "delete" ) {
                         this.setState({
+                            isLoaded: false,
                             notifCat: "success",
                             notifStr: "Successfully deleted!"
                         })
+
+                        // Rerun all over the function of ajax from start
+                        this.getProjectsTitle()
                     } else {
                         this.setState({
                             notifCat: "warning",
@@ -318,9 +367,9 @@ class FormProjects extends React.Component {
         )
     }
 
-    getProjectsTitle = (uri) => {
+    getProjectsTitle = () => {
         $.ajax({
-            url: uri,
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getProjectsTitle",
             dataType: "json",
             cache: false
         })
@@ -555,6 +604,35 @@ class FormProjects extends React.Component {
         })
     }
 
+    renderButtonAction() {
+        const method = this.state.in_method
+        if ( method === 'edit' || method === 'delete' ) {
+            return (
+                <React.Fragment>
+                    <MDBBtn type="button" className="btn-palette-2 btn-block mb-3" onClick={this.handleButtonAdd.bind(this)}>
+                        <MDBIcon icon="plus" className="mr-2" />
+                        Add Project
+                    </MDBBtn>
+                    <MDBBtn type="button" color="danger" className="btn-block mb-3" onClick={this.handleButtonDelete.bind(this)}>
+                        <MDBIcon icon="trash" className="mr-2" />
+                        Delete
+                    </MDBBtn>
+                </React.Fragment>
+            )
+        } else if ( method === 'add' ) {
+            return (
+                <React.Fragment>
+                    <MDBBtn type="button" color="danger" className="btn-block mb-3" onClick={this.handleButtonCancel.bind(this)}>
+                        <MDBIcon icon="ban" className="mr-2" />
+                        Cancel
+                    </MDBBtn>
+                </React.Fragment>
+            )
+        } else {
+            // Do Nothing
+        }
+    }
+
     render() {
         const { fileType, fileSize } = this.props;
         return (
@@ -580,32 +658,37 @@ class FormProjects extends React.Component {
             
                 <MDBCol md="8" className="mb-3">
                     <MDBCard className="card-body">
-                        <MDBRow>
-                            <MDBCol md="3" className="d-flex align-self-center">
-                                <MDBBox tag="p" className="content-description m-0">Project:</MDBBox>
-                            </MDBCol>
-                            <MDBCol md="9">
-                                <MDBBox tag="div" className="select-mdb-custom">
-                                    <MDBBox tag="select" className="select-mdb-content" onChange={this.handleProjectChange.bind(this)} value={this.state.projectId}>
-                                        {
-                                            this.state.titleItems.map((item) => (
-                                                <MDBBox tag="option" key={item.id} value={item.id}>
-                                                    {
-                                                        item.tag !== "" && item.tag !== undefined ? (
-                                                            item.tag.toUpperCase()
-                                                        ) : (
-                                                            item.id
-                                                        )
-                                                    } - {item.title}
-                                                </MDBBox>
-                                            ))
-                                        }
-                                    </MDBBox>
-                                    <MDBBox tag="span" className="select-mdb-bar"></MDBBox>
-                                    <MDBBox tag="label" className="col select-mdb-label"></MDBBox>
-                                </MDBBox>
-                            </MDBCol>
-                        </MDBRow>
+                        {
+                            this.state.in_projOptShow ? (
+                                // Show this if editing
+                                <MDBRow>
+                                    <MDBCol md="3" className="d-flex align-self-center">
+                                        <MDBBox tag="p" className="content-description m-0">Project:</MDBBox>
+                                    </MDBCol>
+                                    <MDBCol md="9">
+                                        <MDBBox tag="div" className="select-mdb-custom">
+                                            <MDBBox tag="select" className="select-mdb-content" onChange={this.handleProjectChange.bind(this)} value={this.state.projectId}>
+                                                {
+                                                    this.state.titleItems.map((item) => (
+                                                        <MDBBox tag="option" key={item.id} value={item.id}>
+                                                            {
+                                                                item.tag !== "" && item.tag !== undefined ? (
+                                                                    item.tag.toUpperCase()
+                                                                ) : (
+                                                                    item.id
+                                                                )
+                                                            } - {item.title}
+                                                        </MDBBox>
+                                                    ))
+                                                }
+                                            </MDBBox>
+                                            <MDBBox tag="span" className="select-mdb-bar"></MDBBox>
+                                            <MDBBox tag="label" className="col select-mdb-label"></MDBBox>
+                                        </MDBBox>
+                                    </MDBCol>
+                                </MDBRow>
+                            ) : ("")
+                        }
                         <MDBRow className="justify-content-center mt-3">
                             <MDBCol md="12">
                                 <MDBCard className="card-body">
@@ -665,6 +748,7 @@ class FormProjects extends React.Component {
                                             placeholderText="Choose date"
                                             className="form-control w-100"
                                             onChange={this.handleDateChange}
+                                            onKeyDown={this.handleDateKeyDown}
                                         />
                                     </MDBBox>
                                     <MDBBox tag="div" className="image-upload-holder">
@@ -697,6 +781,7 @@ class FormProjects extends React.Component {
                     </MDBCard>
                 </MDBCol>
                 <MDBCol md="4">
+                    {this.renderButtonAction()}
                     <MDBBtn type="submit" className="btn-palette-1 btn-block" onClick={this.handleButtonSubmit.bind(this)}>
                         <MDBIcon icon="save" className="mr-2" />
                         Save
