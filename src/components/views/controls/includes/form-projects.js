@@ -23,6 +23,7 @@ class FormProjects extends React.Component {
             skillItems: [],
             fileSrc: "",
             fileLoaded: false,
+            in_method: "edit",
             in_key: 0,
             in_tag: "",
             in_company: "",
@@ -39,6 +40,14 @@ class FormProjects extends React.Component {
     // First load
     UNSAFE_componentWillMount() {
         this.getProjectsTitle("https://gutierrez-jerald-cv-be.herokuapp.com/api/getProjectsTitle")
+    }
+
+    isJson(str) {
+        try {
+            JSON.parse(str);
+        } catch (e) {
+            return false;
+        }
     }
 
     handleProjectChange(event) {
@@ -187,6 +196,79 @@ class FormProjects extends React.Component {
                 
             console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
         }
+    }
+
+    handleButtonSubmit() {
+        this.setState({
+            isLoaded: false,
+            isNotif: false,
+            notifCat: "default",
+        })
+        
+        this.setProjectsData()
+    }
+
+    setProjectsData = () => {
+        const data = {
+            method: this.state.in_method,
+            key: this.state.in_key,
+            tag: this.state.in_tag,
+            company: this.state.in_company,
+            title: this.state.in_title,
+            category: this.state.in_category,
+            skills: JSON.stringify(this.state.in_skills),
+            description: this.state.in_description,
+            image: this.state.in_image,
+            website: this.state.in_website,
+            start_in: this.state.in_start_in
+        }
+
+        $.ajax({
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setProjects",
+            type: 'POST',
+            data: JSON.stringify(data),
+            contentType: 'application/json',
+            cache: false
+        }).then(
+            (result) => {
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "success",
+                    notifStr: "Successfully update!"
+                })
+                console.log(result)
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                // Handle errors here
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                // Handle errors here
+                this.setState({
+                    isLoaded: true,
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Unexpected error, please reload the page!",
+                    error: true
+                })
+                
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            }
+        )
     }
 
     getProjectsTitle = (uri) => {
@@ -346,6 +428,7 @@ class FormProjects extends React.Component {
                 let startIn = startInRes !== "" && startInRes !== undefined ? ( new Date(startInRes).getFullYear() + "-" + ( "0" + ( new Date(startInRes).getMonth()+1 ) ).slice(-2) + "-" + new Date(startInRes).getDate() ) : ("")
                 this.setState({
                     isLoaded: true,
+                    in_method: "edit",
                     in_key: result[0].id,
                     in_tag: result[0].tag,
                     in_company: result[0].company,
@@ -567,7 +650,7 @@ class FormProjects extends React.Component {
                     </MDBCard>
                 </MDBCol>
                 <MDBCol md="4">
-                    <MDBBtn type="submit" className="btn-palette-1 btn-block">
+                    <MDBBtn type="submit" className="btn-palette-1 btn-block" onClick={this.handleButtonSubmit.bind(this)}>
                         <MDBIcon icon="save" className="mr-2" />
                         Save
                     </MDBBtn>
