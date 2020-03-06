@@ -245,11 +245,46 @@ class FormProjects extends React.Component {
             (result) => {
                 this.setState({
                     isLoaded: true,
-                    isNotif: true,
-                    notifCat: "success",
-                    notifStr: "Successfully update!"
+                    isNotif: true
                 })
-                console.log(result)
+
+                console.log(result.response)
+
+                // Conditional alert message
+                if ( result.response || !result.response ) {
+                    if ( this.state.in_method === "add" ) {
+                        this.setState({
+                            notifCat: "success",
+                            notifStr: "Added successfully!"
+                        })
+                    } else if ( this.state.in_method === "edit" ) {
+                        this.setState({
+                            notifCat: "success",
+                            notifStr: "Successfully update!"
+                        })
+                    } else if ( this.state.in_method === "delete" ) {
+                        this.setState({
+                            notifCat: "success",
+                            notifStr: "Successfully deleted!"
+                        })
+                    } else {
+                        this.setState({
+                            notifCat: "warning",
+                            notifStr: "Something went wrong!",
+                        })
+                    }
+                } else if ( result.response === "duplicate" ) {
+                    this.setState({
+                        notifCat: "warning",
+                        notifStr: "Duplicate record!",
+                    })
+                } else {
+                    this.setState({
+                        notifCat: "error",
+                        notifStr: "Unexpected error, please reload the page!",
+                        error: true
+                    })
+                }
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow
