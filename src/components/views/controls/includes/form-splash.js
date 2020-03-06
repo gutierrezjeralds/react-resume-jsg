@@ -30,6 +30,18 @@ class FormSplash extends React.Component {
         this.getSplashData("https://gutierrez-jerald-cv-be.herokuapp.com/api/getSplash/" + this.state.in_page)
     }
 
+    returnStr(str) {
+        try {
+            if ( str !== null && str !== undefined && str !== "" ) {
+                return str;
+            } else {
+                return "";
+            }
+        } catch (e) {
+            return "";
+        }
+    }
+
     handlePageChange(event) {
         this.setState({
             isLoaded: false,
@@ -68,12 +80,12 @@ class FormSplash extends React.Component {
                 this.setState({
                     isLoaded: true,
                     in_key: result[0].id,
-                    in_title: result[0].title,
-                    in_description: result[0].description,
-                    in_slogan: result[0].slogan,
-                    in_button_string: result[0].button_string,
-                    in_button_link: result[0].button_link,
-                    in_button_icon: result[0].button_icon
+                    in_title: this.returnStr(result[0].title),
+                    in_description: this.returnStr(result[0].description),
+                    in_slogan: this.returnStr(result[0].slogan),
+                    in_button_string: this.returnStr(result[0].button_string),
+                    in_button_link: this.returnStr(result[0].button_link),
+                    in_button_icon: this.returnStr(result[0].button_icon)
                 })
             },
             // Note: it's important to handle errors here

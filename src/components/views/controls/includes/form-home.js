@@ -25,6 +25,18 @@ class FormHome extends React.Component {
         this.getHomeData("https://gutierrez-jerald-cv-be.herokuapp.com/api/getHome")
     }
 
+    returnStr(str) {
+        try {
+            if ( str !== null && str !== undefined && str !== "" ) {
+                return str;
+            } else {
+                return "";
+            }
+        } catch (e) {
+            return "";
+        }
+    }
+
     handleInputChange(fid, event) {
         this.setState({
             [fid]: event.target.value
@@ -52,8 +64,8 @@ class FormHome extends React.Component {
                 this.setState({
                     isLoaded: true,
                     in_key: result[0].id,
-                    in_title: result[0].title,
-                    in_description: result[0].description,
+                    in_title: this.returnStr(result[0].title),
+                    in_description: this.returnStr(result[0].description),
                 })
             },
             // Note: it's important to handle errors here

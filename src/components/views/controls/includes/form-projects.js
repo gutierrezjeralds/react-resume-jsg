@@ -50,6 +50,18 @@ class FormProjects extends React.Component {
         }
     }
 
+    returnStr(str) {
+        try {
+            if ( str !== null && str !== undefined && str !== "" ) {
+                return str;
+            } else {
+                return "";
+            }
+        } catch (e) {
+            return "";
+        }
+    }
+
     handleProjectChange(event) {
         this.setState({
             isLoaded: false,
@@ -430,14 +442,14 @@ class FormProjects extends React.Component {
                     isLoaded: true,
                     in_method: "edit",
                     in_key: result[0].id,
-                    in_tag: result[0].tag,
-                    in_company: result[0].company,
-                    in_title: result[0].title,
-                    in_category: result[0].category,
+                    in_tag: this.returnStr(result[0].tag),
+                    in_company: this.returnStr(result[0].company),
+                    in_title: this.returnStr(result[0].title),
+                    in_category: this.returnStr(result[0].category),
                     in_skills: JSON.parse(result[0].skills),
-                    in_description: result[0].description,
-                    in_image: result[0].image,
-                    in_website: result[0].website,
+                    in_description: this.returnStr(result[0].description),
+                    in_image: this.returnStr(result[0].image),
+                    in_website: this.returnStr(result[0].website),
                     in_start_in: new Date(startIn)
                 })
 
