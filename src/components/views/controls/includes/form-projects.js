@@ -23,6 +23,7 @@ class FormProjects extends React.Component {
             skillItems: [],
             fileSrc: "",
             fileLoaded: false,
+            fileChange: false,
             in_method: "edit",
             in_projOptShow: true,
             in_key: 0,
@@ -170,7 +171,8 @@ class FormProjects extends React.Component {
                             reader.onload = function(evnt){
                                 set.setState({
                                     fileSrc: evnt.target.result,
-                                    fileLoaded: true
+                                    fileLoaded: true,
+                                    fileChange: true
                                 });
                             }
         
@@ -182,6 +184,7 @@ class FormProjects extends React.Component {
                         } else {
                             this.setState({
                                 fileLoaded: false,
+                                fileChange: false,
                                 isNotif: true,
                                 notifCat: "error",
                                 notifStr: "File is not allowed! Maximum file size: " + fileSize
@@ -190,6 +193,7 @@ class FormProjects extends React.Component {
                     } else {
                         this.setState({
                             fileLoaded: false,
+                            fileChange: false,
                             isNotif: true,
                             notifCat: "error",
                             notifStr: "File is not supported! Availabe file types: " + fileType
@@ -199,6 +203,7 @@ class FormProjects extends React.Component {
             } else {
                 this.setState({
                     fileLoaded: false,
+                    fileChange: false,
                     isNotif: true,
                     notifCat: "error",
                     notifStr: "Sorry, your browser does'nt support file upload!"
@@ -206,7 +211,8 @@ class FormProjects extends React.Component {
             }
         } catch (error) {
             this.setState({
-                isLoaded: true,
+                fileLoaded: false,
+                fileChange: false,
                 isNotif: true,
                 notifCat: "error",
                 notifStr: "Unexpected error, please reload the page!",
@@ -214,6 +220,62 @@ class FormProjects extends React.Component {
                 
             console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
         }
+    }
+
+    handleUploadSubmit = event => {
+        event.preventDefault()
+        let formData = new FormData( $("#fileUploadForm")[0] )
+
+        $.ajax({
+            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/set-file-upload/project",
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            cache: false
+        }).then(
+            (result) => {
+                this.setState({
+                    in_image: result.response !== "fail" ? result.response : ""
+                })
+
+                // Run ajax of set project data
+                this.setProjectsData(this.state.in_method)
+            },
+            // Note: it's important to handle errors here
+            // instead of a catch() block so that we don't swallow
+            // exceptions from actual bugs in components.
+            (error) => {
+                // Handle errors here
+                this.setState({
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Something went wrong while uploading image!",
+                    error: true
+                })
+
+                // Run ajax of set project data
+                this.setProjectsData(this.state.in_method)
+
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+            }
+        )
+        .catch(
+            (err) => {
+                // Handle errors here
+                this.setState({
+                    isNotif: true,
+                    notifCat: "error",
+                    notifStr: "Something went wrong while uploading image!",
+                    error: true
+                })
+
+                // Run ajax of set project data
+                this.setProjectsData(this.state.in_method)
+                
+                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+            }
+        )
     }
 
     handleButtonAdd = () => {
@@ -232,6 +294,7 @@ class FormProjects extends React.Component {
             in_start_in: new Date(),
             fileSrc: "",
             fileLoaded: false,
+            fileChange: false,
         })
     }
 
@@ -264,7 +327,14 @@ class FormProjects extends React.Component {
             notifCat: "default",
         })
         
-        this.setProjectsData(this.state.in_method)
+        if ( this.state.fileChange ) {
+            // Run file upload first / fileChange is global variable when input file has change
+            let input = document.getElementById("fileUploadForm-id");
+            input.click();
+        } else {
+            // Run ajax of set project data
+            this.setProjectsData(this.state.in_method)
+        }
     }
 
     setProjectsData = (method) => {
@@ -773,7 +843,10 @@ class FormProjects extends React.Component {
                                             )
                                         }
                                         {/* Hidden input file upload */}
-                                        <MDBInput containerClass="m-0 d-none" type="file" id="inputFileReader" onChange={this.handleUploadChange.bind(this, fileType, fileSize)} />
+                                        <form method="POST" encType="multipart/form-data" id="fileUploadForm" onSubmit={this.handleUploadSubmit.bind(this)} >
+                                            <MDBInput containerClass="m-0 d-none" type="file" id="inputFileReader" name="image" onChange={this.handleUploadChange.bind(this, fileType, fileSize)} />
+                                            <MDBBtn type="submit" id="fileUploadForm-id" className="btn-default mt-3 d-none">Upload</MDBBtn>
+                                        </form>
                                     </MDBBox>
                                 </MDBCard>
                             </MDBCol>
