@@ -2,6 +2,7 @@ import React from 'react'
 import FormSplash from "./includes/form-splash"
 import FormHome from './includes/form-home'
 import FormProjects from './includes/form-projects'
+import FormSkills from './includes/form-skills'
 import { 
     MDBBox, MDBContainer, MDBRow, MDBCol
 } from "mdbreact"
@@ -37,11 +38,10 @@ class Panel extends React.Component {
                 <FormProjects />
             )
 
-        } else if ( this.state.category === "portfolio" ) {
-            console.log(this.state.category)
-
-        } else if ( this.state.category === "resume" ) {
-            console.log(this.state.category)
+        } else if ( this.state.category === "skills" ) {
+            return (
+                <FormSkills />
+            )
 
         } else if ( this.state.category === "contact" ) {
             console.log(this.state.category)
@@ -72,8 +72,7 @@ class Panel extends React.Component {
                                     <MDBBox tag="option" value="splash">Splash</MDBBox>
                                     <MDBBox tag="option" value="home">Home</MDBBox>
                                     <MDBBox tag="option" value="projects">Projects</MDBBox>
-                                    <MDBBox tag="option" value="portfolio">Portfolio</MDBBox>
-                                    <MDBBox tag="option" value="resume">Resume</MDBBox>
+                                    <MDBBox tag="option" value="skills">Skills</MDBBox>
                                     <MDBBox tag="option" value="contact">Contact</MDBBox>
                                 </MDBBox>
                                 <MDBBox tag="span" className="select-mdb-bar"></MDBBox>
