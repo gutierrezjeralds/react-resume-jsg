@@ -59,30 +59,43 @@ class Main extends React.Component {
 
     render() {
         return (
-            <MDBBox tag="div" className="resume-app icy-blues-grays-palette">
-                <Router>
-                    <Header />
-                        {/* Body */}
-                        <Switch >
-                            {
-                                this.state.pages.map(items => (
-                                    <Route exact path={items.path} key={items.id}
-                                        render = {
-                                            () => (
-                                                <MDBBox tag="main">
-                                                    <Splash wrapper={items.wrapper} />
-                                                    {items.render}
-                                                </MDBBox>
-                                            )
-                                        }
-                                    />
-                                ))
-                            }
-                        </Switch>
-                        {/* Body */}
-                    <Footer />
-                </Router>
-            </MDBBox>
+            <React.Fragment>
+                <MDBBox tag="div" className="resume-app icy-blues-grays-palette">
+                    <Router>
+                        <Header />
+                            {/* Body */}
+                            <Switch >
+                                {
+                                    this.state.pages.map(items => (
+                                        <Route exact path={items.path} key={items.id}
+                                            render = {
+                                                () => (
+                                                    <MDBBox tag="main">
+                                                        <Splash wrapper={items.wrapper} />
+                                                        {items.render}
+                                                    </MDBBox>
+                                                )
+                                            }
+                                        />
+                                    ))
+                                }
+                            </Switch>
+                            {/* Body */}
+                        <Footer />
+                    </Router>
+                </MDBBox>
+                <script async src={`https://www.googletagmanager.com/gtag/js?id=UA-160193157-1`}></script>
+                <script>
+                    {
+                        `
+                            window.dataLayer = window.dataLayer || [];
+                            function gtag(){dataLayer.push(arguments)}
+                            gtag('js', new Date());
+                            gtag('config', 'UA-160193157-1');
+                        `
+                    }
+                </script>
+            </React.Fragment>
         )
     }
 }
