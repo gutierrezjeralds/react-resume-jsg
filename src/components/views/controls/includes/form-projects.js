@@ -369,9 +369,14 @@ class FormProjects extends React.Component {
                 if ( result.response || !result.response ) {
                     if ( this.state.in_method === "add" ) {
                         this.setState({
+                            isLoaded: false,
+                            in_projOptShow: true,
                             notifCat: "success",
                             notifStr: "Added successfully!"
                         })
+
+                        // Rerun all over the function of ajax from start
+                        this.getProjectsTitle()
                     } else if ( this.state.in_method === "edit" ) {
                         this.setState({
                             notifCat: "success",
@@ -386,6 +391,7 @@ class FormProjects extends React.Component {
 
                         // Rerun all over the function of ajax from start
                         this.getProjectsTitle()
+
                     } else {
                         this.setState({
                             notifCat: "warning",
@@ -591,7 +597,7 @@ class FormProjects extends React.Component {
         .then(
             (result) => {
                 let startInRes = result[0].start_in
-                let startIn = startInRes !== "" && startInRes !== undefined ? ( new Date(startInRes).getFullYear() + "-" + ( "0" + ( new Date(startInRes).getMonth()+1 ) ).slice(-2) + "-" + new Date(startInRes).getDate() ) : ("")
+                let startIn = startInRes !== "" && startInRes !== undefined ? ( new Date(startInRes).getFullYear() + "-" + ( "0" + ( new Date(startInRes).getMonth()+1 ) ).slice(-2) + "-" + new Date(startInRes).getDate() ) : ( new Date() )
                 this.setState({
                     isLoaded: true,
                     in_method: "edit",
