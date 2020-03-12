@@ -113,13 +113,21 @@ class FormHome extends React.Component {
             cache: false
         }).then(
             (result) => {
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "success",
-                    notifStr: "Successfully update!"
-                })
-                console.log(result)
+                if ( result.response ) {
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
+                        notifCat: "success",
+                        notifStr: "Successfully update!"
+                    })
+                } else {
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
+                        notifCat: "warning",
+                        notifStr: "Something went wrong!",
+                    })
+                }
             },
             // Note: it's important to handle errors here
             // instead of a catch() block so that we don't swallow

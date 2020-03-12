@@ -119,63 +119,91 @@ class FormSplash extends React.Component {
     }
 
     setSplashData = () => {
-        const data = {
-            key: this.state.in_key,
-            page: this.state.in_page,
-            title: this.state.in_title,
-            description: this.state.in_description,
-            slogan: this.state.in_slogan,
-            button_string: this.state.in_button_string,
-            button_link: this.state.in_button_link,
-            button_icon: this.state.in_button_icon
+        const { in_key, in_page, in_title, in_description, in_slogan, in_button_string, in_button_link, in_button_icon } = this.state
+        // Validation
+        let errorCount = ""
+        $(".md-form, .has-error").removeClass("has-error")
+        if ( in_title === "" || in_title === undefined ) {
+            $(".in_title").addClass("has-error")
+            errorCount ++
         }
 
-        $.ajax({
-            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setSplash",
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            cache: false
-        }).then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "success",
-                    notifStr: "Successfully update!"
-                })
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                // Handle errors here
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
-
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+        let errorMsg = errorCount.length === 0
+        if ( !errorMsg ) {
+            this.setState({
+                isLoaded: true,
+                isNotif: true,
+                notifCat: "error",
+                notifStr: "Please fill in the required fields!",
+            })
+        } else {
+            const data = {
+                key: in_key,
+                page: in_page,
+                title: in_title,
+                description: in_description,
+                slogan: in_slogan,
+                button_string: in_button_string,
+                button_link: in_button_link,
+                button_icon: in_button_icon
             }
-        )
-        .catch(
-            (err) => {
-                // Handle errors here
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
-                
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-                alert("Unexpected error, please reload the page!")
-            }
-        )
+    
+            $.ajax({
+                url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setSplash",
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                cache: false
+            }).then(
+                (result) => {
+                    if ( result.response ) {
+                        this.setState({
+                            isLoaded: true,
+                            isNotif: true,
+                            notifCat: "success",
+                            notifStr: "Successfully update!"
+                        })
+                    } else {
+                        this.setState({
+                            isLoaded: true,
+                            isNotif: true,
+                            notifCat: "warning",
+                            notifStr: "Something went wrong!",
+                        })
+                    }
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    // Handle errors here
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
+                        notifCat: "error",
+                        notifStr: "Unexpected error, please reload the page!",
+                        error: true
+                    })
+    
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+                }
+            )
+            .catch(
+                (err) => {
+                    // Handle errors here
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
+                        notifCat: "error",
+                        notifStr: "Unexpected error, please reload the page!",
+                        error: true
+                    })
+                    
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+                    alert("Unexpected error, please reload the page!")
+                }
+            )
+        }
     }
 
     renderElement() {
@@ -223,7 +251,7 @@ class FormSplash extends React.Component {
                         <MDBRow className="justify-content-center mt-3">
                             <MDBCol md="12">
                                 <MDBCard className="card-body">
-                                    <MDBInput containerClass="mt-0" label="Title" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
+                                    <MDBInput containerClass="mt-0 in_title" label="Title *" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
                                     <MDBInput containerClass="mt-0" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
                                     <MDBInput containerClass="mt-0" label="Slogan" value={this.state.in_slogan} onChange={this.handleInputChange.bind(this, "in_slogan")} />
                                     <MDBRow className="justify-content-center">

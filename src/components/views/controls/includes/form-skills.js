@@ -134,115 +134,155 @@ class FormSkills extends React.Component {
     }
 
     setSkillsData = (method) => {
-        let endIn = this.state.in_end_in
-        if ( this.state.isPresentDate ) {
-            endIn = new Date("5000-12-31")
+        const { in_key, in_active_title, in_title, in_description, in_code, in_percent, in_start_in, in_end_in, isPresentDate } = this.state
+        // Validation
+        let errorCount = ""
+        $(".md-form, .has-error").removeClass("has-error")
+        if ( in_title === "" || in_title === undefined ) {
+            $(".in_title").addClass("has-error")
+            errorCount ++
+        }
+        if ( in_percent === "" || in_percent === undefined ) {
+            $(".in_percent").addClass("has-error")
+            errorCount ++
+        }
+        if ( in_code === "" || in_code === undefined ) {
+            $(".in_code").addClass("has-error")
+            errorCount ++
+        }
+        if ( in_start_in === "" || in_start_in === undefined ) {
+            $(".in_start_in").addClass("has-error")
+            errorCount ++
         }
 
-        const data = {
-            method: method,
-            key: this.state.in_key,
-            prev_title: this.state.in_active_title,
-            title: this.state.in_title,
-            description: this.state.in_description,
-            percent: this.state.in_percent,
-            code: this.state.in_code,
-            start_in: this.state.in_start_in,
-            end_in: endIn
-        }
+        let errorMsg = errorCount.length === 0
+        if ( !errorMsg ) {
+            this.setState({
+                isLoaded: true,
+                isNotif: true,
+                notifCat: "error",
+                notifStr: "Please fill in the required fields!",
+            })
+        } else {
+            // Continue to run ajax
+            let endIn = in_end_in
+            if ( isPresentDate ) {
+                endIn = new Date("5000-12-31")
+            } else {
+                if ( in_end_in === "" || in_end_in === undefined ) {
+                    endIn = new Date()
+                }
+            }
 
-        $.ajax({
-            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setSkills",
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            cache: false
-        }).then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true
-                })
-                console.log(result.response)
+            const data = {
+                method: method,
+                key: in_key,
+                prev_title: in_active_title,
+                title: in_title,
+                description: in_description,
+                percent: in_percent,
+                code: in_code,
+                start_in: in_start_in,
+                end_in: endIn
+            }
 
-                // Conditional alert message
-                if ( result.response || !result.response ) {
-                    if ( this.state.in_method === "add" ) {
-                        this.setState({
-                            isLoaded: false,
-                            in_skillOptShow: true,
-                            notifCat: "success",
-                            notifStr: "Added successfully!"
-                        })
+            $.ajax({
+                url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setSkills",
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                cache: false
+            }).then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true
+                    })
 
-                        // Rerun all over the function of ajax from start
-                        this.getSkillsTitle()
+                    // Conditional alert message
+                    if ( result.response ) {
+                        if ( this.state.in_method === "add" ) {
+                            this.setState({
+                                isLoaded: false,
+                                in_skillOptShow: true,
+                                notifCat: "success",
+                                notifStr: "Added successfully!"
+                            })
 
-                    } else if ( this.state.in_method === "edit" ) {
-                        this.setState({
-                            prev_title: this.state.title,
-                            notifCat: "success",
-                            notifStr: "Successfully update!"
-                        })
-                    } else if ( this.state.in_method === "delete" ) {
-                        this.setState({
-                            isLoaded: false,
-                            notifCat: "success",
-                            notifStr: "Successfully deleted!"
-                        })
+                            // Rerun all over the function of ajax from start
+                            this.getSkillsTitle()
 
-                        // Rerun all over the function of ajax from start
-                        this.getSkillsTitle()
+                        } else if ( this.state.in_method === "edit" ) {
+                            this.setState({
+                                prev_title: this.state.title,
+                                notifCat: "success",
+                                notifStr: "Successfully update!"
+                            })
+                        } else if ( this.state.in_method === "delete" ) {
+                            this.setState({
+                                isLoaded: false,
+                                notifCat: "success",
+                                notifStr: "Successfully deleted!"
+                            })
 
-                    } else {
+                            // Rerun all over the function of ajax from start
+                            this.getSkillsTitle()
+
+                        } else {
+                            this.setState({
+                                notifCat: "warning",
+                                notifStr: "Something went wrong!",
+                            })
+                        }
+                    } else if ( !result.response ) {
                         this.setState({
                             notifCat: "warning",
                             notifStr: "Something went wrong!",
                         })
+                    } else if ( result.response === "duplicate" ) {
+                        this.setState({
+                            notifCat: "warning",
+                            notifStr: "Duplicate record!",
+                        })
+                    } else {
+                        this.setState({
+                            notifCat: "error",
+                            notifStr: "Unexpected error, please reload the page!",
+                            error: true
+                        })
                     }
-                } else if ( result.response === "duplicate" ) {
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    // Handle errors here
                     this.setState({
-                        notifCat: "warning",
-                        notifStr: "Duplicate record!",
-                    })
-                } else {
-                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
                         notifCat: "error",
                         notifStr: "Unexpected error, please reload the page!",
                         error: true
                     })
-                }
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                // Handle errors here
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
 
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-            }
-        )
-        .catch(
-            (err) => {
-                // Handle errors here
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
-                
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-            }
-        )
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
+                }
+            )
+            .catch(
+                (err) => {
+                    // Handle errors here
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
+                        notifCat: "error",
+                        notifStr: "Unexpected error, please reload the page!",
+                        error: true
+                    })
+                    
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+                }
+            )
+        }
     }
 
     getSkillsTitle = () => {
@@ -297,6 +337,8 @@ class FormSkills extends React.Component {
     }
 
     getSkillsById(id) {
+        $(".md-form, .has-error").removeClass("has-error")
+
         $.ajax({
             url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getSkillById",
             dataType: "json",
@@ -441,7 +483,7 @@ class FormSkills extends React.Component {
                                                         <MDBBox tag="option" key={item.id} value={item.id}>
                                                             {
                                                                 item.code !== "" && item.code !== undefined ? (
-                                                                    item.code.toUpperCase()
+                                                                    item.code
                                                                 ) : (
                                                                     item.id
                                                                 )
@@ -461,16 +503,16 @@ class FormSkills extends React.Component {
                         <MDBRow className="justify-content-center mt-3">
                             <MDBCol md="12">
                                 <MDBCard className="card-body">
-                                    <MDBInput containerClass="mt-0" label="Title" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
-                                    <MDBInput containerClass="mt-0" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
-                                    <MDBInput containerClass="mt-0" label="Percent" value={this.state.in_percent} onChange={this.handleInputChange.bind(this, "in_percent")} />
+                                    <MDBInput containerClass="mt-0 in_title" label="Title *" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
+                                    <MDBInput containerClass="mt-0 in_description" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
+                                    <MDBInput containerClass="mt-0 in_percent" label="Percent *" value={this.state.in_percent} onChange={this.handleInputChange.bind(this, "in_percent")} />
                                     {
                                         this.state.in_method === "add" ? (
-                                            <MDBInput containerClass="mt-0" label="Code" value={this.state.in_code} onChange={this.handleInputChange.bind(this, "in_code")} />
+                                            <MDBInput containerClass="mt-0 in_code" label="Code *" value={this.state.in_code} onChange={this.handleInputChange.bind(this, "in_code")} />
                                         ) : ("")
                                     }
-                                    <MDBBox tag="div" className="md-form mt-0 mb-0">
-                                        <MDBBox tag="label" className="active">Start In</MDBBox>
+                                    <MDBBox tag="div" className="md-form mt-0 mb-0 in_start_in">
+                                        <MDBBox tag="label" className="active">Start In *</MDBBox>
                                         <DatePicker
                                             selected={this.state.in_start_in}
                                             placeholderText="Choose date"
@@ -482,8 +524,8 @@ class FormSkills extends React.Component {
                                     <MDBInput containerClass="md-form mt-0 checkbox-mdb-custom" label="Is Present?" type="checkbox" id="isPresent-checkbox" checked={this.state.isPresentDate} onChange={this.handleCheckChange.bind(this)} />
                                     {
                                         !this.state.isPresentDate ? (
-                                            <MDBBox tag="div" className="md-form mt-0">
-                                                <MDBBox tag="label" className="active">End In</MDBBox>
+                                            <MDBBox tag="div" className="md-form mt-0 in_end_in">
+                                                <MDBBox tag="label" className="active">End In *</MDBBox>
                                                 <DatePicker
                                                     selected={this.state.in_end_in}
                                                     placeholderText="Choose date"

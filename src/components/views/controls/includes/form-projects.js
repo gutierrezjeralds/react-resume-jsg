@@ -283,10 +283,7 @@ class FormProjects extends React.Component {
             in_method: "add",
             in_projOptShow: false,
             in_key: 0,
-            in_tag: "",
-            in_company: "",
             in_title: "",
-            in_category: "",
             in_skills: [],
             in_description: "",
             in_image: "",
@@ -338,109 +335,139 @@ class FormProjects extends React.Component {
     }
 
     setProjectsData = (method) => {
-        const data = {
-            method: method,
-            key: this.state.in_key,
-            tag: this.state.in_tag,
-            company: this.state.in_company,
-            title: this.state.in_title,
-            category: this.state.in_category,
-            description: this.state.in_description,
-            image: this.state.in_image,
-            website: this.state.in_website,
-            start_in: this.state.in_start_in,
-            skills: JSON.stringify(this.state.in_skills)
+        const { in_key, in_tag, in_company, in_title, in_category, in_description, in_image, in_website, in_start_in, in_skills } = this.state
+        // Validation
+        let errorCount = ""
+        $(".md-form, .has-error").removeClass("has-error")
+        if ( in_title === "" || in_title === undefined ) {
+            $(".in_title").addClass("has-error")
+            errorCount ++
+        }
+        if ( in_start_in === "" || in_start_in === undefined ) {
+            $(".in_start_in").addClass("has-error")
+            errorCount ++
         }
 
-        $.ajax({
-            url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setProjects",
-            type: 'POST',
-            data: JSON.stringify(data),
-            contentType: 'application/json',
-            cache: false
-        }).then(
-            (result) => {
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true
-                })
+        let errorMsg = errorCount.length === 0
+        if ( !errorMsg ) {
+            this.setState({
+                isLoaded: true,
+                isNotif: true,
+                notifCat: "error",
+                notifStr: "Please fill in the required fields!",
+            })
+        } else {
+            const data = {
+                method: method,
+                key: in_key,
+                tag: in_tag,
+                company: in_company,
+                title: in_title,
+                category: in_category,
+                description: in_description,
+                image: in_image,
+                website: in_website,
+                start_in: in_start_in,
+                skills: JSON.stringify(in_skills)
+            }
+    
+            $.ajax({
+                url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/setProjects",
+                type: 'POST',
+                data: JSON.stringify(data),
+                contentType: 'application/json',
+                cache: false
+            }).then(
+                (result) => {
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true
+                    })
+    
+                    // Conditional alert message
+                    console.log(result)
+                    if ( result.response ) {
+                        if ( this.state.in_method === "add" ) {
+                            this.setState({
+                                isLoaded: false,
+                                in_projOptShow: true,
+                                notifCat: "success",
+                                notifStr: "Added successfully!"
+                            })
+    
+                            // Rerun all over the function of ajax from start
+                            this.getProjectsTitle()
 
-                // Conditional alert message
-                if ( result.response || !result.response ) {
-                    if ( this.state.in_method === "add" ) {
-                        this.setState({
-                            isLoaded: false,
-                            in_projOptShow: true,
-                            notifCat: "success",
-                            notifStr: "Added successfully!"
-                        })
-
-                        // Rerun all over the function of ajax from start
-                        this.getProjectsTitle()
-                    } else if ( this.state.in_method === "edit" ) {
-                        this.setState({
-                            notifCat: "success",
-                            notifStr: "Successfully update!"
-                        })
-                    } else if ( this.state.in_method === "delete" ) {
-                        this.setState({
-                            isLoaded: false,
-                            notifCat: "success",
-                            notifStr: "Successfully deleted!"
-                        })
-
-                        // Rerun all over the function of ajax from start
-                        this.getProjectsTitle()
-
-                    } else {
+                        } else if ( this.state.in_method === "edit" ) {
+                            this.setState({
+                                notifCat: "success",
+                                notifStr: "Successfully update!"
+                            })
+                        } else if ( this.state.in_method === "delete" ) {
+                            this.setState({
+                                isLoaded: false,
+                                notifCat: "success",
+                                notifStr: "Successfully deleted!"
+                            })
+    
+                            // Rerun all over the function of ajax from start
+                            this.getProjectsTitle()
+    
+                        } else {
+                            this.setState({
+                                notifCat: "warning",
+                                notifStr: "Something went wrong!",
+                            })
+                        }
+                    } else if ( !result.response ) {
                         this.setState({
                             notifCat: "warning",
                             notifStr: "Something went wrong!",
                         })
+                    } else if ( result.response === "duplicate" ) {
+                        this.setState({
+                            notifCat: "warning",
+                            notifStr: "Duplicate record!",
+                        })
+                    } else {
+                        this.setState({
+                            notifCat: "error",
+                            notifStr: "Unexpected error, please reload the page!",
+                            error: true
+                        })
                     }
-                } else if ( result.response === "duplicate" ) {
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    // Handle errors here
                     this.setState({
-                        notifCat: "warning",
-                        notifStr: "Duplicate record!",
-                    })
-                } else {
-                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
                         notifCat: "error",
                         notifStr: "Unexpected error, please reload the page!",
                         error: true
                     })
+    
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
                 }
-            },
-            // Note: it's important to handle errors here
-            // instead of a catch() block so that we don't swallow
-            // exceptions from actual bugs in components.
-            (error) => {
-                // Handle errors here
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
-
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', error)
-            }
-        )
-        .catch(
-            (err) => {
-                // Handle errors here
-                this.setState({
-                    isLoaded: true,
-                    isNotif: true,
-                    notifCat: "error",
-                    notifStr: "Unexpected error, please reload the page!",
-                    error: true
-                })
-                
-                console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
-            }
-        )
+            )
+            .catch(
+                (err) => {
+                    // Handle errors here
+                    this.setState({
+                        isLoaded: true,
+                        isNotif: true,
+                        notifCat: "error",
+                        notifStr: "Unexpected error, please reload the page!",
+                        error: true
+                    })
+                    
+                    console.error('Oh well, you failed. Here some thoughts on the error that occured:', err)
+                }
+            )
+        }
     }
 
     getProjectsTitle = () => {
@@ -586,6 +613,8 @@ class FormProjects extends React.Component {
     }
 
     getProjectById(id) {
+        $(".md-form, .has-error").removeClass("has-error")
+
         $.ajax({
             url: "https://gutierrez-jerald-cv-be.herokuapp.com/api/getProjectById",
             dataType: "json",
@@ -802,7 +831,7 @@ class FormProjects extends React.Component {
                                         <MDBBox tag="span" className="select-mdb-bar"></MDBBox>
                                         <MDBBox tag="label" className="col select-mdb-label">Category</MDBBox>
                                     </MDBBox>
-                                    <MDBInput label="Title" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
+                                    <MDBInput containerClass="in_title" label="Title *" value={this.state.in_title} onChange={this.handleInputChange.bind(this, "in_title")} />
                                     <MDBBox tag="div" className="multi-select-custom project-form-skills">
                                         <MDBBox tag="span" className="col select-mdb-label">Skills</MDBBox>
                                         <Multiselect 
@@ -817,8 +846,8 @@ class FormProjects extends React.Component {
                                     </MDBBox>
                                     <MDBInput containerClass="" label="Description" value={this.state.in_description} onChange={this.handleInputChange.bind(this, "in_description")} />
                                     <MDBInput containerClass="mt-0" label="Website URL" value={this.state.in_website} onChange={this.handleInputChange.bind(this, "in_website")} />
-                                    <MDBBox tag="div" className="md-form mt-0">
-                                        <MDBBox tag="label" className="active">Start In</MDBBox>
+                                    <MDBBox tag="div" className="md-form mt-0 in_start_in">
+                                        <MDBBox tag="label" className="active">Start In *</MDBBox>
                                         <DatePicker
                                             selected={this.state.in_start_in}
                                             placeholderText="Choose date"
